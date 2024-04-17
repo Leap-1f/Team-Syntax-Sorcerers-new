@@ -1,4 +1,11 @@
-const shop = () => {
-  return <></>;
+"use client";
+import { Banner } from "./components/Banner";
+const Shop = () => {
+  return (
+    <>
+      <Banner />
+    </>
+  );
 };
-export default shop;
+
+export default Shop;

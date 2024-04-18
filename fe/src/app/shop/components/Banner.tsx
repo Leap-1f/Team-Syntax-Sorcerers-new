@@ -1,7 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import fs from "fs";
-import dotenv from "dotenv";
-dotenv.config();
+
 export const Banner = () => {
   return (
     <>

@@ -1,14 +1,19 @@
 "use client";
-import { UploadStream } from "cloudinary";
-import { log } from "console";
-import { read } from "fs";
 import { useState } from "react";
-const Cloudinary = () => {
+import {Cloudinary} from "@cloudinary/url-gen";
+
+
+ 
+
+const App = () => {
+  const cld = new Cloudinary({cloud: {cloudName: 'dcwgzeo3g'}});
+};
+const Page = () => {
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
   const handleOnChange = (changeEvent: any) => {
     const reader = new FileReader();
-    reader.onload = function (onLoadEvent) {
+    reader.onload = function (onLoadEvent: any) {
       setImageSrc(onLoadEvent.target?.result);
       setUploadData(undefined);
     };
@@ -17,8 +22,8 @@ const Cloudinary = () => {
   async function handleOnSubmit(event: any) {
     event.preventDefault();
     const form = event.currentTarget;
-    const fileInput = Array.from(form.elements).find(
-      ({ name }) => name === "file"
+    const fileInput : any= Array.from(form.elements).find(
+      ({ name }: any) => name === "file"
     );
     const formData = new FormData();
     for (const file of fileInput.files) {
@@ -33,7 +38,10 @@ const Cloudinary = () => {
     setUploadData(data);
     console.log("data", data);
   }
-
+  const sendImg =()=>{
+  
+  }
+ 
   return (
     <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
       <p>
@@ -55,4 +63,4 @@ const Cloudinary = () => {
     </form>
   );
 };
-export default Cloudinary;
+export default Page;

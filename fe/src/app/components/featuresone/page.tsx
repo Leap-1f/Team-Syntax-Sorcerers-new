@@ -1,3 +1,9 @@
+import { Stack } from "@mui/material";
+
 export const Featurestwo = () => {
-  return <></>;
+  return (
+    <>
+      <Stack></Stack>
+    </>
+  );
 };

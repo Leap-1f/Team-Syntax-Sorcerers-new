@@ -1,4 +1,10 @@
+import Dashboard from "./components/Dashboard.tsx/page";
+
 const admin = () => {
-  return <></>;
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 };
 export default admin;

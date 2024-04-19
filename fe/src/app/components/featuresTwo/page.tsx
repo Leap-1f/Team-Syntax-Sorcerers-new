@@ -1,3 +1,3 @@
-export const FeaturesOne = () => {
+export const FeaturesTwo = () => {
   return <></>;
 };

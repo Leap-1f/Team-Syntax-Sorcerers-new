@@ -8,9 +8,11 @@ export default function Home() {
     <>
       <Header />
       //Doorh Stack-d FeaturesOne, Best seller components orno.
-      <Stack></Stack>
+      <Stack width={"1400px"} direction={"column"}>
+        <FeaturesOne />
+      </Stack>
       //Doorh Stack-d Blog, GetInTouch components orno.
-      <Stack></Stack>
+      <Stack width={"1400px"} direction={"column"}></Stack>
       <Footer />
     </>
   );

@@ -1,8 +1,8 @@
 import Header from "./components/header/page";
 import Footer from "./components/footer/page";
 import { Card } from "@/app/components/card/page";
-import { FeaturesOne } from "./components/featuresTwo/page";
 import { Stack } from "@mui/material";
+import { FeaturesOne } from "./components/featuresone/page";
 export default function Home() {
   return (
     <>

@@ -7,14 +7,15 @@ export const Home = () => {
           backgroundImage: "url('natural.jpg')",
           backgroundPosition: "center",
           backgroundSize: "cover",
+
         }}
       >
         <div className="absolute w-full h-full flex justify-center items-center"></div>
         <div className="flex absolute flex-col gap-8 text-white">
-          <h1 className="flex flex-start">
+          <h1 className="flex bg-whiter">
             <img src="https://readme-typing-svg.herokuapp.com/?size=35&&&width=500&height=70&duration=4000&lines=Hello+👋;+ WE ARE ON OUR WAY;" />
           </h1>
-          <p className="text-lg leading-8">
+          <p className="text-lg leading-8 w-[445px] h-[150px] border border-black">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
             iaculis luctus leo ut lacinia. Nunc et augue pulvinar, luctus mi
             non, sagittis odio. Phasellus congue sem nulla, non sodales orci

@@ -1,6 +1,6 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
-export const ProductCategory = () => {
+export const TopRated = () => {
   const productCategoryText = {
     color: "#222",
     fontFamily: "Barlow",
@@ -10,6 +10,7 @@ export const ProductCategory = () => {
     lineHeight: "28.8px",
     textTransform: "uppercase",
   };
+
   const productCategoryFont = {
     color: "#666",
     fontFamily: "Inter",
@@ -36,10 +37,15 @@ export const ProductCategory = () => {
         >
           Product Categories
         </Typography>
+
         <Stack direction={"column"} alignItems={"flex-start"} width={"500px"}>
-          <button>Woman</button>
-          <button>Sneakers</button>
-          <button>Traning Wear</button>
+          <Stack>
+            <Stack></Stack>
+            <Stack>
+              <Typography>Arsenal Home Jersey</Typography>
+              <Typography sx={productCategoryFont}>$55.00</Typography>
+            </Stack>
+          </Stack>
         </Stack>
       </Stack>
     </>

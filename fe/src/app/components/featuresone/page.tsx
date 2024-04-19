@@ -1,9 +1,13 @@
-import { Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 
 export const Featurestwo = () => {
   return (
     <>
-      <Stack></Stack>
+      <Grid container spacing={4} width={"100%"}>
+        <Grid></Grid>
+        <Grid></Grid>
+        <Grid></Grid>
+      </Grid>
     </>
   );
 };

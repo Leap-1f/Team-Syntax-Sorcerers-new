@@ -61,7 +61,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="flex justify-center items-center px-16 py-20 bg-neutral-800 max-md:px-5">
+    <footer className="w-[100%] flex justify-center items-center px-16 py-20 bg-neutral-800 max-md:px-5">
       <div className="flex gap-5 justify-between items-start mt-6 max-w-full w-[1662px] max-md:flex-wrap">
         <div className="flex flex-col self-stretch my-auto text-base max-md:max-w-full">
           <img

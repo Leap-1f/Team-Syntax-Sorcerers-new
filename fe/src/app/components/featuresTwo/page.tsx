@@ -25,6 +25,7 @@ export const FeaturesTwo = () => {
   return (
     <>
       <Stack
+        width={"100%"}
         direction="column"
         alignItems="center"
         justifyContent="center"

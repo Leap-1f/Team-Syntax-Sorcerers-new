@@ -6,6 +6,7 @@ import { FeaturesOne } from "./components/featuresone/page";
 import { FeaturesTwo } from "./components/featuresTwo/page";
 import { Blog } from "./components/blog/page";
 import { AboutOurTeam } from "./components/aboutourteam/page";
+import { OurService } from "./components/ourservice/page";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <FeaturesOne />
           <AboutOurTeam />
+          <OurService />
         </Stack>
         <FeaturesTwo />
         {/* Doorh Stack-d Blog, GetInTouch components orno. */}

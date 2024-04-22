@@ -7,6 +7,7 @@ import { FeaturesTwo } from "./components/featuresTwo/page";
 import { Blog } from "./components/blog/page";
 import { AboutOurTeam } from "./components/aboutourteam/page";
 import { OurService } from "./components/ourservice/page";
+import { GetInTouch } from "./components/getInTouch/page";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <Blog />
         </Stack>
+        <GetInTouch />
         <Footer />
       </Stack>
     </>

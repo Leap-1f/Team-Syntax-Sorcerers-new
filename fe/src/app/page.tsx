@@ -3,6 +3,8 @@ import Footer from "./components/footer/page";
 import { Card } from "@/app/components/card/page";
 import { Stack } from "@mui/material";
 import { FeaturesOne } from "./components/featuresone/page";
+import { FeaturesTwo } from "./components/featuresTwo/page";
+import { Blog } from "./components/blog/page";
 
 export default function Home() {
   return (

@@ -13,7 +13,7 @@ export const Container2 = () => {
     {
       title: "Delivery",
       description:
-        "Nunc et augue pulvinar, luctus mi non, sagittis odio. Phasellus congue sem nulla.non sodales orci malesu da vel. Aliquam mi eros.",
+        "Nunc et augue pulvina, luctus mi no, sagittis odio. Phasellus congue sem nulla.non sodales orci malesu da vel. Aliquam mi eros.",
     },
   ];
 

@@ -18,6 +18,7 @@ const Blog = () => {
               position: "relative",
               backgroundImage:
                 "url('https://s3-alpha-sig.figma.com/img/e480/4a70/2c395e0218c6392a48648290e32eee2f?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QJtzLN7GArolqHDSCVRU0LN1ekUUKeyr790Je-we-IHdd-o0fhfqLfxCeSQCdMzGDS5AjRBD7PA4vYatc8jyTbEiCBScrsr6fGPWrXqKkMClLcqpcW~uSRf926nkmgw0TYGa-rDxUXf309W~65Pnr-rcoAlGsYGharPN-iFQdokS0NLIRtDu1iwk~mj8QGqul34tgI2GOZ7dSSnn-rQMbydPMubp7RAlAo30w3kcoqrJNJq3jIxvqSc~OW3kdSS9PpWzbCNH3u7-HOcanPGUnaLKTuSCIfhLOLE-GlxrsWeUe3wF2kcOijCAMsogqlj8p0s4nWcE0orv7382czOScw__')",
+              backgroundSize:"100% 100%",
               width: "42.25rem",
               height: "27.87rem"
             }}

@@ -1,5 +1,4 @@
-import { Stack, Typography } from "@mui/material";
-import { HoteSaleTag } from "./components/HotSaleTag";
+
 
 export const FeaturesOne = () => {
   const h1Typo = {

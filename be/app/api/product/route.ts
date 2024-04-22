@@ -10,3 +10,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
     return "failed to fetch data";
   }
 }
+export async function POST(req: NextRequest, res: NextResponse) {
+  try {
+  } catch (err) {}
+}

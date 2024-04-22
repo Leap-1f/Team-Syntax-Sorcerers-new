@@ -1,7 +1,7 @@
 const PageLayout = () => {
 	return (
 		<>
-			<div className="flex">
+			<div className=" overflow-hidden">
 				<div
 					style={{
 						backgroundImage:
@@ -9,11 +9,12 @@ const PageLayout = () => {
 						backgroundRepeat: "no-repeat",
 						backgroundSize: "100% 100%",
 						width: "100vw",
-						height: "70vh",
+						height: "50vh",
 						position: "relative",
+						bottom:" 5vh"
 					}}
 				>
-					<div className=" absolute text-center top-[35%] left-[50%]">
+					<div className=" absolute text-center top-[50%] left-[48%]">
 						<h6 className=" text-white font-bold text-[60px]">BLOG</h6>
 						<p className=" text-white font-bold text-[16px]">HOME / BLOG</p>
 					</div>

@@ -1,7 +1,8 @@
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ReactNode } from "react";
+
 import "./globals.css";
-import React from "react";
+
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">

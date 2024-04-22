@@ -5,7 +5,7 @@ import { Stack } from "@mui/material";
 import { FeaturesOne } from "./components/featuresone/page";
 import { FeaturesTwo } from "./components/featuresTwo/page";
 import { Blog } from "./components/blog/page";
-
+import { BestSellers } from "./components/bestsellers/page";
 export default function Home() {
   return (
     <>
@@ -15,7 +15,9 @@ export default function Home() {
         <Stack width={"1400px"} direction={"column"}>
           <FeaturesOne />
         </Stack>
+        <BestSellers />
         <FeaturesTwo />
+
         {/* Doorh Stack-d Blog, GetInTouch components orno. */}
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <Blog />

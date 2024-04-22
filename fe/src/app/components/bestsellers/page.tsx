@@ -1,3 +1,55 @@
 export const BestSellers = () => {
-  return <></>;
+  return (
+    <div className="w-[100vw] h-[90vh] flex flex-col items-center bg-white gap-[50px]">
+      <div className="flex flex-col justify-center items-center gap-[30px] ">
+        <h1 className="text-[36px] font-semibold">EXPLORE OUR BESTSELLERS</h1>
+        <p className="text-center text-[15px] text-[#666]">
+          Commodo sociosqu venenatis cras dolor sagittis integer luctus <br />{" "}
+          sem primis eget maecenas sed urna malesuada.
+        </p>
+
+        <div className="flex gap-[1px]  font-semibold">
+          <div className="w-[140px] h-[50px] border-2 border-gray-400  flex justify-center items-center">
+            All Shoes
+          </div>
+          <div className="w-[140px] h-[50px] border-2 border-gray-400  flex justify-center items-center">
+            Men's
+          </div>
+          <div className="w-[140px] h-[50px] border-2 border-gray-400  flex justify-center items-center">
+            Women's
+          </div>
+          <div className="w-[140px] h-[50px] border-2 border-gray-400  flex justify-center items-center">
+            Kids
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between w-[1400px] h-[360px]">
+        <div className="w-[330px] h-[460px] flex flex-col justify-center items-center hover:shadow-xl ">
+          <div
+            className="w-[250px] h-[300px] "
+            style={{
+              padding: "30px",
+
+              backgroundImage:
+                "url('https://wphix.com/template/gota/gota/assets/img/product/6.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
+          <div className="flex flex-col w-[310px]  h-[100px] gap-[15px]">
+            <div className="flex justify-between  items-center">
+              <p className="text-[12px] text-gray-400">SHOES,CLOTHING</p>
+              <div className="">star</div>
+            </div>
+            <div className="border border-gray-400 w-[310px]"></div>
+            <div className="text-[16px] font-semibold tracking-tight flex flex-col gap-[10px]">
+              <h1>Flat Sandal For Woman</h1>
+              <p>$660.000-$680.000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -32,7 +32,7 @@ export const GetInTouch = () => {
         spacing={"40px"}
         sx={{
           backgroundImage:
-            "url('https://wphix.com/template/gota/gota/assets/img/blog/flowershape.png')",
+            "url(https://wphix.com/template/gota/gota/assets/img/blog/flowershape.png)",
         }}
       >
         <Stack spacing={"20px"}>

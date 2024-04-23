@@ -1,5 +1,4 @@
 import { Stack, Box, Typography, Rating } from "@mui/material";
-
 import React from "react";
 
 export const ProductsContainer = () => {

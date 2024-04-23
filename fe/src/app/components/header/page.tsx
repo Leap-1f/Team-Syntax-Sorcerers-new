@@ -1,45 +1,62 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import SearchIcon from "@mui/icons-material/Search";
+import PhoneIcon from "@mui/icons-material/Phone";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 interface CategoryItemProps {
-    icon: string;
     label: string;
+    href: string; 
 }
 
-const CategoryItem: React.FC<CategoryItemProps> = ({ icon, label }) => (
-    <div className="flex gap-2 self-stretch my-auto whitespace-nowrap">
-        <div className="text-base font-semibold">{label}</div>
-        <img
-            loading="lazy"
-            src={icon}
-            className="shrink-0 self-stretch my-auto w-3.5 aspect-[0.88]"
-            alt=""
-        />
-    </div>
+const CategoryItem: React.FC<CategoryItemProps> = ({ label, href }) => (
+    <Button
+        component="a"
+        href={href}
+        variant="text"
+        sx={{
+            width: "fit-content",
+            color: "black",
+            "&:hover": {
+                color: "#2BB9A9",
+            },
+        }}
+    >
+        {label}
+    </Button>
 );
 
 const categories: CategoryItemProps[] = [
     {
-        icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2f349336255f5935783564f8952fae61066adccf2e80b92bfc5b10c79b676e71?apiKey=d143e53a0810429f951a4f5ac8caff7f&",
         label: "Home",
+        href: "/home",
     },
     {
-        icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2f349336255f5935783564f8952fae61066adccf2e80b92bfc5b10c79b676e71?apiKey=d143e53a0810429f951a4f5ac8caff7f&",
         label: "Shop",
+        href: "/shop",
     },
     {
-        icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2f349336255f5935783564f8952fae61066adccf2e80b92bfc5b10c79b676e71?apiKey=d143e53a0810429f951a4f5ac8caff7f&",
         label: "Blog",
+        href: "/blog",
     },
     {
-        icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2f349336255f5935783564f8952fae61066adccf2e80b92bfc5b10c79b676e71?apiKey=d143e53a0810429f951a4f5ac8caff7f&",
         label: "Pages",
+        href: "/pages",
+    },
+    {
+        label: "Portfolio",
+        href: "/portfolio",
+    },
+    {
+        label: "Contact us",
+        href: "/contact",
     },
 ];
 
 function Header() {
     return (
-        <div className="flex flex-col mb-5">
+        <div className="w-[100%] flex flex-col mb-5">
             <div className="flex flex-wrap gap-5 justify-between py-2 px-4 md:pr-14 md:pl-14 w-full bg-neutral-800">
                 <div className="flex gap-5 justify-between my-auto text-base font-medium leading-6 uppercase whitespace-nowrap text-zinc-500">
                     <div className="flex gap-2">
@@ -148,12 +165,7 @@ function Header() {
                             className="flex-auto mr-auto max-md:max-w-full"
                         />
                         <button type="submit">
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/c6c54940c3cd5c747e8e2983889519dacaef3735c07330252bb12a08cd475b4a?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
-                                alt="Search"
-                                className="shrink-0 self-start mr-auto w-4 aspect-square"
-                            />
+                            <SearchIcon />
                         </button>
                     </form>
                     <div className="flex gap-1.5 self-stretch py-3 my-auto uppercase whitespace-nowrap">
@@ -175,33 +187,43 @@ function Header() {
                         />
                     </div>
                     <div className="flex gap-5 justify-between self-start text-base font-semibold text-white">
-                        <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f705102ba396cf93e293d60ce79bb746f407f6eb9151916c5009e235a3e469af?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
-                            alt=""
-                            className="shrink-0 my-auto w-4 aspect-[0.61]"
-                        />
-                        <div className="flex gap-5 justify-end px-9 py-4 bg-teal-500 rounded max-md:px-5">
-                            <img
-                                loading="lazy"
-                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/640498b073243f1e0931461f5d46f17acd311d36cd5f13398797d74ba2a42bdc?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
-                                alt=""
-                                className="shrink-0 aspect-[1.12] w-[19px]"
+                        <Button
+                            sx={{
+                                borderRadius: "50%",
+
+                        
+                            }}
+                        >
+                            {" "}
+                            <MoreHorizIcon
+                                sx={{
+                                    color: "black",
+                                    "&:hover": { color: "#2BB9A9" },
+                                }}
+                                className="shrink-0 my-auto w-8 aspect-[1.5]"
                             />
-                            <div>My Bag (2)</div>
-                        </div>
+                        </Button>
+                        <Button>
+                            {" "}
+                            <div className="flex gap-5 justify-end px-9 py-4 bg-teal-500 rounded max-md:px-5">
+                                <img
+                                    loading="lazy"
+                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/640498b073243f1e0931461f5d46f17acd311d36cd5f13398797d74ba2a42bdc?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
+                                    alt=""
+                                    className="shrink-0 aspect-[1.12] w-[19px]"
+                                />
+                                <div className="text-white">My Bag (2)</div>
+                            </div>
+                        </Button>
                     </div>
                 </div>
             </div>
             <div className="flex gap-5 justify-between self-center mt-3.5 w-full max-w-[1368px] text-neutral-800 max-md:flex-wrap max-md:max-w-full">
                 <nav className="flex gap-5 justify-between items-center px-5 uppercase leading-[150%] max-md:flex-wrap">
                     <div className="flex gap-5 self-stretch text-base font-bold leading-6">
-                        <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2249eff5520dd5c54b488cdc59cf0260b62911a835466f533ee9fe1d05fd4a60?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
-                            alt=""
-                            className="shrink-0 my-auto w-3.5 aspect-[0.88]"
-                        />
+                        <Button className="flex justify-center py-4rounded max-md:px-5">
+                            <DensityMediumIcon />
+                        </Button>
                         <div>
                             <p>browse categories</p>
                         </div>
@@ -213,22 +235,17 @@ function Header() {
                         className="shrink-0 self-stretch my-auto w-3.5 aspect-[0.88]"
                     />
                     <div className="shrink-0 self-stretch my-auto w-0.5 h-6 bg-gray-200" />
-                    {categories.map((category) => (
-                        <CategoryItem key={category.label} {...category} />
-                    ))}
-                    <div className="flex gap-5 justify-between self-stretch my-auto text-base font-semibold">
-                        <div>Portfolio</div>
-                        <div>contact us</div>
+                    <div className="flex gap-[50px] justify-between self-stretch my-auto text-base font-semibold whitespace-nowrap">
+                        {categories.map((category) => (
+                            <CategoryItem key={category.label} {...category} />
+                        ))}
                     </div>
+                    <div className="flex gap-5 justify-between self-stretch my-auto text-base font-semibold"></div>
                 </nav>
                 <div className="flex gap-2 self-start px-5 text-base font-bold leading-7">
-                    <img
-                        loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/f53bb3a0af6e975d3536ac0bc145ba8b9aa5035d603ab4efa824d3639b8d7094?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
-                        alt=""
-                        className="shrink-0 aspect-square w-[21px]"
-                    />
-                    <div className="my-auto">Hotline: (+800) 123 456 7890</div>
+                    <div className="my-auto mt-2 flex-shrink-0 whitespace-nowrap justify-between self-stretch text-base">
+                        <PhoneIcon /> Hotline: (+800) 123 456 7890
+                    </div>
                 </div>
             </div>
         </div>

@@ -48,7 +48,17 @@ export const Card = () => {
           },
         }}
       >
-        <Stack height={"80%"}></Stack>
+        <Stack
+          width={"100%"}
+          height={"80%"}
+          sx={{
+            backgroundImage:
+              "url(https://wphix.com/template/gota/gota/assets/img/product/8-2.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center top",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></Stack>
         <Stack height={"20%"} spacing={"7px"}>
           <Stack
             direction={"row"}

@@ -6,7 +6,13 @@ export default function AboutUs() {
     <>
       <div className="flex w-[100vw]">
         <div className="flex-col">
-          <div className="w-[100vw] h-[620px] bg-black ">
+          <div
+            className="w-[100vw] h-[620px] "
+            style={{
+              backgroundImage:
+                "url(https://wphix.com/template/gota/gota/assets/img/page/About-us1.jpg)",
+            }}
+          >
             <h1 className="text-white text-center pt-[12%] text-6xl ">
               ABOUT US
             </h1>
@@ -155,7 +161,13 @@ export default function AboutUs() {
                   </div>
                 </div>
               </div>
-              <div className="w-[100vw] h-[670px] bg-black flex-col">
+              <div
+                className="w-[100vw] h-[670px]  flex-col"
+                style={{
+                  backgroundImage:
+                    "url(https://wphix.com/template/gota/gota/assets/img/about/asset19.jpeg)",
+                }}
+              >
                 <h1 className="text-white text-center pt-[12%] text-6xl ">
                   All Orders Are Free <br /> Shipping
                 </h1>

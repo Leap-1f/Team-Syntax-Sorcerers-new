@@ -32,9 +32,9 @@ const Tag: React.FC<TagProps> = ({ tag }) => (
     {tag}
   </button>
 );
-const Instagram: React.FC<PostDataProps> = ({img}) => (
-   <img src={img} alt="" className="w-[100px] h-[100px]" />
-)
+const Instagram: React.FC<PostDataProps> = ({ img }) => (
+  <img src={img} alt="" className="w-[100px] h-[100px]" />
+);
 
 const Data: PostDataProps[] = [
   {

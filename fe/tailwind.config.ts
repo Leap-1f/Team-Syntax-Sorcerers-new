@@ -13,6 +13,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      overlay: {
+        "background": "linear-gradient(0deg, rgba(0, 217, 148, 1) 0%, rgba(32, 178, 7, 0) 81%)",
+        "background-blend-mode": "normal",
+      }
     },
   },
   plugins: [],

@@ -6,12 +6,7 @@ import { Container4 } from "./components/Container4";
 const Features = () => {
   return (
     <>
-      <div className="flex flex-col gap-[100px]  ">
-        <Home />
-        <Container2 />
-        <Container3 />
-        <Container4 />
-      </div>
+      <Home />
     </>
   );
 };

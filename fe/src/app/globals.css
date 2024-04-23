@@ -6,3 +6,19 @@
   margin: 0;
   padding: 0;
 }
+@keyframes size {
+    from {
+        font-size: 400px;
+    }
+    to {
+        font-size: 370px;
+    }
+}
+
+.animate-size {
+    animation: size 1.5s linear infinite alternate;
+}
+#top-sale {
+width: 732px;
+height: 837px;
+}

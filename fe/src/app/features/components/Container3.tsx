@@ -22,7 +22,16 @@ export const Container3 = () => {
     <div className="flex flex-col gap-[70px] justify-center items-center">
       <h1 className="text-[35px] font-semibold text-center">OUR EXPERTISE</h1>
       <div className="flex w-[1150px] gap-[15px]">
-        <div className="w-[600px] h-[850px] bg-[#dee2e6]"></div>
+        <div className="w-[600px] h-[850px] bg-[#dee2e6]">
+
+
+
+
+
+
+
+          
+        </div>
         <div className="w-[600px] h-[900px] flex flex-col gap-[50px]">
           {experienceItems.map((item, index) => (
             <div

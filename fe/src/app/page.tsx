@@ -1,22 +1,22 @@
-import Header from "./components/header/page";
-import Footer from "./components/footer/page";
+import React from "react";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import FeaturesOne from "./components/featuresone/FeaturesOne";
+import FeaturesTwo from "./components/featuresTwo/FeaturesTwo";
+import Blog from "./components/blog/Blog";
+import BestSellers from "./components/bestsellers/BestSellers";
+import Carousel from "./components/carousel/Carousel";
+import AboutOurTeam from "./components/aboutourteam/AboutOurTeam";
+import OurService from "./components/ourservice/OurService";
+import GetInTouch from "./components/getInTouch/GetInTouch";
 import { Stack } from "@mui/material";
-import { FeaturesOne } from "./components/featuresone/page";
-import { FeaturesTwo } from "./components/featuresTwo/page";
-import { Blog } from "./components/blog/page";
-import { BestSellers } from "./components/bestsellers/page";
-import Carousel from "./components/carousel/page";
-import { AboutOurTeam } from "./components/aboutourteam/page";
-import { OurService } from "./components/ourservice/page";
-import { GetInTouch } from "./components/getInTouch/page";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Stack direction={"column"} alignItems={"center"}>
         <Header />
         <Carousel />
-        {/* Doorh Stack-d FeaturesOne, Best seller components orno. */}
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <FeaturesOne />
           <AboutOurTeam />
@@ -24,8 +24,6 @@ export default function Home() {
         </Stack>
         <BestSellers />
         <FeaturesTwo />
-
-        {/* Doorh Stack-d Blog, GetInTouch components orno. */}
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <Blog />
         </Stack>
@@ -34,4 +32,5 @@ export default function Home() {
       </Stack>
     </>
   );
-}
+};
+export default Home;

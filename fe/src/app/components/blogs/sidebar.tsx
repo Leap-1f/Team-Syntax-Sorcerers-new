@@ -1,13 +1,16 @@
 import SearchIcon from "@mui/icons-material/Search";
+import Image from "next/image";
 
 interface PostDataProps {
   img: string;
   title: string;
   date: string;
 }
+
 interface CategoryProps {
   category: string;
 }
+
 interface TagProps {
   tag: string;
 }
@@ -16,7 +19,7 @@ const Post: React.FC<PostDataProps> = ({ img, title, date }) => (
   <div className="flex flex-col gap-[15px]">
     <div className="w-full h-[1px] bg-gray-200 my-5"></div>
     <div className="flex gap-3">
-      <img src={img} alt="" className="w-[5.3rem] h-[3rem]" />
+      <Image src={img} alt="" className="w-[5.3rem] h-[3rem]" />
       <div className="flex flex-col gap-[10px]">
         <div className=" text-[13px] text-[#666]">{title}</div>
         <div className=" text-[13px] text-[#666]">{date}</div>
@@ -32,9 +35,10 @@ const Tag: React.FC<TagProps> = ({ tag }) => (
     {tag}
   </button>
 );
-const Instagram: React.FC<PostDataProps> = ({img}) => (
-   <img src={img} alt="" className="w-[100px] h-[100px]" />
-)
+
+const Instagram: React.FC<PostDataProps> = ({ img }) => (
+  <Image src={img} alt="" className="w-[100px] h-[100px]" />
+);
 
 const Data: PostDataProps[] = [
   {
@@ -90,7 +94,7 @@ const SideBar = () => {
     <>
       <div className=" flex flex-col gap-[50px] w-[23.75rem]">
         <div className=" flex flex-col items-center border px-[2.3rem] pt-[3rem] pb-[4rem]">
-          <img
+          <Image
             src="https://s3-alpha-sig.figma.com/img/2a7c/37d3/f07b8dfd7cae20c0cf2de80c25732136?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BEj9juQ8T5jIffQL7upsL-pe8Q0dTxqk8DcvK5EleWCyRdfQdAfTODW4FzrFglBIINJaRthOyyc~Q3RmUjsb11jJIN4l8T0QuUjGkpHCvOuN90g1wczhEM86ZubwgvxGe89rxb1Ep7rvqRk2T3ZeLdstUgRrHTWLIoo9MQDbdVu2r2GySJSeYjJfxugOdqrakPb7j8QRetG3DVrqTLc0lhw54Axr1YmW-L5LA3sqNpOeNvCWAetJAGT1HZAnnv7tAMJyu0ENiFpElpPbUNiN9AiaZeDe-dwUrFL6bawzkmdt4ShmTi9kDNf4VLUSXXZOyby2fD9~MSccX~XwzLq0PQ__"
             alt=""
             className="w-[16.3rem] h-[17rem]"

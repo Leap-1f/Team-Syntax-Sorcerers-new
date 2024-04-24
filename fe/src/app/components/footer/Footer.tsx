@@ -5,7 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import Button from "@mui/material/Button";
-
+import Image from "next/image";
 interface SocialLinkProps {
   name: string;
   href: string;
@@ -64,7 +64,8 @@ function Footer() {
     <footer className="w-[100%] flex justify-center items-center px-16 py-20 bg-neutral-800 max-md:px-5">
       <div className="flex gap-5 justify-between items-start mt-6 max-w-full w-[1662px] max-md:flex-wrap">
         <div className="flex flex-col self-stretch my-auto text-base max-md:max-w-full">
-          <img
+          <Image
+            fill={true}
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a8dd0365eecf8e481f916bd7d08dd80faa7d45a10826dbb783d0b5eb82d88665?apiKey=d143e53a0810429f951a4f5ac8caff7f&"
             alt="Gota Store logo"
@@ -73,7 +74,7 @@ function Footer() {
           <div className="mt-6 text-base leading-7 text-zinc-500 max-md:max-w-full">
             Gota Store is a premium theme with advanced admin module.
             <br />
-            It's extremely customizable, easy to use and fully responsive and
+            It,s extremely customizable, easy to use and fully responsive and
             retina ready.
           </div>
           <div className="flex justify-between gap-5 mt-6 text-white max-md:flex-wrap">

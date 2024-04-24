@@ -58,3 +58,4 @@ export const GetInTouch = () => {
     </>
   );
 };
+export default GetInTouch;

@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
-export const FeaturesOne = () => {
+const FeaturesOne = () => {
   const h1Typo = {
     color: "#FFF",
     fontFamily: "Barlow",
@@ -98,3 +98,4 @@ export const FeaturesOne = () => {
     </Stack>
   );
 };
+export default FeaturesOne;

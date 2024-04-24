@@ -1,3 +1,4 @@
+import Image from "next/image";
 export const Home = () => {
   return (
     <div className="flex justify-center items-center flex-col gap-[70px]">
@@ -12,7 +13,10 @@ export const Home = () => {
         <div className="absolute w-full h-full flex justify-center items-center"></div>
         <div className="flex absolute flex-col gap-8 text-white">
           <h1 className="flex flex-start">
-            <img src="https://readme-typing-svg.herokuapp.com/?size=35&&&width=500&height=70&duration=4000&lines=Hello+👋;+ WE ARE ON OUR WAY;" />
+            <Image
+              src="https://readme-typing-svg.herokuapp.com/?size=35&&&width=500&height=70&duration=4000&lines=Hello+👋;+ WE ARE ON OUR WAY;"
+              alt="zurag"
+            />
           </h1>
           <p className="text-lg leading-8">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin

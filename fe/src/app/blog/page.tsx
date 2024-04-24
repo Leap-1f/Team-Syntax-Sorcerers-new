@@ -1,17 +1,17 @@
-import { Stack } from "@mui/material";
-import Footer from "../components/footer/page";
-import Header from "../components/header/page";
-import PageLayout from "./pagelayout";
-import Body from "./body";
+import React from "react";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
+import PageLayout from "../components/blogs/PageLayout";
+import Body from "../components/blogs/body";
 
-const blog = () => {
+const Blog: React.FC = () => {
   return (
     <>
-      <Header></Header>
-      <PageLayout></PageLayout>
-      <Body></Body>
-      <Footer></Footer>
+      <Header />
+      <PageLayout />
+      <Body />
+      <Footer />
     </>
   );
 };
-export default blog;
+export default Blog;

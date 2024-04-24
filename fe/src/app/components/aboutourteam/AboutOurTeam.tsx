@@ -1,6 +1,7 @@
+import AboutUs from "@/app/aboutus/AboutUs";
 import { Stack, Typography } from "@mui/material";
 
-export const AboutOurTeam = () => {
+const AboutOurTeam = () => {
   const textTypo = {
     color: "#666",
     textAlign: "center",
@@ -51,3 +52,4 @@ export const AboutOurTeam = () => {
     </>
   );
 };
+export default AboutOurTeam;

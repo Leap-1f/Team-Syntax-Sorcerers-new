@@ -6,7 +6,7 @@ import DiscountIcon from "@mui/icons-material/Discount";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
+import Image from "next/image";
 const Dashboard = () => {
   const buttonStyle = {
     width: "200px",
@@ -64,7 +64,7 @@ const Dashboard = () => {
               <AttachMoneyIcon />
               <p>Орлого</p>
             </div>
-            <p className="font-bold text-3xl">245'000</p>
+            <p className="font-bold text-3xl">245,000</p>
             <p className=" text-gray-500">Өнөөдөр</p>
           </div>
           <div className="bg-white h-fit rounded-xl p-[20px]  flex flex-col gap-[10px]">
@@ -93,7 +93,7 @@ const Dashboard = () => {
               </div>
               <div className=" col-span-4 flex gap-3 justify-start items-center">
                 <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                  <img
+                  <Image
                     className="w-full h-full"
                     src="https://m.media-amazon.com/images/M/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ@._V1_.jpg"
                     alt=""
@@ -108,7 +108,7 @@ const Dashboard = () => {
                 200
               </div>
               <div className=" col-span-2 flex justify-center items-center">
-                12'000$
+                12,000$
               </div>
             </div>
             {/* END Бүтээгдэхүүн нэмэж байгаа хэсэг */}
@@ -119,7 +119,7 @@ const Dashboard = () => {
               </div>
               <div className=" col-span-4 flex gap-3 justify-start items-center">
                 <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
-                  <img
+                  <Image
                     className="w-full h-full"
                     src="https://m.media-amazon.com/images/M/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ@._V1_.jpg"
                     alt=""
@@ -134,7 +134,7 @@ const Dashboard = () => {
                 200
               </div>
               <div className=" col-span-2 flex justify-center items-center">
-                12'000$
+                12,000$
               </div>
             </div>
             {/* END Бүтээгдэхүүн нэмэж байгаа хэсэг */}

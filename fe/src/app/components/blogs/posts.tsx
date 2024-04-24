@@ -1,3 +1,4 @@
+import Image from "next/image";
 interface PostDataProps {
   img: string;
   category: string;
@@ -14,7 +15,7 @@ const Post: React.FC<PostDataProps> = ({
   date,
 }) => (
   <div className="flex gap-[2.5rem]">
-    <img src={img} alt="" className="w-[25.5rem] h-[14.6rem]" />
+    <Image src={img} fill={true} alt="" className="w-[25.5rem] h-[14.6rem]" />
     <div className=" flex flex-col gap-3 w-[35rem]">
       <div className="text-[#2BB9A9] text-[15px] font-normal">{category}</div>
       <div className="text-[2rem] font-semibold">{title}</div>

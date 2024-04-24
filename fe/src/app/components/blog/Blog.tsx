@@ -190,3 +190,4 @@ export const Blog = () => {
     </>
   );
 };
+export default Blog;

@@ -63,3 +63,4 @@ export const OurService = () => {
     </>
   );
 };
+export default OurService;

@@ -16,10 +16,10 @@ export const BestSellers = () => {
             All Shoes
           </div>
           <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200  flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-            Men's
+            Men,s
           </div>
           <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200  flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-            Women's
+            Women,s
           </div>
           <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200  flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
             Kids
@@ -64,3 +64,4 @@ export const BestSellers = () => {
     </div>
   );
 };
+export default BestSellers;

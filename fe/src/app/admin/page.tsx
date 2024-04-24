@@ -1,10 +1,10 @@
 import Dashboard from "../components/Dashboard/Dashboard";
 
-const Admin: React.FC = () => {
+const admin: React.FC = () => {
   return (
     <>
       <Dashboard />
     </>
   );
 };
-export default Admin;
+export default admin;

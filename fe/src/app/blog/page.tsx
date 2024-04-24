@@ -4,7 +4,7 @@ import Footer from "../components/footer/Footer";
 import PageLayout from "../components/blogs/PageLayout";
 import Body from "../components/blogs/body";
 
-const Blog: React.FC = () => {
+const blog: React.FC = () => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const Blog: React.FC = () => {
     </>
   );
 };
-export default Blog;
+export default blog;

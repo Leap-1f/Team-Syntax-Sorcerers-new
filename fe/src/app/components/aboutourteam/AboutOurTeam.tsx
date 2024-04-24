@@ -1,4 +1,3 @@
-import AboutUs from "@/app/aboutus/AboutUs";
 import { Stack, Typography } from "@mui/material";
 
 const AboutOurTeam = () => {

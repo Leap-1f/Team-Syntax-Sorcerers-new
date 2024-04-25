@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import FeaturesOne from "./components/featuresone/FeaturesOne";
-import FeaturesTwo from "./components/featuresTwo/FeaturesTwo";
-import Blog from "./components/blog/Blog";
-import BestSellers from "./components/bestsellers/BestSellers";
-import Carousel from "./components/carousel/Carousel";
-import AboutOurTeam from "./components/aboutourteam/AboutOurTeam";
-import OurService from "./components/ourservice/OurService";
-import GetInTouch from "./components/getInTouch/GetInTouch";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
+import FeaturesOne from "../components/home/hotCards/HotCards";
+import FeaturesTwo from "../components/home/newSneakers/NewSneakers";
+import Blog from "../components/home/Blog";
+import BestSellers from "../components/home/BestSellers";
+import Carousel from "../components/home/Carousel";
+import AboutOurTeam from "../components/home/AboutOurTeam";
+import OurService from "../components/home/OurService";
+import GetInTouch from "../components/home/GetInTouch";
 import { Stack } from "@mui/material";
 
 const Home: React.FC = () => {

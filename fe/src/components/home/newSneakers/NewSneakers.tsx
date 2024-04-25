@@ -1,7 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { Card } from "./components/Card";
-import exp from "constants";
-
+import { Card } from "./Card";
 export const FeaturesTwo = () => {
   const featureTypoGraphy = {
     color: "#FFF",

@@ -1,5 +1,5 @@
-import Posts from "./posts";
-import SideBar from "./sidebar";
+import Posts from "../home/blogs/posts";
+import SideBar from "../home/blogs/sidebar";
 
 const Body = () => {
   return (

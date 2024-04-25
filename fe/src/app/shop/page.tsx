@@ -1,7 +1,7 @@
 "use client";
 import { Stack } from "@mui/material";
-import { Banner } from "./components/section-01/Banner";
-import { Sales } from "./components/section-01/Sales";
+import { Banner } from "../../components/shop/section-01/Banner";
+import { Sales } from "../../components/shop/section-01/Sales";
 import { center } from "@cloudinary/url-gen/qualifiers/textAlignment";
 const Shop = () => {
   return (

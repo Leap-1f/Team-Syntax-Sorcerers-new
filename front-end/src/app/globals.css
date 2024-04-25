@@ -22,3 +22,19 @@
 width: 732px;
 height: 837px;
 }
+
+@keyframes gota {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.gota-limited {
+  animation: gota 1.75s ease-in-out infinite; 
+}

@@ -5,7 +5,7 @@ import FeaturesOne from "../components/home/hotCards/HotCards";
 import FeaturesTwo from "../components/home/newSneakers/NewSneakers";
 import Blog from "../components/home/Blog";
 import BestSellers from "../components/home/BestSellers";
-import Carousel from "../components/home/Carousel";
+import Carousel2 from "../components/home/Carousel2";
 import AboutOurTeam from "../components/home/AboutOurTeam";
 import OurService from "../components/home/OurService";
 import GetInTouch from "../components/home/GetInTouch";
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
     <>
       <Stack direction={"column"} alignItems={"center"}>
         <Header />
-        <Carousel />
+        <Carousel2 />
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <FeaturesOne />
           <AboutOurTeam />

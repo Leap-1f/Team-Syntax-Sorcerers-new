@@ -95,7 +95,9 @@ const Dashboard = () => {
                 <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
                   <Image
                     className="w-full h-full"
-                    src="https://m.media-amazon.com/images/M/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ@._V1_.jpg"
+                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714037268/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ_._V1__yqgneq.jpg"
+                    width={50}
+                    height={50}
                     alt=""
                   />
                 </div>
@@ -121,7 +123,9 @@ const Dashboard = () => {
                 <div className="w-[50px] h-[50px] rounded-full overflow-hidden">
                   <Image
                     className="w-full h-full"
-                    src="https://m.media-amazon.com/images/M/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ@._V1_.jpg"
+                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714037268/MV5BZGY4MjdmMGYtZjQwYi00YTlhLThhZDItZjcwOWZiYjBiOGZkXkEyXkFqcGdeQXVyMTI3MDk3MzQ_._V1__yqgneq.jpg"
+                    width={50}
+                    height={50}
                     alt=""
                   />
                 </div>

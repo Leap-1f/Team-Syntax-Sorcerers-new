@@ -1,27 +1,32 @@
 import { HttpStatusCode } from "axios";
-import connectMongo from "../../database/database";
-import ProductModel from "../../models/product.model";
+import UserModel from "../../models/user.model";
 import { NextRequest, NextResponse } from "next/server";
+
 export async function POST(req: NextRequest) {
   try {
     type CreateProductDto = {
-      name: string;
-      description: string;
-      price: number;
+      name: String;
+      password: Number;
+      firstName: String;
+      lastName: String;
+      phoneNumber: Number;
+      role: String;
+      order: String;
     };
     const body: CreateProductDto = await req.json();
     if (body.name) {
-      const product = await ProductModel.create(body);
+      const user = await UserModel.create(body);
       return NextResponse.json(
-        { product, message: "Your product has been created" },
+        { user, message: "Your user has been created" },
         { status: HttpStatusCode.Created }
       );
     }
     return NextResponse.json(
-      { message: "Product name is missing" },
+      { message: "User name is missing" },
       { status: HttpStatusCode.BadRequest }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
@@ -30,8 +35,7 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(_: NextRequest) {
   try {
-    await connectMongo();
-    const product = await ProductModel.find();
+    const product = await UserModel.find();
     if (product) {
       return NextResponse.json({ product });
     }

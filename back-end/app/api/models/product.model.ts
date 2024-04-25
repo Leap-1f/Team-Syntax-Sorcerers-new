@@ -22,5 +22,5 @@ const ProductSchema = new Schema<IProduct>(
     },
   }
 );
-const Product = models.Product || model("Product", ProductSchema);
-export default Product;
+const ProductModel = models.product || model("product", ProductSchema);
+export default ProductModel;

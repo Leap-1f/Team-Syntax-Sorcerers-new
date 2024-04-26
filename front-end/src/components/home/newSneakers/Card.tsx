@@ -51,6 +51,7 @@ export const Card: React.FC<CardProps> = ({ imageUrl }) => {
     };
     return (
         <Stack
+        
             direction={"row"}
             width={"308px"}
             sx={{

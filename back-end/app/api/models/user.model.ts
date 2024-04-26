@@ -7,7 +7,7 @@ const UserShema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
-    role: { type: String, enum: ["user", "admin"] },
+    role: { type: String, enum: ["user", "admin"], default: "user" },
     orderId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.ORDER },
   },
   {

@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
       apartment: String;
     };
     const body: TLocation = await req.json();
-    if (body.district && body.commitee && body.apartment) {
+    const { district, commitee, apartment } = body;
+    if (district && commitee && apartment) {
       const user = await LocationModel.create(body);
       return NextResponse.json(
         { user, message: "Your user has been created" },

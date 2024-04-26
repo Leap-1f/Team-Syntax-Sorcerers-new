@@ -11,10 +11,20 @@ export async function POST(req: NextRequest) {
       lastName: String;
       phoneNumber: Number;
       role: String;
-      order: String;
+      orderId: String[];
     };
     const body: CreateProductDto = await req.json();
-    if (body.name) {
+    const { name, password, firstName, lastName, phoneNumber, role, orderId } =
+      body;
+    if (
+      name &&
+      password &&
+      firstName &&
+      lastName &&
+      phoneNumber &&
+      role &&
+      orderId
+    ) {
       const user = await UserModel.create(body);
       return NextResponse.json(
         { user, message: "Your user has been created" },

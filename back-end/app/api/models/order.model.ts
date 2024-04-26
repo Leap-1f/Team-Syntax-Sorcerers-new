@@ -8,7 +8,7 @@ const OrderSchema = new Schema(
     totalPrice: { type: Number, required: true },
     status: {
       type: String,
-      enum: ["Hurgegdsen", "Hurgegdeegui", "ZamdaaGarsan"],
+      enum: ["Hurgegdsen", "Hurgegdeegui", "HurgeltendGarsan"],
     },
     locationId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.LOCATION },
   },

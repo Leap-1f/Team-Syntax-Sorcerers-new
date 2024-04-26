@@ -101,14 +101,14 @@ export const BestSellers = () => {
 
             {/* Button */}
             {hoverStates[index] && (
-              <div className="flex absolute bottom-100 gap-[20px]">
-                <button className=" p-[20px] bg-black text-white px-4 py-2 rounded hover:bg-gray-900 transition duration-300">
+              <div className=" absolute bottom-100 ">
+                <button className=" w-[50px] h-[50px] border border-black p-[20px]  text-white px-4 py-2 rounded hover:bg-black transition duration-300">
                   hi
                 </button>
-                <button className=" bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">
+                <button className=" w-[50px] h-[50px] border border-black text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">
                   yu
                 </button>
-                <button className=" bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">
+                <button className=" w-[50px] h-[50px] border border-black text-white px-4 py-2 rounded hover:bg-gray-700 transition duration-300">
                   bn
                 </button>
               </div>

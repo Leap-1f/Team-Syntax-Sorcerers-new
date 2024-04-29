@@ -1,8 +1,9 @@
 import { model, models, Schema } from "mongoose";
+
 const ProductSchema = new Schema(
   {
     name: { type: String, required: true },
-    image: { type: Array, required: true },
+    image: { type: String, required: true },
     color: { type: String, required: true },
     brand: { type: String, required: true },
     gender: { type: String, enum: ["male", "female"], required: true },
@@ -10,7 +11,6 @@ const ProductSchema = new Schema(
     discount: { type: String, required: true },
     rest: { type: Number, required: true },
     size: { type: Number, required: true },
-    status: { type: String, required: true },
   },
   {
     timestamps: true,

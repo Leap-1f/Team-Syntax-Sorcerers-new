@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
 const MONGO_URI =
   "mongodb+srv://mygmar090:vZSG6yTfO4eHR6y9@leap-test.q3ptkvy.mongodb.net/test?retryWrites=true&w=majority";
 const cached: {
@@ -8,6 +6,7 @@ const cached: {
   promise?: Promise<typeof mongoose>;
 } = {};
 async function connectMongo() {
+  console.log("connect to mongo db");
   if (!MONGO_URI) {
     throw new Error(
       "Please define the MONGO_URI environment variable inside .env.local"
@@ -31,14 +30,3 @@ async function connectMongo() {
   return cached.connection;
 }
 export default connectMongo;
-// const connectDB = async () => {
-//   try {
-//     await mongoose.connect(MONGO_URI, {
-//       bufferCommands: false,
-//     });
-//     console.log("connected to db");
-//   } catch (error) {
-//     console.log("error:", error);
-//   }
-// };
-// export default connectDB;

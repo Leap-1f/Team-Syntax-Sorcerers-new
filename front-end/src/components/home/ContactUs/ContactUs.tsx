@@ -98,49 +98,49 @@ const ContactUsMap: React.FC = () => {
             city: "Ulaanbaatar",
             address: "Chinggis Ave 17, 3rd floor Gurvan Gol Office, MN",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 47.91397456297272, lng:106.9158867090484},
+            coordinates: { lat: 47.91397456297272, lng: 106.9158867090484 },
         },
         {
             city: "NewYork",
             address: "S9 Heaven Stress, Beverly Hill, Melbourne, US",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 34.08132794439001, lng:-118.4142710578492 },
+            coordinates: { lat: 34.08132794439001, lng: -118.4142710578492 },
         },
         {
             city: "London",
             address: "Zone B, 2 Pancras Sq, London N1C 4AG, UK",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 51.533577662719786,lng: -0.12505068496236937},
+            coordinates: { lat: 51.533577662719786, lng: -0.12505068496236937 },
         },
         {
             city: "Melbourne",
             address: "LaTrobe and Swanston Streets, Melbourne VIC 3000, AUS",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: -37.80944578723222,lng: 144.96342970202434},
+            coordinates: { lat: -37.80944578723222, lng: 144.96342970202434 },
         },
         {
             city: "Chicago",
             address: "6150 S Laramie Michigan Ave, Chicago, IL 60611, US",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 41.78045850158991, lng:-87.75332264244176},
+            coordinates: { lat: 41.78045850158991, lng: -87.75332264244176 },
         },
         {
             city: "Singapore",
             address: "30 Pasir Panjang Mapletree Business City, SG",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 1.274394926950098, lng:103.79976410072398 },
+            coordinates: { lat: 1.274394926950098, lng: 103.79976410072398 },
         },
         {
             city: "Berlin",
             address: "Leipziger Pl. 12, 10117 Berlin, DE",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 52.51016391459081, lng:13.379625722463855},
+            coordinates: { lat: 52.51016391459081, lng: 13.379625722463855 },
         },
         {
             city: "Milan",
             address: "Piazzale Angelo Moratti, 20151 Milano MI, ITL",
             openingHours: "Open: 9:30 am – 9:00 pm",
-            coordinates: {lat: 45.47657475709843, lng:9.12270899358182},
+            coordinates: { lat: 45.47657475709843, lng: 9.12270899358182 },
         },
     ];
 
@@ -162,9 +162,14 @@ const ContactUsMap: React.FC = () => {
                                     .slice(0, 4)
                                     .map((location, index) => (
                                         <Button
-                                            style={{
+                                            sx={{
                                                 textAlign: "left",
                                                 justifyContent: "flex-start",
+
+                                                color: "red",
+                                                "&:hover": {
+                                                    color: "green",
+                                                },
                                             }}
                                             key={index}
                                             onClick={() =>
@@ -190,9 +195,14 @@ const ContactUsMap: React.FC = () => {
                             <div className="flex flex-col self-stretch m-auto mb-8  mt-9 gap-10 leading-[161%]">
                                 {locations.slice(4).map((location, index) => (
                                     <Button
-                                        style={{
+                                        sx={{
                                             textAlign: "left",
                                             justifyContent: "flex-start",
+
+                                            color: "red",
+                                            "&:hover": {
+                                                color: "green",
+                                            },
                                         }}
                                         key={index}
                                         onClick={() =>

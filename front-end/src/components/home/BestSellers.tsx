@@ -147,6 +147,7 @@ export const BestSellers = () => {
                 ))}
             </div>
         </div>
+        
     );
 };
 

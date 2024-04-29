@@ -15,7 +15,7 @@ const Dropdown = (id: string, name: string, value: Array<any>): JSX.Element => {
     setVal(event.target.value as string);
   };
   return (
-    <FormControl fullWidth>
+    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id={id + "-label"}>{name}</InputLabel>
       <Select
         labelId={id + "-label"}

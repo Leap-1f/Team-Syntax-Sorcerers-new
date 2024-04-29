@@ -1,8 +1,23 @@
+"use client";
+import React, { useEffect } from "react";
 import { Stack, Box, Typography, Rating } from "@mui/material";
-import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-export const Card = () => {
-    //   const [value, setValue] = React.useState<number | null>(2);
+interface CardProps {
+    imageUrl: string;
+    index: number;
+}
+
+export const Card: React.FC<CardProps> = ({ imageUrl }) => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            easing: "ease",
+            once: false,
+        });
+        AOS.refresh(); // Refresh AOS after initialization
+    }, []);
 
     const productCategoryText = {
         color: "#222",
@@ -39,9 +54,11 @@ export const Card = () => {
             direction={"row"}
             width={"308px"}
             sx={{
+                borderRadius: "10px",
+
                 backgroundColor: "white",
-               
             }}
+            data-aos="slide-left"
         >
             <Box
                 sx={{
@@ -55,7 +72,18 @@ export const Card = () => {
                     },
                 }}
             >
-                <Stack height={"80%"}></Stack>
+                <Stack height={"80%"}>
+                    {/* Add the image here */}
+                    <img
+                        src={imageUrl}
+                        alt="Product"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                        }}
+                    />
+                </Stack>
                 <Stack height={"20%"} spacing={"7px"}>
                     <Stack
                         direction={"row"}

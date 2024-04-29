@@ -35,9 +35,9 @@ const AboutOurTeam = () => {
         ></Stack>
         <Typography textAlign={"center"} sx={textTypo}>
           Great theme, extended super and fast professional support. Easy to
-          use, flexible, visual composer and more functional <br></br> plugins
+          use, flexible, visual composer and more functional <br/> plugins
           on board. Yes a real good, strong theme with structured coding.
-          <br></br>Enjoy it! friendly and super good!
+          <br/>Enjoy it! friendly and super good!
         </Typography>
         <Typography sx={textTypoSecond}>
           <span

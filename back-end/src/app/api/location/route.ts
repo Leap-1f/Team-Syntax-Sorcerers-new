@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import LocationModel from "../../models/location.model";
+import LocationModel from "../../../models/location.model";
 import { HttpStatusCode } from "axios";
 export async function POST(req: NextRequest) {
   try {
@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
       apartment: String;
     };
     const body: TLocation = await req.json();
-    if (body.district && body.commitee && body.apartment) {
+    const { district, commitee, apartment } = body;
+    if (district && commitee && apartment) {
       const user = await LocationModel.create(body);
       return NextResponse.json(
         { user, message: "Your user has been created" },
@@ -24,5 +25,23 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.log(err);
     return { err };
+  }
+}
+export async function GET(req: NextRequest) {
+  try {
+    const location = await LocationModel.find();
+    if (location) {
+      return NextResponse.json({ location });
+    }
+    return NextResponse.json(
+      { message: `Location not found` },
+      { status: HttpStatusCode.NotFound }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: error },
+      { status: HttpStatusCode.BadRequest }
+    );
   }
 }

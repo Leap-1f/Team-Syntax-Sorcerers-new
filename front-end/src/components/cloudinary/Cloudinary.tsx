@@ -1,10 +1,5 @@
 // "use client";
 // import { useState } from "react";
-// import { Cloudinary } from "@cloudinary/url-gen";
-
-// const App = () => {
-//   const cld = new Cloudinary({ cloud: { cloudName: "dcwgzeo3g" } });
-// };
 // const Page = () => {
 //   const [imageSrc, setImageSrc] = useState();
 //   const [uploadData, setUploadData] = useState();
@@ -35,7 +30,6 @@
 //     setUploadData(data);
 //     console.log("data", data);
 //   }
-//   const sendImg = () => {};
 
 //   return (
 //     <form method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>

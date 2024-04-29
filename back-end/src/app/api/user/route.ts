@@ -1,20 +1,22 @@
 import { HttpStatusCode } from "axios";
-import UserModel from "../../models/user.model";
+import UserModel from "../../../models/user.model";
 import { NextRequest, NextResponse } from "next/server";
-
+type CreateProductDto = {
+  name: String;
+  password: String;
+  firstName: String;
+  lastName: String;
+  phoneNumber: Number;
+  role: String;
+  orderId: String[];
+};
 export async function POST(req: NextRequest) {
   try {
-    type CreateProductDto = {
-      name: String;
-      password: Number;
-      firstName: String;
-      lastName: String;
-      phoneNumber: Number;
-      role: String;
-      order: String;
-    };
+    console.log("user deer huselt irlee");
     const body: CreateProductDto = await req.json();
-    if (body.name) {
+    const { name, password, firstName, lastName, phoneNumber, role, orderId } =
+      body;
+    if (body) {
       const user = await UserModel.create(body);
       return NextResponse.json(
         { user, message: "Your user has been created" },

@@ -83,10 +83,22 @@ export const FeaturesTwo = () => {
                     justifyContent={"center"}
                     spacing={"40px"}
                 >
-                    <Card imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049024/d0f78259b152acea1a2a227ce946c439_pjp79c.jpg" index={0} />
-                    <Card imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049019/d18e34eb34c9a364f0ca7ef6a8076f50_ns3j84.jpg" index={0} />
-                    <Card imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036836/7_scirkj.jpg" index={0} />
-                    <Card imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036831/6_g79t15.jpg" index={0} />
+                    <Card
+                        imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049024/d0f78259b152acea1a2a227ce946c439_pjp79c.jpg"
+                        index={0}
+                    />
+                    <Card
+                        imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049019/d18e34eb34c9a364f0ca7ef6a8076f50_ns3j84.jpg"
+                        index={0}
+                    />
+                    <Card
+                        imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036836/7_scirkj.jpg"
+                        index={0}
+                    />
+                    <Card
+                        imageUrl="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036831/6_g79t15.jpg"
+                        index={0}
+                    />
                 </Stack>
             </Stack>
         </>

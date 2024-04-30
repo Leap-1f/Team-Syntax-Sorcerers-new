@@ -36,6 +36,9 @@ export function Main() {
       image: "mamaMia!",
     },
   ];
+  function navigate(where: string) {
+    window.location.href = where;
+  }
   return (
     <Stack
       sx={{
@@ -71,6 +74,9 @@ export function Main() {
         onMouseLeave={(e) => {
           const input = e.target as HTMLElement;
           input.innerText = "Бүтээгдэхүүн нэмэх";
+        }}
+        onClick={() => {
+          navigate("/admin/product/addProduct");
         }}
       >
         Бүтээгдэхүүн нэмэх.

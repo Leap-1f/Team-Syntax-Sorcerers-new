@@ -15,7 +15,6 @@ import { FaAngleLeft, FaImage } from "react-icons/fa6";
 import { StyledDropdown } from "./styledDropdown";
 import { use, useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
-
 export default function Main() {
   const [topCategory, setTopCategory] = useState("Сонгох");
   const [category, setCategory] = useState("Сонгох");
@@ -69,6 +68,20 @@ export default function Main() {
   const handleCategoryChange = (event: { target: { value: string } }) => {
     setCategory(event.target.value);
   };
+  const handleClear = () => {
+    setCategory("");
+    setTopCategory("");
+    setImageAmt(3);
+    setName("");
+    setDesc("");
+    setCode("");
+    setGender("");
+    setPrice("");
+    setStock("");
+    setSize("");
+    setColor("");
+    setTags([""]);
+  };
   const incrementImageAmt = () => {
     if (imageAmt < 6) {
       setImageAmt((prev) => prev + 1);
@@ -87,6 +100,7 @@ export default function Main() {
       addImageButton.style.display = "flex";
     }
   }, [imageAmt]);
+
   const mockData = [
     "Сонгох",
     "Сонгох",
@@ -113,7 +127,7 @@ export default function Main() {
         alignItems="center"
         sx={{ bgcolor: "white", height: "4vh" }}
       >
-        <Button>
+        <Button onClick={() => history.back()}>
           <FaAngleLeft fill="black" width={40} height={40} />
         </Button>
         <Typography
@@ -484,6 +498,7 @@ export default function Main() {
               backgroundColor: "white",
               color: "black",
             }}
+            onClick={handleClear}
           >
             Ноорог
           </Button>

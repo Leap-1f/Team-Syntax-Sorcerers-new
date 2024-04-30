@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
 const MONGO_URI =
-  "mongodb+srv://mygmar090:vZSG6yTfO4eHR6y9@leap-test.q3ptkvy.mongodb.net/";
+  "mongodb+srv://mygmar090:vZSG6yTfO4eHR6y9@leap-test.q3ptkvy.mongodb.net/test?retryWrites=true&w=majority";
 const cached: {
   connection?: typeof mongoose;
   promise?: Promise<typeof mongoose>;
 } = {};
 async function connectMongo() {
+  console.log("connect to mongo db");
   if (!MONGO_URI) {
     throw new Error(
       "Please define the MONGO_URI environment variable inside .env.local"
@@ -18,7 +17,7 @@ async function connectMongo() {
   }
   if (!cached.promise) {
     const opts = {
-      bufferCommands: false,
+      // bufferCommands: false,
     };
     cached.promise = mongoose.connect(MONGO_URI, opts);
   }

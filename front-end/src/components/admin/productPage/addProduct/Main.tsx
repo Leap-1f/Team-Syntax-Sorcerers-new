@@ -8,13 +8,13 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Menu,
 } from "@mui/material";
 import { StyledInput } from "./styledInput";
 import { FaAngleLeft, FaImage } from "react-icons/fa6";
 import { StyledDropdown } from "./styledDropdown";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
+import { addProduct } from "./network";
 export default function Main() {
   const [topCategory, setTopCategory] = useState("Сонгох");
   const [category, setCategory] = useState("Сонгох");
@@ -452,9 +452,8 @@ export default function Main() {
                   <MenuItem value={"Сонгох"} disabled>
                     Сонгох
                   </MenuItem>
-                  <MenuItem value={"Эрэгтэй"}>Эрэгтэй</MenuItem>
-                  <MenuItem value={"Эмэгтэй"}>Эмэгтэй</MenuItem>
-                  <MenuItem value={"Юнисекс"}>Юнисекс</MenuItem>
+                  <MenuItem value={"male"}>Эрэгтэй</MenuItem>
+                  <MenuItem value={"female"}>Эмэгтэй</MenuItem>
                 </Select>
               </FormControl>
             </Stack>
@@ -507,6 +506,20 @@ export default function Main() {
               "&:hover": { backgroundColor: "black", color: "white" },
               backgroundColor: "black",
               color: "white",
+            }}
+            onClick={() => {
+              const res = addProduct({
+                name: name,
+                image: "asd",
+                color: color,
+                brand: "asd",
+                gender: gender,
+                price: price,
+                discount: 300,
+                rest: stock,
+                size: size,
+              });
+              console.log(res);
             }}
           >
             Нийтлэх

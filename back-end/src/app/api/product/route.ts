@@ -39,6 +39,10 @@ export async function POST(req: NextRequest) {
         { status: HttpStatusCode.Created }
       );
     }
+    return NextResponse.json(
+      { message: "FUCKING ERROR" },
+      { status: HttpStatusCode.BadRequest }
+    );
   } catch (error) {
     console.log(error);
     return NextResponse.json(

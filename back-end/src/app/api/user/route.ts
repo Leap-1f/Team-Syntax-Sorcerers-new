@@ -14,8 +14,6 @@ export async function POST(req: NextRequest) {
   try {
     console.log("user deer huselt irlee");
     const body: CreateProductDto = await req.json();
-    const { name, password, firstName, lastName, phoneNumber, role, orderId } =
-      body;
     if (body) {
       const user = await UserModel.create(body);
       return NextResponse.json(
@@ -37,7 +35,12 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(_: NextRequest) {
   try {
-    const product = await UserModel.find();
+    const product = await UserModel.findById(
+      "6630a6a39ab1cf1e3e87aae9"
+    ).populate({
+      path: "orderId",
+      model: "order",
+    });
     if (product) {
       return NextResponse.json({ product });
     }

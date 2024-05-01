@@ -61,6 +61,7 @@ const categories: CategoryItemProps[] = [
     },
 ];
 function Header() {
+    //dark mode nemev
     const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
 
     useEffect(() => {

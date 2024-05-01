@@ -1,228 +1,331 @@
-import * as React from "react";
+"use client";
 import Button from "@mui/material/Button";
-import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 import SearchIcon from "@mui/icons-material/Search";
-import PhoneIcon from "@mui/icons-material/Phone";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Image from "next/image";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CartIcon from "../icons/CartIcon";
-interface CategoryItemProps {
-    label: string;
-    href: string;
-}
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import InputBase from "@mui/material/InputBase";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import React, { FC, useState } from "react";
+import Select, { selectClasses } from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import {
+  Grid,
+  MenuItem,
+  Paper,
+  SelectChangeEvent,
+  SelectProps,
+  Stack,
+  Typography,
+  styled,
+} from "@mui/material";
 
-const CategoryItem: React.FC<CategoryItemProps> = ({ label, href }) => (
-    <Button
-        component="a"
-        href={href}
-        variant="text"
-        sx={{
-            width: "fit-content",
-            color: "black",
-            "&:hover": {
-                color: "#2BB9A9",
-            },
-        }}
-    >
-        {label}
-    </Button>
+interface CategoryItemProps {
+  label: string;
+  href: string;
+}
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  width: "100%",
+  "& .MuiInputBase-input": {
+    paddingLeft: "20px",
+  },
+}));
+const Search = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  borderRadius: "5px",
+});
+const CategoryItem: FC<CategoryItemProps> = ({ label, href }) => (
+  <Button
+    component="a"
+    href={href}
+    variant="text"
+    sx={{
+      width: "fit-content",
+      color: "black",
+      "&:hover": {
+        color: "#2BB9A9",
+      },
+    }}
+  >
+    {label}
+  </Button>
 );
 
-const categories: CategoryItemProps[] = [
-    {
-        label: "Home",
-        href: "/",
-    },
-    {
-        label: "Shop",
-        href: "/shop",
-    },
-    {
-        label: "Blog",
-        href: "/blog",
-    },
-    {
-        label: "Pages",
-        href: "/aboutUs",
-    },
-    {
-        label: "Portfolio",
-        href: "/ourService",
-    },
-    {
-        label: "Contact us",
-        href: "/contactUs",
-    },
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+const categoriesLeftSide: CategoryItemProps[] = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Shop",
+    href: "/shop",
+  },
+  {
+    label: "Blog",
+    href: "/blog",
+  },
 ];
-
+const categoriesRightSide: CategoryItemProps[] = [
+  {
+    label: "Pages",
+    href: "/aboutUs",
+  },
+  {
+    label: "Portfolio",
+    href: "/ourService",
+  },
+  {
+    label: "Contact us",
+    href: "/contactUs",
+  },
+];
+const headerCurrencyTypo = {
+  fontSize: "16px",
+  fontFamily: "Barlow",
+  fontWeight: 500,
+  color: "#adacac",
+};
+const gotaTypo = {
+  fontSize: "16px",
+  textTransform: "uppercase",
+  px: "30px",
+  fontWeight: 600,
+  color: "#222222",
+};
+const buttonTypo = {
+  fontSize: "16px",
+  color: "#222222",
+  fontWeight: 600,
+  textTransform: "uppercase",
+  display: "block",
+  paddingRight: "30px",
+};
 function Header() {
-    return (
-        <div className="w-[100%] flex flex-col mb-5">
-            <div className="flex flex-wrap gap-5 justify-between py-2 px-4 md:pr-14 md:pl-14 w-full bg-neutral-800">
-                <div className="flex gap-5 justify-between my-auto text-base font-medium leading-6 uppercase whitespace-nowrap text-zinc-500">
-                    <div className="flex gap-2">
-                        <div className="my-auto">usd</div>
-                        <KeyboardArrowDownIcon className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="flex gap-2 my-auto">
-                        <div className="grow">english</div>
-                        <KeyboardArrowDownIcon className="w-5 h-5 text-white" />
-                    </div>
-                </div>
-                <div className="flex flex-wrap gap-[300px] justify-between items-center md:flex-nowrap md:max-w-full">
-                    <div className="flex flex-col md:flex-row md:items-center justify-center md:justify-start md:w-full">
-                        <p className="text-xs leading-7 text-center text-white">
-                            DELIVERY TO YOU - Get Free Standard Delivery On All
-                            Orders
-                        </p>
-                        <Button
-                            sx={{
-                                color: "#2BB9A9",
-                                "&:hover": {
-                                    color: "white",
-                                },
-                            }}
-                            className="px-6 py-4 -ml-1 text-center rounded appearance-none cursor-pointer bg-transparent border-none"
-                        >
-                            See Details
-                        </Button>
-                    </div>
-
-                    <div className="flex gap-5 my-auto text-base font-medium leading-6 text-right uppercase text-zinc-500">
-                        <Button
-                            sx={{
-                                color: "white",
-                                "&:hover": {
-                                    color: "#2BB9A9",
-                                },
-                            }}
-                            variant="text"
-                        >
-                            Wishlist
-                        </Button>
-                        <Button
-                            sx={{
-                                color: "white",
-                                "&:hover": {
-                                    color: "#2BB9A9",
-                                },
-                            }}
-                            href="https://www.figma.com/file/FLYc240YNGXmF4kZmp9Bfs?type=design&node-id=1-320&mode=design"
-                            variant="text"
-                        >
-                            Account
-                        </Button>
-                        <Button
-                            sx={{
-                                color: "white",
-                                "&:hover": {
-                                    color: "#2BB9A9",
-                                },
-                            }}
-                            href="https://www.figma.com/file/FLYc240YNGXmF4kZmp9Bfs?type=design&node-id=1-320&mode=design"
-                            variant="text"
-                        >
-                            Checkout
-                        </Button>
-                        <Button
-                            sx={{
-                                color: "white",
-                                "&:hover": {
-                                    color: "#2BB9A9",
-                                },
-                            }}
-                        >
-                            Log in & register
-                        </Button>
-                    </div>
-                </div>
-            </div>
-            <div className="flex justify-center items-center px-16 py-5 w-full text-xs font-bold leading-5 border-b border-gray-200 border-solid text-zinc-500 max-md:px-5 max-md:max-w-full">
-                <div className="flex gap-5 justify-between items-center w-full max-w-[1334px] max-md:flex-wrap max-md:max-w-full">
-                    <Image
-                        loading="lazy"
-                        src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714038144/9c66d8dd02f3646ac9a10299bb4346aab9ee290841253a496877330db28584fd_bpr2lk.png"
-                        width={69}
-                        height={69}
-                        alt=""
-                        className="shrink-0 self-stretch my-auto aspect-[2.44] w-[69px]"
-                    />
-                    <form className="flex gap-5 self-start px-52 py-5 -mr-px text-base border border-solid bg-stone-50 border-zinc-300 rounded-[50px] text-stone-500 max-md:flex-wrap max-md:px-5">
-                        <label htmlFor="search" className="sr-only">
-                            Enter keywords to search...
-                        </label>
-                        <input
-                            type="text"
-                            id="search"
-                            placeholder="Enter keywords to search..."
-                            className="flex-auto mr-auto max-md:max-w-full"
-                        />
-                        <button type="submit">
-                            <SearchIcon />
-                        </button>
-                    </form>
-                    <div className="flex gap-1.5 self-stretch py-3 my-auto uppercase whitespace-nowrap">
-                        <div>usd</div>
-                        <KeyboardArrowDownIcon className="w-5 h-5 text-black" />
-                    </div>
-                    <div className="flex gap-2 self-stretch my-auto uppercase whitespace-nowrap">
-                        <div className="my-auto">english</div>
-                        <KeyboardArrowDownIcon className="w-5 h-5 text-black" />
-                    </div>
-                    <div className="flex gap-5 justify-between self-start text-base font-semibold text-white">
-                        <Button
-                            sx={{
-                                borderRadius: "50%",
-                            }}
-                        >
-                            {" "}
-                            <MoreHorizIcon
-                                sx={{
-                                    color: "black",
-                                    "&:hover": { color: "#2BB9A9" },
-                                }}
-                                className="shrink-0 my-auto w-8 aspect-[1.5]"
-                            />
-                        </Button>
-                        <Button>
-                            {" "}
-                            <div className="flex gap-5 justify-end px-9 py-4 bg-teal-500 rounded max-md:px-5 align-baseline items-center">
-                                <CartIcon />
-                                <div className="text-white">My Bag (2)</div>
-                            </div>
-                        </Button>
-                    </div>
-                </div>
-            </div>
-            <div className="flex gap-5 justify-between self-center mt-3.5 w-full max-w-[1368px] text-neutral-800 max-md:flex-wrap max-md:max-w-full">
-                <nav className="flex gap-5 justify-between items-center px-5 uppercase leading-[150%] max-md:flex-wrap">
-                    <div className="flex gap-5 self-stretch text-base font-bold leading-6">
-                        <Button className="flex justify-center py-4rounded max-md:px-5">
-                            <DensityMediumIcon />
-                        </Button>
-                        <div>
-                            <p>browse categories</p>
-                        </div>
-                    </div>
-                    <KeyboardArrowDownIcon className="w-5 h-5 text-black" />
-
-                    <div className="shrink-0 self-stretch my-auto w-0.5 h-6 bg-gray-200" />
-                    <div className="flex gap-[50px] justify-between self-stretch my-auto text-base font-semibold whitespace-nowrap">
-                        {categories.map((category) => (
-                            <CategoryItem key={category.label} {...category} />
-                        ))}
-                    </div>
-                    <div className="flex gap-5 justify-between self-stretch my-auto text-base font-semibold"></div>
-                </nav>
-                <div className="flex gap-2 self-start px-5 text-base font-bold leading-7">
-                    <div className="my-auto mt-2 flex-shrink-0 whitespace-nowrap justify-between self-stretch text-base">
-                        <PhoneIcon /> Hotline: (+800) 123 456 7890
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+  const [currency, setCurrency] = useState<string>("USD");
+  const handleChange = (event: SelectChangeEvent) => {
+    setCurrency(event.target.value as string);
+  };
+  return (
+    <Stack width={"100%"}>
+      <Stack
+        width={"100%"}
+        height={"48px"}
+        bgcolor={"#202020"}
+        px={"48px"}
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        color={"white"}
+      >
+        <Stack direction={"row"} color={"#88888"}>
+          <Select
+            placeholder="USD"
+            indicator={<KeyboardArrowDown />}
+            variant="plain"
+            sx={{
+              ...headerCurrencyTypo,
+              width: 85,
+              backgroundColor: "#202020",
+              [`& .${selectClasses.indicator}`]: {
+                transition: "0.2s",
+                [`&.${selectClasses.expanded}`]: {
+                  transform: "rotate(-180deg)",
+                },
+              },
+              "&:hover": {
+                color: "#2bb9a9",
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <Option value="usd">USD</Option>
+            <Option value="mnt">MNT</Option>
+          </Select>
+          <Select
+            placeholder="ENGLISH"
+            indicator={<KeyboardArrowDown />}
+            variant="plain"
+            sx={{
+              ...headerCurrencyTypo,
+              width: 120,
+              backgroundColor: "#202020",
+              [`& .${selectClasses.indicator}`]: {
+                transition: "0.2s",
+                [`&.${selectClasses.expanded}`]: {
+                  transform: "rotate(-180deg)",
+                },
+              },
+              "&:hover": {
+                color: "#2bb9a9",
+                backgroundColor: "#202020",
+              },
+            }}
+          >
+            <Option value="english">ENGLISH</Option>
+            <Option value="mongolia">MONGOLIA</Option>
+          </Select>
+        </Stack>
+        <Stack direction={"row"}>
+          <Button
+            sx={{
+              textTransform: "uppercase",
+              color: "#adacac",
+              "&:hover": {
+                color: "#2bb9a9",
+              },
+            }}
+          >
+            Wishlist
+          </Button>
+          <Button
+            sx={{
+              textTransform: "uppercase",
+              color: "#adacac",
+              "&:hover": {
+                color: "#2bb9a9",
+              },
+            }}
+          >
+            account
+          </Button>
+          <Button
+            sx={{
+              textTransform: "uppercase",
+              color: "#adacac",
+              "&:hover": {
+                color: "#2bb9a9",
+              },
+            }}
+          >
+            Checkout
+          </Button>
+          <Button
+            sx={{
+              textTransform: "uppercase",
+              color: "#adacac",
+              "&:hover": {
+                color: "#2bb9a9",
+              },
+            }}
+          >
+            login&register
+          </Button>
+        </Stack>
+      </Stack>
+      <Grid container alignItems="center">
+        <Grid item sx={{ width: "20%" }}>
+          <Stack sx={{ py: "30px", px: "48px" }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search"
+                inputProps={{ "aria-label": "search" }}
+                sx={gotaTypo}
+              />
+            </Search>
+          </Stack>
+        </Grid>
+        <Grid
+          item
+          direction={"row"}
+          justifyContent={"center"}
+          sx={{ width: "60%" }}
+        >
+          <Stack
+            width={"100%"}
+            direction={"row"}
+            justifyContent={"center"}
+            sx={{ py: "30px", px: "48px" }}
+            spacing={"10px"}
+          >
+            {categoriesLeftSide.map((category, index) => (
+              <Button
+                sx={{
+                  ...buttonTypo,
+                  "&:hover": {
+                    backgroundColor: "none",
+                    border: "none !important",
+                    color: "#2bb9a9",
+                  },
+                }}
+                key={index}
+                href={category.href}
+              >
+                {category.label}
+              </Button>
+            ))}
+            <Image
+              loading="lazy"
+              width={75}
+              height={69}
+              src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714038144/9c66d8dd02f3646ac9a10299bb4346aab9ee290841253a496877330db28584fd_bpr2lk.png"
+              alt=""
+              className="shrink-0 self-stretch my-auto aspect-[2.44] w-[69px]"
+            />
+            {categoriesRightSide.map((category, index) => (
+              <Button
+                sx={{
+                  ...buttonTypo,
+                  "&:hover": {
+                    backgroundColor: "none",
+                    border: "none !important",
+                    color: "#2bb9a9",
+                  },
+                }}
+                key={index}
+                href={category.href}
+              >
+                {category.label}
+              </Button>
+            ))}
+          </Stack>
+        </Grid>
+        <Grid item sx={{ width: "20%" }}>
+          <Stack sx={{ paddingRight: "48px" }}>
+            <Button
+              sx={{
+                padding: "0px",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <span style={{ color: "black", fontSize: "24px" }}>
+                <AiOutlineShoppingCart />
+              </span>
+              <Typography
+                sx={{
+                  ...gotaTypo,
+                  fontSize: "16px",
+                  px: "10px",
+                }}
+              >
+                My Bag (2)
+              </Typography>
+            </Button>
+          </Stack>
+        </Grid>
+      </Grid>
+    </Stack>
+  );
 }
 
 export default Header;

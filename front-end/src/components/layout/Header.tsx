@@ -1,4 +1,6 @@
+"use client";
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,6 +9,9 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Image from "next/image";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CartIcon from "../icons/CartIcon";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
+
 interface CategoryItemProps {
     label: string;
     href: string;
@@ -55,10 +60,31 @@ const categories: CategoryItemProps[] = [
         href: "/contactUs",
     },
 ];
-
 function Header() {
+    //dark mode nemev
+    const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem("darkModeEnabled");
+        if (storedDarkMode === "true") {
+            document.body.classList.add("dark-mode");
+            setDarkModeEnabled(true);
+        }
+    }, []);
+
+    const toggleDarkMode = () => {
+        const isDarkMode = !darkModeEnabled;
+        setDarkModeEnabled(isDarkMode);
+        document.body.classList.toggle("dark-mode", isDarkMode);
+        localStorage.setItem("darkModeEnabled", isDarkMode.toString());
+    };
+
     return (
-        <div className="w-[100%] flex flex-col mb-5">
+        <div
+            className={`w-[100%] flex flex-col mb-5 ${
+                darkModeEnabled ? "text-white" : "text-black"
+            }`}
+        >
             <div className="flex flex-wrap gap-5 justify-between py-2 px-4 md:pr-14 md:pl-14 w-full bg-neutral-800">
                 <div className="flex gap-5 justify-between my-auto text-base font-medium leading-6 uppercase whitespace-nowrap text-zinc-500">
                     <div className="flex gap-2">
@@ -69,6 +95,18 @@ function Header() {
                         <div className="grow">english</div>
                         <KeyboardArrowDownIcon className="w-5 h-5 text-white" />
                     </div>
+                    <Button
+                        onClick={toggleDarkMode}
+                        sx={{
+                            color: darkModeEnabled ? "yellow" : "white ",
+                        }}
+                    >
+                        {darkModeEnabled ? (
+                            <LightModeIcon />
+                        ) : (
+                            <NightsStayIcon />
+                        )}
+                    </Button>
                 </div>
                 <div className="flex flex-wrap gap-[300px] justify-between items-center md:flex-nowrap md:max-w-full">
                     <div className="flex flex-col md:flex-row md:items-center justify-center md:justify-start md:w-full">

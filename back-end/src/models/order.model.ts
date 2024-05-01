@@ -5,10 +5,9 @@ const OrderSchema = new Schema(
     userId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.USER },
     orderNumber: { type: Number, required: true },
     product: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.PRODUCT },
-    totalPrice: { type: Number, required: true },
     status: {
       type: String,
-      enum: ["Hurgegdsen", "Hurgegdeegui", "ZamdaaGarsan"],
+      enum: ["Hurgegdsen", "Hurgegdeegui", "HurgeltendGarsan"],
     },
     locationId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.LOCATION },
   },

@@ -9,6 +9,7 @@ interface ProductProps {
     price: string;
     index: number;
     hoverImageUrl: string;
+    darkModeEnabled: boolean; // New prop
 }
 
 const ProductComponent: React.FC<ProductProps> = ({
@@ -19,10 +20,11 @@ const ProductComponent: React.FC<ProductProps> = ({
     index,
 }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const darkModeEnabled = localStorage.getItem("darkModeEnabled") === "true";
 
     return (
         <div
-            className="w-[330px] h-[460px] flex flex-col justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300"
+            className={`w-[330px] h-[460px] flex flex-col justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             data-aos="slide-up"
@@ -58,6 +60,10 @@ const ProductComponent: React.FC<ProductProps> = ({
 };
 
 export const BestSellers = () => {
+    const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(
+        localStorage.getItem("darkModeEnabled") === "true"
+    );
+
     useEffect(() => {
         AOS.init({
             duration: 1000,
@@ -67,7 +73,7 @@ export const BestSellers = () => {
         AOS.refresh();
     }, []);
 
-    const productData = [
+    const productData: ProductProps[] = [
         {
             imageUrl:
                 "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128559/11_lv3ppy.jpg",
@@ -75,6 +81,8 @@ export const BestSellers = () => {
                 "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128572/11-2_urvdwg.jpg",
             title: "Lotto Flip-Flop Sports Slippers",
             price: "$660.000-$680.000",
+            index: 0,
+            darkModeEnabled: false,
         },
         {
             imageUrl:
@@ -83,6 +91,8 @@ export const BestSellers = () => {
                 "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128538/9-2_slleir.jpg",
             title: "Lotto Professional Sports",
             price: "$660.000-$680.000",
+            index: 0,
+            darkModeEnabled: false,
         },
         {
             imageUrl:
@@ -91,6 +101,8 @@ export const BestSellers = () => {
                 "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128467/4-2_md9r9g.jpg",
             title: "Running Shoes for Men",
             price: "$660.000-$680.000",
+            index: 0,
+            darkModeEnabled: false,
         },
         {
             imageUrl:
@@ -99,13 +111,17 @@ export const BestSellers = () => {
                 "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128552/3-2_zf7fha.jpg",
             title: "Vibox with mash lining",
             price: "$660.000-$680.000",
+            index: 0,
+            darkModeEnabled: false,
         },
     ];
 
     return (
         <div
             data-aos="slide-up"
-            className="w-[100vw] h-[90vh] flex flex-col items-center bg-white gap-[50px]"
+            className={`w-[100vw] h-[90vh] ${
+                darkModeEnabled ? "background-dark" : "background-light"
+            } flex flex-col items-center bg-white gap-[50px]`}
         >
             <div className="flex flex-col justify-center items-center gap-[30px] ">
                 <h1 className="text-[36px] font-semibold">
@@ -132,7 +148,7 @@ export const BestSellers = () => {
                 </div>
             </div>
             <div
-                className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px]"
+                className={`flex items-center justify-evenly w-[1400px]  cursor-pointer gap-[20px] h-[360px]`}
                 data-aos="slide-up"
             >
                 {productData.map((product, index) => (
@@ -143,6 +159,7 @@ export const BestSellers = () => {
                         price={product.price}
                         index={index}
                         hoverImageUrl={product.hoverImageUrl}
+                        darkModeEnabled={false}
                     />
                 ))}
             </div>

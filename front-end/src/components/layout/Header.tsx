@@ -2,10 +2,12 @@
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import InputBase from "@mui/material/InputBase";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import {
@@ -118,12 +120,33 @@ const buttonTypo = {
     paddingRight: "30px",
 };
 function Header() {
+    const [darkModeEnabled, setDarkModeEnabled] = useState<boolean>(false);
+
+    useEffect(() => {
+        const storedDarkMode = localStorage.getItem("darkModeEnabled");
+        if (storedDarkMode === "true") {
+            document.body.classList.add("dark-mode");
+            setDarkModeEnabled(true);
+        }
+    }, []);
+
+    const toggleDarkMode = () => {
+        const isDarkMode = !darkModeEnabled;
+        setDarkModeEnabled(isDarkMode);
+        document.body.classList.toggle("dark-mode", isDarkMode);
+        localStorage.setItem("darkModeEnabled", isDarkMode.toString());
+    };
     const [currency, setCurrency] = useState<string>("USD");
     const handleChange = (event: SelectChangeEvent) => {
         setCurrency(event.target.value as string);
     };
     return (
-        <Stack width={"100%"}>
+        <Stack
+            width={"100%"}
+            className={`w-[100%] flex flex-col mb-5 ${
+                darkModeEnabled ? "text-white" : "text-black"
+            }`}
+        >
             <Stack
                 width={"100%"}
                 height={"48px"}
@@ -181,6 +204,18 @@ function Header() {
                         <Option value="english">ENGLISH</Option>
                         <Option value="mongolia">MONGOLIA</Option>
                     </Select>
+                    <Button
+                        onClick={toggleDarkMode}
+                        sx={{
+                            color: darkModeEnabled ? "yellow" : "white ",
+                        }}
+                    >
+                        {darkModeEnabled ? (
+                            <LightModeIcon />
+                        ) : (
+                            <NightsStayIcon />
+                        )}
+                    </Button>
                 </Stack>
                 <Stack direction={"row"}>
                     <Button

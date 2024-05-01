@@ -8,41 +8,50 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Alert,
 } from "@mui/material";
+import { CldUploadButton } from "next-cloudinary";
 import { StyledInput } from "./styledInput";
 import { FaAngleLeft, FaImage } from "react-icons/fa6";
 import { StyledDropdown } from "./styledDropdown";
 import { useEffect, useState } from "react";
-import { CiCirclePlus } from "react-icons/ci";
 import { addProduct } from "./network";
 export default function Main() {
+  const brands = [
+    "Nike",
+    "Adidas",
+    "Puma",
+    "Under Armour",
+    "Reebok",
+    "New Balance",
+    "Asics",
+    "Converse",
+    "Skechers",
+  ];
   const [topCategory, setTopCategory] = useState("Сонгох");
   const [category, setCategory] = useState("Сонгох");
-  const [imageAmt, setImageAmt] = useState(3);
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [code, setCode] = useState("");
   const [gender, setGender] = useState("Сонгох");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
+  const [discount, setDiscount] = useState("123");
+  const [brand, setBrand] = useState("");
+  const [img, setImg] = useState([""]);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
-  const [tags, setTags] = useState([""]);
-  const handleTagChange = (event: { target: { value: string } }) => {
-    const newTags: string[] = [...tags];
-    const index = newTags.indexOf(event.target.value);
-    if (index > -1) {
-      newTags.splice(index, 1);
-    } else {
-      newTags.push(event.target.value);
-    }
-    setTags(newTags);
-  };
+  const [error, setError] = useState("");
+  const [uploaded, setUploaded] = useState(false);
+  const [success, setSuccess] = useState("");
   const handleSizeChange = (event: { target: { value: string } }) => {
     setSize(event.target.value);
   };
   const handleColorChange = (event: { target: { value: string } }) => {
     setColor(event.target.value);
+  };
+  const handleBrandChange = (event: { target: { value: string } }) => {
+    setBrand(event.target.value);
   };
   const handleGenderChange = (event: { target: { value: string } }) => {
     setGender(event.target.value);
@@ -71,7 +80,6 @@ export default function Main() {
   const handleClear = () => {
     setCategory("");
     setTopCategory("");
-    setImageAmt(3);
     setName("");
     setDesc("");
     setCode("");
@@ -80,42 +88,51 @@ export default function Main() {
     setStock("");
     setSize("");
     setColor("");
-    setTags([""]);
   };
-  const incrementImageAmt = () => {
-    if (imageAmt < 6) {
-      setImageAmt((prev) => prev + 1);
-    } else {
-    }
-  };
-  const clearImageAmt = () => {
-    setImageAmt(3);
-  };
-  useEffect(() => {
-    if (imageAmt > 6 || imageAmt === 6) {
-      const addImageButton = document.getElementById("add-image-button")!;
-      addImageButton.style.display = "none";
-    } else {
-      const addImageButton = document.getElementById("add-image-button")!;
-      addImageButton.style.display = "flex";
-    }
-  }, [imageAmt]);
 
+  useEffect(() => {
+    if (error) {
+      const errorAlert = document.getElementById("error-alert")!;
+      errorAlert.style.display = "block";
+      setTimeout(() => {
+        errorAlert.style.display = "none";
+        setError("");
+      }, 3000);
+    }
+  }, [error]);
+  useEffect(() => {
+    if (success) {
+      const successAlert = document.getElementById("success-alert")!;
+      successAlert.style.display = "block";
+      setTimeout(() => {
+        successAlert.style.display = "none";
+        setSuccess("");
+      }, 3000);
+    }
+  }, [success]);
   const mockData = [
-    "Сонгох",
-    "Сонгох",
-    "Тайлбар",
-    "Тайлбар",
-    "Давуу",
-    "Давуу",
-    "Гол",
-    "Гол",
-    "Онцолсон",
-    "Онцолсон",
-    "Байгал",
-    "Байгал",
-    "Айгүл",
-    "Айгүл",
+    "Shumagh",
+    "Tashkent",
+    "Dushanbe",
+    "Samarkand",
+    "Andijan",
+    "Khiva",
+    "Bukhara",
+    "Ishkashim",
+    "Almaty",
+    "Orenburg",
+    "Ulaanbaatar",
+    "Novosibirsk",
+    "Yekaterinburg",
+    "Krasnoyarsk",
+    "Irkutsk",
+    "Omsk",
+    "Barnaul",
+    "Tomsk",
+    "Moscow",
+    "Kazan",
+    "Ekaterinburg",
+    "Nizhny Novgorod",
   ];
   return (
     <Box
@@ -224,48 +241,14 @@ export default function Main() {
                 <Typography sx={{ fontSize: 20 }}>
                   Бүтээгдэхүүний зураг
                 </Typography>
-                <Button onClick={() => clearImageAmt()}>Clear</Button>
               </Stack>
               <Stack direction="row" spacing={2}>
-                {Array.from({ length: imageAmt }, (_, i) => (
-                  <Button
-                    sx={{
-                      width: "5.8vw",
-                      height: "11vh",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: 4,
-                      display: "flex",
-                      border: "1px dotted black",
-                    }}
-                    component="label"
-                    onClick={() => incrementImageAmt()}
-                  >
-                    <FaImage fill="black" size={20} />
-                    <input
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      id="raised-button-file"
-                      multiple
-                      type="file"
-                    />
-                  </Button>
-                ))}
-
-                <Button
-                  sx={{
-                    width: "5.8vw",
-                    height: "11vh",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: 4,
-                    display: "flex",
-                  }}
-                  id="add-image-button"
-                  onClick={() => incrementImageAmt()}
+                {/* <CldUploadButton
+                  options={{ multiple: true }}
+                  uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
                 >
-                  <CiCirclePlus fill="black" size={30} />
-                </Button>
+                  <FaImage fill="black" size={20} />
+                </CldUploadButton> */}
               </Stack>
             </Stack>
             {/* Below is the price and stock part of the form */}
@@ -294,6 +277,7 @@ export default function Main() {
                   id="price-input"
                   sx={{ width: "100%" }}
                   type="number"
+                  inputProps={{ min: 0, max: 300000000000 }}
                 />
               </FormControl>
               <FormControl variant="standard" sx={{ width: "50%" }}>
@@ -311,6 +295,7 @@ export default function Main() {
                   id="code-input"
                   type="number"
                   sx={{ width: "100%" }}
+                  inputProps={{ min: 0, max: 300000000000 }}
                 />
               </FormControl>
             </Stack>
@@ -354,8 +339,8 @@ export default function Main() {
                   <MenuItem value={"Сонгох"} disabled>
                     Сонгох
                   </MenuItem>
-                  {mockData.map((item) => (
-                    <MenuItem key={item} value={item}>
+                  {mockData.map((item, index) => (
+                    <MenuItem key={item} value={item + index}>
                       {item}
                     </MenuItem>
                   ))}
@@ -394,7 +379,7 @@ export default function Main() {
               spacing={2}
               sx={{
                 width: "100%",
-                p: "27px",
+                p: "44px",
                 borderRadius: 4,
                 bgcolor: "white",
               }}
@@ -431,6 +416,7 @@ export default function Main() {
                   id="size-input"
                   sx={{ width: "100%" }}
                   type="number"
+                  inputProps={{ min: 0, max: 55 }}
                 />
               </FormControl>
               <FormControl variant="standard">
@@ -456,31 +442,31 @@ export default function Main() {
                   <MenuItem value={"female"}>Эмэгтэй</MenuItem>
                 </Select>
               </FormControl>
-            </Stack>
-            <Stack
-              direction="column"
-              spacing={2}
-              sx={{
-                width: "100%",
-                p: "16px",
-                borderRadius: 4,
-                bgcolor: "white",
-              }}
-            >
-              <FormControl variant="standard" sx={{ width: "100%" }}>
+              <FormControl variant="standard">
                 <InputLabel
                   shrink
-                  htmlFor="code-input"
+                  htmlFor="gender-input"
                   sx={{ color: "black", fontSize: 24, fontWeight: "semibold" }}
                 >
-                  Таг
+                  Brand
                 </InputLabel>
-                <StyledInput
-                  placeholder="Таг нэмэх..."
-                  onChange={handleTagChange}
-                  id="tag-input"
-                  sx={{ width: "100%" }}
-                />
+                <Select
+                  labelId="brand-input"
+                  id="brand-select"
+                  value={brand}
+                  onChange={handleBrandChange}
+                  input={<StyledDropdown />}
+                  placeholder="Select an option"
+                >
+                  <MenuItem value={"Сонгох"} disabled>
+                    Сонгох
+                  </MenuItem>
+                  {brands.map((item) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
               </FormControl>
             </Stack>
           </Stack>
@@ -507,25 +493,77 @@ export default function Main() {
               backgroundColor: "black",
               color: "white",
             }}
-            onClick={() => {
-              const res = addProduct({
-                name: name,
-                image: "asd",
-                color: color,
-                brand: "asd",
-                gender: gender,
-                price: price,
-                discount: 300,
-                rest: stock,
-                size: size,
-              });
-              console.log(res);
+            onClick={async () => {
+              if (
+                name === "" ||
+                price === "" ||
+                color === "" ||
+                brand === "" ||
+                gender === "" ||
+                discount === "" ||
+                stock === "" ||
+                size === ""
+              ) {
+                setError("Please fill all the fields");
+                return;
+              } else {
+                try {
+                  const res: any = await addProduct({
+                    name: name,
+                    image: "asd",
+                    color: color,
+                    brand: brand,
+                    gender: gender,
+                    price: price,
+                    discount: 300,
+                    rest: stock,
+                    size: size,
+                  });
+                  console.log(res);
+                  if (res.status === 201) {
+                    setSuccess("Product has been created");
+                  } else {
+                    setError(res.message);
+                  }
+                } catch (e: any) {
+                  setError(e);
+                }
+                console.log(success);
+              }
             }}
           >
             Нийтлэх
           </Button>
         </Stack>
       </Box>
+      <Alert
+        variant="filled"
+        severity="error"
+        sx={{
+          position: "fixed",
+          top: 12,
+          right: "40%",
+          left: "40%",
+          display: "none",
+        }}
+        id="error-alert"
+      >
+        {error}
+      </Alert>
+      <Alert
+        variant="filled"
+        severity="success"
+        sx={{
+          position: "fixed",
+          top: 12,
+          right: "40%",
+          left: "40%",
+          display: "none",
+        }}
+        id="success-alert"
+      >
+        {success}
+      </Alert>
     </Box>
   );
 }

@@ -1,10 +1,9 @@
 export const addProduct = async (data: any) => {
   const res = await fetch("http://localhost:8080/api/product", {
-    mode: "no-cors",
+    mode: "cors",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "http://localhost:3000",
     },
     body: JSON.stringify({
       name: data.name,
@@ -18,6 +17,7 @@ export const addProduct = async (data: any) => {
       size: data.size,
     }),
   });
-  const zov = await res.json();
+  var zov = await res.json();
+  zov.status = res.status;
   return zov;
 };

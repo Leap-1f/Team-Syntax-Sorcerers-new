@@ -8,7 +8,7 @@ const UserShema = new Schema(
     lastName: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    orderId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.ORDER },
+    orders: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.ORDER },
   },
   {
     timestamps: true,

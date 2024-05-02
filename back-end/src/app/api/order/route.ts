@@ -4,23 +4,22 @@ import { HttpStatusCode } from "axios";
 export async function POST(req: NextRequest) {
   try {
     type TOrder = {
-      userId: String;
+      userId: string;
       orderNumber: Number;
-      product: String;
-
-      status: String;
+      status: string;
+      location: string;
+      orderItem: [{ type: object }];
     };
 
     const body: TOrder = await req.json();
-    const { orderNumber, userId, product, status } = body;
-    if (orderNumber && userId && product && status) {
+
+    if (body) {
       const order = await OrderModel.create(body);
       return NextResponse.json(
         { order, message: "Your order has been created" },
         { status: HttpStatusCode.Created }
       );
     }
-
     return NextResponse.json(
       { message: "Order name is missing" },
       { status: HttpStatusCode.BadRequest }

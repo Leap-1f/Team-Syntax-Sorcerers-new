@@ -4,18 +4,22 @@ const OrderSchema = new Schema(
   {
     userId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.USER },
     orderNumber: { type: Number, required: true },
-    product: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.PRODUCT },
     status: {
       type: String,
-      enum: ["Hurgegdsen", "Hurgegdeegui", "HurgeltendGarsan"],
+      enum: ["Zahialsan", "Hurgegdsen", "Hurgelted garsan "],
+      default: "Zahialsan",
     },
-    locationId: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.LOCATION },
+    location: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.LOCATION },
+    orderItem: [],
   },
   {
     timestamps: true,
+
     toJSON: {
       versionKey: false,
+
       virtuals: true,
+
       transform: (_, ret) => {
         delete ret._id;
       },

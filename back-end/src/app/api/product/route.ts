@@ -8,31 +8,20 @@ type CreateProductDto = {
   image: string;
   color: string;
   brand: string;
-  gender: string;
+  category: string;
   price: number;
   discount: string;
   rest: number;
   size: number;
+  status: string;
 };
 
 export async function POST(req: NextRequest) {
   try {
     console.log("product deer huselt irlee");
     const body: CreateProductDto = await req.json();
-    const { name, image, color, brand, gender, price, discount, rest, size } =
-      body;
 
-    if (
-      name &&
-      image &&
-      price &&
-      color &&
-      brand &&
-      gender &&
-      discount &&
-      rest &&
-      size
-    ) {
+    if (body) {
       const product = await ProductModel.create(body);
       return NextResponse.json(
         { product, message: "Your product has been created" },

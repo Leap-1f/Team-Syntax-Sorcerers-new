@@ -16,6 +16,11 @@ declare global {
     }
 }
 
+const darkModeEnabled = localStorage.getItem("darkModeEnabled");
+if (darkModeEnabled === "true") {
+    document.body.classList.add("dark-mode");
+}
+
 const Location: React.FC<LocationProps> = ({ city, address, openingHours }) => (
     <>
         <Box
@@ -24,13 +29,25 @@ const Location: React.FC<LocationProps> = ({ city, address, openingHours }) => (
                 flexDirection: "column",
             }}
         >
-            <div className="text-lg text-left leading-5 text-sky-700 max-md:max-w-full">
+            <div
+                className={`text-lg text-left leading-5 ${
+                    darkModeEnabled === "true" ? "text-dark" : "text-light"
+                } max-md:max-w-full`}
+            >
                 {city}
             </div>
-            <div className="mt-5 text-base text-left leading-6 text-black max-md:max-w-full">
+            <div
+                className={`mt-5 text-base text-left leading-6 ${
+                    darkModeEnabled === "true" ? "text-dark" : "text-light"
+                } max-md:max-w-full`}
+            >
                 {address}
             </div>
-            <div className="mt-5 text-black text-left max-md:max-w-full">
+            <div
+                className={`mt-5 ${
+                    darkModeEnabled === "true" ? "text-dark" : "text-light"
+                } text-left max-md:max-w-full`}
+            >
                 {openingHours}
             </div>
         </Box>
@@ -145,18 +162,34 @@ const ContactUsMap: React.FC = () => {
     ];
 
     return (
-        <main className="flex  flex-col items-center px-16 pt-11 pb-20 bg-gray-50 max-md:px-5">
+        <main
+            className={`flex flex-col items-center px-16 pt-11 pb-20 ${
+                darkModeEnabled === "true"
+                    ? "background-dark"
+                    : "background-light"
+            } max-md:px-5`}
+        >
             <div className="flex gap-5 w-full max-w-[1399px] max-md:flex-wrap max-md:max-w-full">
                 <div className="shrink-0 self-end w-px h-px bg-black border border-black border-solid mt-[742px] max-md:mt-10" />
                 <div className="flex flex-col  grow shrink-0 items-center  basis-0 w-fit max-md:max-w-full">
-                    <h1 className="text-7xl font-medium text-center text-green-600 uppercase leading-[96px] max-md:max-w-full max-md:text-4xl">
+                    <h1 className="text-7xl font-medium text-center uppercase leading-[96px] max-md:max-w-full max-md:text-4xl neonText text-white shadow-neon">
                         Contact Us
                     </h1>
-                    <p className="mx-auto mt-32 text-4xl leading-7 text-center text-black max-md:mt-10 max-md:max-w-full">
+
+                    <p
+                        className={`mx-auto mt-32 text-4xl leading-7 text-center max-md:mt-10 max-md:max-w-full`}
+                    >
                         Here is Our Store Locations:
                     </p>
+
                     <div className="flex gap-5 self-center mt-14 w-full max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
-                        <section className="flex z-10 rounded-[20px] opacity-80 items-center p-20 mx-10 justify-around gap-15 text-base my-20 text-black bg-white shadow-2xl w-[1200px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
+                        <section
+                            className={`flex z-10 rounded-[20px] opacity-80 items-center p-20 mx-10 justify-around gap-15 text-base my-20 text-black ${
+                                darkModeEnabled === "true"
+                                    ? "background-dark white-box-shadow"
+                                    : "background-light"
+                            } shadow-2xl w-[1200px] max-md:flex-wrap max-md:px-5 max-md:max-w-full`}
+                        >
                             <div className="flex flex-col self-stretch my-auto mt-9 gap-10  leading-[151%] max-md:max-w-full">
                                 {locations
                                     .slice(0, 4)
@@ -167,8 +200,18 @@ const ContactUsMap: React.FC = () => {
                                                 justifyContent: "flex-start",
 
                                                 color: "red",
+                                                backgroundColor: "transparent",
                                                 "&:hover": {
-                                                    color: "green",
+                                                    color:
+                                                        darkModeEnabled ===
+                                                        "true"
+                                                            ? "#2bb9a9"
+                                                            : "black",
+                                                    backgroundColor:
+                                                        darkModeEnabled ===
+                                                        "true"
+                                                            ? "#2bb9a9"
+                                                            : "#2bb9a9",
                                                 },
                                             }}
                                             key={index}
@@ -200,8 +243,16 @@ const ContactUsMap: React.FC = () => {
                                             justifyContent: "flex-start",
 
                                             color: "red",
+                                            backgroundColor: "transparent",
                                             "&:hover": {
-                                                color: "green",
+                                                color:
+                                                    darkModeEnabled === "true"
+                                                        ? "#2bb9a9"
+                                                        : "black",
+                                                backgroundColor:
+                                                    darkModeEnabled === "true"
+                                                        ? "#2bb9a9"
+                                                        : "#2bb9a9",
                                             },
                                         }}
                                         key={index}

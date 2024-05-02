@@ -2,16 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import OrderModel from "../../../models/order.model";
 import { HttpStatusCode } from "axios";
 export async function POST(req: NextRequest) {
+  console.log("ajillaa");
+
   try {
     type TOrder = {
       userId: string;
       orderNumber: Number;
       status: string;
       location: string;
-      orderItem: [{ type: object }];
+      orderItems: object[];
     };
 
     const body: TOrder = await req.json();
+    console.log("faskdjflkasdjf lsdahjklfjaskdlfj klf", body);
 
     if (body) {
       const order = await OrderModel.create(body);

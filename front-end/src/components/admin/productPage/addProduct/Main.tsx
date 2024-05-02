@@ -38,7 +38,9 @@ export default function Main() {
   const [stock, setStock] = useState("");
   const [discount, setDiscount] = useState("123");
   const [brand, setBrand] = useState("");
-  const [img, setImg] = useState([""]);
+  const [img, setImg] = useState(
+    "https://res.cloudinary.com/dqlupfpzv/image/upload/f_auto,q_auto/strragpojdatzwqlyi9h"
+  );
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [error, setError] = useState("");
@@ -243,12 +245,21 @@ export default function Main() {
                 </Typography>
               </Stack>
               <Stack direction="row" spacing={2}>
-                {/* <CldUploadButton
-                  options={{ multiple: true }}
+                <CldUploadButton
+                  className="w-full h-full"
                   uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                  onSuccess={(res: any) => {
+                    setImg(res.secure_url);
+                  }}
                 >
-                  <FaImage fill="black" size={20} />
-                </CldUploadButton> */}
+                  <Button
+                    component="label"
+                    variant="contained"
+                    sx={{ width: "100%", height: "100%    " }}
+                  >
+                    <FaImage fill="black" size={20} />
+                  </Button>
+                </CldUploadButton>
               </Stack>
             </Stack>
             {/* Below is the price and stock part of the form */}
@@ -510,7 +521,7 @@ export default function Main() {
                 try {
                   const res: any = await addProduct({
                     name: name,
-                    image: "asd",
+                    image: img,
                     color: color,
                     brand: brand,
                     gender: gender,
@@ -523,7 +534,7 @@ export default function Main() {
                   if (res.status === 201) {
                     setSuccess("Product has been created");
                   } else {
-                    setError(res.message);
+                    setError(res._message);
                   }
                 } catch (e: any) {
                   setError(e);

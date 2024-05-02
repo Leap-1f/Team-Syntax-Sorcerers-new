@@ -8,6 +8,8 @@ import {
   InputAdornment,
   Checkbox,
 } from "@mui/material";
+import { useEffect, useState } from "react";
+import { getProducts } from "./network";
 import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
 import { BsPencilSquare } from "react-icons/bs";
 import DropdownGroup from "./selectgroup";
@@ -16,29 +18,26 @@ export function Main() {
   const titles = [
     "",
     "Бүтээгдэхүүн",
-    "Ангилал",
+    "Color",
     "Үнэ",
-    "Үлдэгдэл",
-    "Зарагдсан",
     "Нэмсэн огноо",
+    "Gender",
+    "Size",
     "",
-  ];
-  const testData = [
-    {
-      id: 1,
-      category: ["Bag", "Women"],
-      price: "1200",
-      date: "2022-01-01",
-      name: "Bag",
-      description: "Is a bag",
-      remaining: "100",
-      sold: "0",
-      image: "mamaMia!",
-    },
   ];
   function navigate(where: string) {
     window.location.href = where;
   }
+
+  const [data, setData] = useState<any[]>([]);
+  async function refresh() {
+    const mane = await getProducts();
+    console.log(mane);
+    setData(mane.product);
+  }
+  useEffect(() => {
+    refresh();
+  }, []);
   return (
     <Stack
       sx={{
@@ -108,7 +107,7 @@ export function Main() {
           sx={{
             display: "grid",
             gridTemplateColumns: "repeat(8, 1fr)",
-            gridTemplateRows: "repeat(9, 1fr)",
+            gridTemplateRows: "repeat(11, 1fr)",
             gap: "0px",
           }}
         >
@@ -124,59 +123,91 @@ export function Main() {
               {title}
             </Typography>
           ))}
-          {testData.map((data, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                width: "100%",
-                alignItems: "center",
-              }}
-            >
-              <Checkbox id={data.name} />
-            </Box>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.name}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.category.join(", ")}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.price}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.remaining}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.sold}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Typography id={data.name} key={index}>
-              {data.date}
-            </Typography>
-          ))}
-          {testData.map((data, index) => (
-            <Stack id={data.name} key={index} direction="row">
-              <Button>
-                <FaTrash />
-              </Button>
-              <Button>
-                <BsPencilSquare />
-              </Button>
-            </Stack>
-          ))}
+
+          {data.map((yotta, index) => {
+            return (
+              <>
+                <Box
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                    alignItems: "center",
+                  }}
+                >
+                  <Checkbox id={yotta.name} />
+                </Box>
+                <Stack key={index} direction="row">
+                  <img src={yotta.image} className="w-10 h-10 rounded-full" />
+                  <Typography id={yotta.name} key={index}>
+                    {yotta.name}
+                  </Typography>
+                </Stack>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "semibold",
+                    color: "black",
+                  }}
+                >
+                  {yotta.color}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "semibold",
+                    color: "black",
+                  }}
+                >
+                  {yotta.price}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "semibold",
+                    color: "black",
+                  }}
+                >
+                  {yotta.createdAt}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "semibold",
+                    color: "black",
+                  }}
+                >
+                  {yotta.gender}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "semibold",
+                    color: "black",
+                  }}
+                >
+                  {yotta.size}
+                </Typography>
+                <Stack
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                    alignItems: "center",
+                  }}
+                  direction="row"
+                >
+                  <Button>
+                    <FaTrash />
+                  </Button>
+                  <Button>
+                    <FaMagnifyingGlass />
+                  </Button>
+                </Stack>
+              </>
+            );
+          })}
         </Box>
       </Stack>
     </Stack>

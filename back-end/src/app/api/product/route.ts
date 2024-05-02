@@ -27,6 +27,11 @@ export async function POST(req: NextRequest) {
         { product, message: "Your product has been created" },
         { status: HttpStatusCode.Created }
       );
+    } else {
+      return NextResponse.json(
+        { message: "Please fill all the fields" },
+        { status: HttpStatusCode.BadRequest }
+      );
     }
   } catch (error) {
     console.log(error);

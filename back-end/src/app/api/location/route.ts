@@ -5,12 +5,11 @@ export async function POST(req: NextRequest) {
   try {
     type TLocation = {
       district: String;
-      commitee: String;
+      khoroo: String;
       apartment: String;
     };
     const body: TLocation = await req.json();
-    const { district, commitee, apartment } = body;
-    if (district && commitee && apartment) {
+    if (body) {
       const user = await LocationModel.create(body);
       return NextResponse.json(
         { user, message: "Your user has been created" },

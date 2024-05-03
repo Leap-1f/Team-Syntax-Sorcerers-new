@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Button,
   Dialog,
@@ -13,7 +13,7 @@ import { CiCircleInfo } from "react-icons/ci";
 
 export type TSimpleDialogProps = {
   open: boolean;
-  selectedValue: string;
+  selectedValue: any;
   onClose: (value: string) => void;
 };
 
@@ -43,14 +43,14 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
     lineHeight: "26px",
     color: "#666",
   };
-  const [value, setValue] = React.useState<number | null>(2);
+  const [value, setValue] = useState<number | null>(2);
   return (
     <>
       <Dialog onClose={handleClose} open={open} fullWidth maxWidth={"lg"}>
         <Stack direction={"row"} spacing={2}>
           <Stack sx={{ width: "40%" }}>
             <Image
-              src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128559/11_lv3ppy.jpg"
+              src={selectedValue.imageUrl}
               width={470}
               height={470}
               alt=""
@@ -58,8 +58,8 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
           </Stack>
           <Stack spacing={2} sx={{ width: "60%", py: "70px" }}>
             <Stack spacing={1}>
-              <Typography fontSize={"30px"}>
-                Lotto Flip-Flop Sports Slippers
+              <Typography fontSize={"30px"} textTransform={"uppercase"}>
+                {selectedValue.title}
               </Typography>
               <Rating
                 name="simple-controlled"
@@ -74,7 +74,7 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                 $
               </Typography>
               <Typography sx={{ ...typoDollar, fontWeight: 900 }}>
-                660.000
+                {selectedValue.price}
               </Typography>
             </Stack>
             <Stack direction={"row"} spacing={1}>
@@ -121,7 +121,6 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                   backgroundColor: "#fc4a1a",
                   color: "white",
                   "&:hover": {
-                    // Corrected syntax for hover state
                     backgroundColor: "green",
                   },
                 }}
@@ -134,11 +133,11 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
             <Stack sx={{ paddingTop: "30px" }}>
               <Stack direction={"row"} spacing={1}>
                 <Typography sx={typoTitle}>Category:</Typography>
-                <Typography sx={typoTitle}>Basketball shoes</Typography>
+                <Typography sx={typoTitle}>{selectedValue.category}</Typography>
               </Stack>
               <Stack direction={"row"} spacing={1}>
                 <Typography sx={typoTitle}>Brand:</Typography>
-                <Typography sx={typoTitle}>Nike</Typography>
+                <Typography sx={typoTitle}>{selectedValue.brand}</Typography>
               </Stack>
             </Stack>
           </Stack>

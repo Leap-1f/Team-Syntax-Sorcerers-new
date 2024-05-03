@@ -7,6 +7,7 @@ export async function POST(req: NextRequest) {
       district: String;
       khoroo: String;
       apartment: String;
+      orderNote: String;
     };
     const body: TLocation = await req.json();
     if (body) {

@@ -38,11 +38,29 @@
 .gota-limited {
     animation: gota 1.75s ease-in-out infinite;
 }
+@keyframes top {
+    25% {
+        transform: translateX(-10%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    75% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.top-limited {
+    animation: top 7.75s ease-in-out infinite;
+}
 .neonText {
     color: #fff;
     text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #2bb9a9,
         0 0 82px #2bb9a9, 0 0 92px #2bb9a9, 0 0 102px #2bb9a9, 0 0 151px #2bb9a9;
-            font-size: 6.2rem;
+    font-size: 6.2rem;
     animation: pulsate 1.5s infinite alternate;
     border: 0.2rem solid #fff;
     border-radius: 2rem;
@@ -50,10 +68,8 @@
     background-color: #2bb9a9;
     box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #2bb9a9,
         0 0 0.8rem #2bb9a9, 0 0 2.8rem #2bb9a9, inset 0 0 1.3rem #2bb9a9;
-          font-weight: 400;
+    font-weight: 400;
 }
-
-
 
 @keyframes pulsate {
     100% {
@@ -120,4 +136,3 @@ body {
 .dark-mode .white-box-shadow {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adjust the shadow properties as needed */
 }
-

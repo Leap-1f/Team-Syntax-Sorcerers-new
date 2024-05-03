@@ -2,6 +2,8 @@ import { HttpStatusCode } from "axios";
 
 import ProductModel from "../../../models/product.model";
 import { NextRequest, NextResponse } from "next/server";
+import OrderModel from "@/src/models/order.model";
+import UserModel from "@/src/models/user.model";
 
 type CreateProductDto = {
   name: string;
@@ -38,9 +40,9 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(_: NextRequest) {
   try {
-    const product = await ProductModel.find();
+    const product = await UserModel.find();
     if (product) {
-      return NextResponse.json({ product });
+      return NextResponse.json(product);
     }
     return NextResponse.json(
       { message: `Product not found` },

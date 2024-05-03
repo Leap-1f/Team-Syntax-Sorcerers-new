@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(req: NextRequest) {
   try {
-    const order = await OrderModel.find();
+    const order = await OrderModel.find().populate("location");
     if (order) {
-      return NextResponse.json({ order });
+      return NextResponse.json(order);
     }
     return NextResponse.json(
       { message: `Order not found` },

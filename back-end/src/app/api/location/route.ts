@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
   try {
     const location = await LocationModel.find();
     if (location) {
-      return NextResponse.json({ location });
+      return NextResponse.json(location);
     }
     return NextResponse.json(
       { message: `Location not found` },

@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import FeaturesOne from "../components/home/hotCards/HotCards";
@@ -11,7 +10,7 @@ import OurService from "../components/home/OurService";
 import GetInTouch from "../components/home/GetInTouch";
 import { Stack } from "@mui/material";
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
     <>
       <Stack direction={"column"} alignItems={"center"}>

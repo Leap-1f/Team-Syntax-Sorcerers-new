@@ -41,20 +41,88 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-export async function GET(_: NextRequest) {
+
+//  const paramLimit = req.nextUrl.searchParams.get("limit");
+
+//     let products;
+
+//     if(paramLimit){
+
+//       products = await ProductModel.find().limit(parseInt(paramLimit));
+
+//     }
+
+//     else {
+
+//       products = await ProductModel.find({});
+
+//     }
+
+//     return NextResponse.json({products});
+
+export async function GET(req: NextRequest) {
   try {
-    const product = await ProductModel.find();
-    if (product) {
-      return NextResponse.json({ product });
+    const paramLimit = req.nextUrl.searchParams.get("limit");
+    let product;
+
+    if (paramLimit) {
+      product = await ProductModel.find().limit(parseInt(paramLimit));
+    } else {
+      product = await ProductModel.find();
     }
-    return NextResponse.json(
-      { message: `Product not found` },
-      { status: HttpStatusCode.NotFound }
-    );
+
+    console.log(product);
+
+    if (product.length > 0) {
+      return NextResponse.json({ product });
+    } else {
+      return NextResponse.json(
+        { message: `Products not found` },
+        { status: HttpStatusCode.NotFound }
+      );
+    }
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
-      { message: error },
-      { status: HttpStatusCode.BadRequest }
+      { message: "Error occurred while fetching products" },
+      { status: HttpStatusCode.InternalServerError }
     );
   }
 }
+
+// export async function GET(_: NextRequest) {
+//   try {
+//     const product = await ProductModel.find();
+//     if (product) {
+//       return NextResponse.json({ product });
+//     }
+//     return NextResponse.json(
+//       { message: `Product not found` },
+//       { status: HttpStatusCode.NotFound }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: error },
+//       { status: HttpStatusCode.BadRequest }
+//     );
+//   }
+// }
+// export async function GET(_: NextRequest) {
+//   try {
+//     const product = await ProductModel.find();
+//     console.log(product);
+
+//     if (product) {
+//       return NextResponse.json({ product });
+//     }
+//     return NextResponse.json(
+//       { message: `Product not found` },
+//       { status: HttpStatusCode.NotFound }
+//     );
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: error },
+//       { status: HttpStatusCode.BadRequest }
+//     );
+//   }
+// }

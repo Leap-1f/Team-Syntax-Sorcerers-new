@@ -1,37 +1,49 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
-const emails = ["username@gmail.com", "user02@gmail.com"];
-
+import { getProductsBestSellers } from "../admin/productPage/network";
+const email = ["dasda"];
 interface ProductProps {
   imageUrl: string;
   title: string;
   price: string;
   index: number;
   hoverImageUrl: string;
+  brand: string;
+  category: string;
 }
-
-const ProductComponent: React.FC<ProductProps> = ({
+const ProductComponent: FC<ProductProps> = ({
   imageUrl,
   title,
   hoverImageUrl,
   price,
   index,
+  brand,
+  category,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState({
+    imageUrl,
+    title,
+    hoverImageUrl,
+    price,
+    index,
+    brand,
+    category,
+  });
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (data: any) => {
     setOpen(true);
   };
 
-  const handleClose = (value: string) => {
+  const handleClose = (value: any) => {
     setOpen(false);
     setSelectedValue(value);
   };
+
   return (
     <>
       <ProductDialog
@@ -40,7 +52,7 @@ const ProductComponent: React.FC<ProductProps> = ({
         onClose={handleClose}
       ></ProductDialog>
       <div
-        className="w-[330px] h-[460px] flex flex-col justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300"
+        className="w-[330px] h-[460px] flex flex-col overflow-hidden justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         data-aos="slide-up"
@@ -58,7 +70,7 @@ const ProductComponent: React.FC<ProductProps> = ({
         ></div>
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
-            <p className="text-[12px] text-gray-400">SHOES,CLOTHING</p>
+            <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>
             <p onClick={handleClickOpen}>Star</p>
           </div>
           <div className="border border-gray-400 w-[310px]"></div>
@@ -75,6 +87,16 @@ const ProductComponent: React.FC<ProductProps> = ({
 };
 
 export const BestSellers = () => {
+  const [data, setData] = useState<any[]>([]);
+  const getProduct = async () => {
+    const data = await getProductsBestSellers();
+    console.log(data);
+    setData(data.product);
+  };
+  useEffect(() => {
+    getProduct();
+  }, []);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -83,74 +105,6 @@ export const BestSellers = () => {
     });
     AOS.refresh();
   }, []);
-  const fetchProductData = async () => {
-    try {
-      const data = await fetch("http://localhost:8080/api/product");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addProduct = async (data: any) => {
-    const res = await fetch("http://localhost:8080/api/product", {
-      mode: "cors",
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: data.name,
-        image: data.image,
-        color: data.color,
-        brand: data.brand,
-        gender: data.gender,
-        price: data.price,
-        discount: data.discount,
-        rest: data.rest,
-        size: data.size,
-      }),
-    });
-    var zov = await res.json();
-    zov.status = res.status;
-    return zov;
-  };
-  const productData = [
-    {
-      objectId: "1",
-      imageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128559/11_lv3ppy.jpg",
-      hoverImageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128572/11-2_urvdwg.jpg",
-      title: "Lotto Flip-Flop Sports Slippers",
-      price: "$660.000-$680.000",
-    },
-    {
-      objectId: "2",
-      imageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128530/9_u0m8c9.jpg",
-      hoverImageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128538/9-2_slleir.jpg",
-      title: "Lotto Professional Sports",
-      price: "$660.000-$680.000",
-    },
-    {
-      objectId: "3",
-      imageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049024/d0f78259b152acea1a2a227ce946c439_pjp79c.jpg",
-      hoverImageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128467/4-2_md9r9g.jpg",
-      title: "Running Shoes for Men",
-      price: "$660.000-$680.000",
-    },
-    {
-      objectId: "4",
-      imageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714049019/d18e34eb34c9a364f0ca7ef6a8076f50_ns3j84.jpg",
-      hoverImageUrl:
-        "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714128552/3-2_zf7fha.jpg",
-      title: "Vibox with mash lining",
-      price: "$660.000-$680.000",
-    },
-  ];
-
   return (
     <>
       <div
@@ -183,14 +137,16 @@ export const BestSellers = () => {
           className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px]"
           data-aos="slide-up"
         >
-          {productData.map((product, index) => (
+          {data.map((product, index) => (
             <ProductComponent
-              key={index}
-              imageUrl={product.imageUrl}
-              title={product.title}
+              key={product._id}
+              imageUrl={product.image}
+              title={product.name}
               price={product.price}
-              index={index}
-              hoverImageUrl={product.hoverImageUrl}
+              index={product._id}
+              hoverImageUrl={product.image}
+              brand={product.brand}
+              category={product.category}
             />
           ))}
         </div>

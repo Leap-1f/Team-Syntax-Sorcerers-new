@@ -1,26 +1,37 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Stack, Box, Typography, Rating } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Image from "next/image";
-interface CardProps {
+import ProductDialog from "@/components/hover/ProductHover";
+type TCardProps = {
   imageUrl: string;
+  title: string;
+  price: string;
   index: number;
-}
+  brand: string;
+  category: string;
+};
 
-export const Card: React.FC<CardProps> = ({ imageUrl }) => {
+export const Card: FC<TCardProps> = ({
+  index,
+  title,
+  imageUrl,
+  price,
+  brand,
+  category,
+}) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
       easing: "ease",
       once: false,
     });
-    AOS.refresh(); // Refresh AOS after initialization
+    AOS.refresh();
   }, []);
 
   const productCategoryText = {
-    color: "#222",
+    color: "black",
     fontFamily: "Barlow",
     fontSize: "18px",
     fontStyle: "normal",
@@ -49,63 +60,85 @@ export const Card: React.FC<CardProps> = ({ imageUrl }) => {
     lineHeight: "21px",
     textTransform: "uppercase",
   };
+  const [isHovered, setIsHovered] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState({
+    imageUrl,
+    title,
+    price,
+    index,
+    brand,
+    category,
+  });
+  const handleClickOpen = (data: any) => {
+    setOpen(true);
+  };
+  const handleClose = (value: any) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
   return (
-    <Stack
-      direction={"row"}
-      width={"308px"}
-      sx={{
-        borderRadius: "10px",
-
-        backgroundColor: "white",
-      }}
-      data-aos="slide-left"
-    >
-      <Box
+    <>
+      <ProductDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      ></ProductDialog>
+      <Stack
+        onClick={handleClickOpen}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        direction={"row"}
+        width={"308px"}
         sx={{
-          width: "308px",
-          height: "450px",
-          boxShadow: "none",
-          padding: "10px",
-          transition: "box-shadow 0.3s",
-          "&:hover": {
-            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.5)",
-          },
+          borderRadius: "10px",
+
+          backgroundColor: "white",
         }}
+        data-aos="slide-left"
       >
-        <Stack height={"80%"}>
-          {/* Add the image here */}
-          <Image
-            src={imageUrl}
-            alt="Product"
-            fill
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        </Stack>
-        <Stack height={"20%"} spacing={"7px"}>
+        <Box
+          sx={{
+            width: "308px",
+            height: "450px",
+            boxShadow: "none",
+            padding: "10px",
+            transition: "box-shadow 0.3s",
+            "&:hover": {
+              boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.5)",
+            },
+          }}
+        >
           <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
+            height={"80%"}
             sx={{
-              borderBottom: "solid",
-              borderBottomWidth: "1px",
-              paddingBottom: "8px",
-              borderColor: "#2222",
+              backgroundImage: `url(${imageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
             }}
-          >
-            <Typography sx={productCategorySortTypography}>
-              Shoes, Clothing
-            </Typography>
-            <Rating name="read-only" readOnly sx={{ fontSize: "20px" }} />
+          ></Stack>
+
+          <Stack height={"20%"} spacing={"7px"}>
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              sx={{
+                borderBottom: "solid",
+                borderBottomWidth: "1px",
+                paddingBottom: "8px",
+                borderColor: "#2222",
+              }}
+            >
+              <Typography sx={productCategorySortTypography}>Shoes</Typography>
+              <Rating name="read-only" readOnly sx={{ fontSize: "20px" }} />
+            </Stack>
+            <Typography sx={productCategoryText}>{title}</Typography>
+            <Typography sx={productCategoryText}>${price}</Typography>
           </Stack>
-          <Typography sx={productCategoryText}>Sport Vidox Sandal</Typography>
-          <Typography sx={productCategoryText}>$680.00 - $680.00</Typography>
-        </Stack>
-      </Box>
-    </Stack>
+        </Box>
+      </Stack>
+    </>
   );
 };

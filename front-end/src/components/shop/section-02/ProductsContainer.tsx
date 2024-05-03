@@ -1,7 +1,21 @@
 import { Stack, Box, Typography, Rating } from "@mui/material";
-import React from "react";
-
-export const ProductsContainer = () => {
+import React, { FC } from "react";
+type TCardProps = {
+  imageUrl: string;
+  title: string;
+  price: string;
+  index: number;
+  brand: string;
+  category: string;
+};
+export const ProductsContainer: FC<TCardProps> = ({
+  index,
+  title,
+  imageUrl,
+  price,
+  brand,
+  category,
+}) => {
   const [value, setValue] = React.useState<number | null>(2);
 
   const productCategoryText = {
@@ -27,7 +41,7 @@ export const ProductsContainer = () => {
   };
   return (
     <>
-      <Stack direction={"row"} width={"100%"}>
+      <Stack direction={"row"} width={"50%"}>
         <Box
           sx={{
             width: "447px",
@@ -40,7 +54,15 @@ export const ProductsContainer = () => {
             },
           }}
         >
-          <Stack height={"80%"}></Stack>
+          <Stack
+            height={"80%"}
+            sx={{
+              backgroundImage: `url(${imageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></Stack>
           <Stack height={"20%"} spacing={"7px"}>
             <Stack
               direction={"row"}
@@ -52,7 +74,7 @@ export const ProductsContainer = () => {
                 borderColor: "#2222",
               }}
             >
-              <Typography sx={productCategoryFont}>Shoes, Clothing</Typography>
+              <Typography sx={productCategoryFont}>Shoes</Typography>
               <Rating
                 name="simple-controlled"
                 value={value}
@@ -61,10 +83,8 @@ export const ProductsContainer = () => {
                 }}
               />
             </Stack>
-            <Typography sx={productCategoryText}>
-              Croft Flat Sandal for Women
-            </Typography>
-            <Typography sx={productCategoryText}>$680.00 - $680.00</Typography>
+            <Typography sx={productCategoryText}>{title}</Typography>
+            <Typography sx={productCategoryText}>${price}</Typography>
           </Stack>
         </Box>
       </Stack>

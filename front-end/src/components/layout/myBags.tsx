@@ -1,7 +1,7 @@
-import { Button, Stack, Typography } from "@mui/material";
-import React from "react";
+"use client";
+import { Button, Drawer, Stack, Typography } from "@mui/material";
 
-export const Card = () => {
+export const Bag = (open: boolean, close: any) => {
   const productCategoryText = {
     color: "#666",
     fontFamily: "Barlow",
@@ -23,11 +23,7 @@ export const Card = () => {
 
   return (
     <>
-      <Stack
-        direction={"row"}
-        justifyContent={"flex-end"}
-        sx={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-      >
+      <Drawer open={open} onClose={close} anchor="right">
         <Stack
           width={"340px"}
           height={"100vh"}
@@ -35,7 +31,9 @@ export const Card = () => {
           paddingLeft={"10px"}
           direction={"column"}
           justifyContent={"space-between"}
-          sx={{ backgroundColor: "white" }}
+          sx={{
+            backgroundColor: "white",
+          }}
         >
           <Stack>
             <Stack
@@ -44,9 +42,12 @@ export const Card = () => {
               justifyContent={"space-between"}
               alignItems={"center"}
               marginBottom={"20px"}
+              paddingTop={"20px"}
             >
               <Typography>SHOPPING CARD</Typography>
-              <Typography>X</Typography>
+              <Typography sx={{ cursor: "pointer" }} onClick={close}>
+                X
+              </Typography>
             </Stack>
             <Stack
               width={"100%"}
@@ -99,7 +100,7 @@ export const Card = () => {
             <Button sx={buttonStyle}>checkout</Button>
           </Stack>
         </Stack>
-      </Stack>
+      </Drawer>
     </>
   );
 };

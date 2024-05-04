@@ -5,10 +5,10 @@ import { Size } from "./Size";
 import { ColorOption } from "./ColorOption";
 import { TopRated } from "./TopRated";
 import { ProductTags } from "./ProductTags";
-import { Header } from "../section-02/Header";
-import { ProductsContainer } from "../section-02/ProductsContainer";
+import { Header } from "../ContainerLeft/Header";
 import { useEffect, useState } from "react";
 import { getProducts } from "@/components/admin/productPage/network";
+import { ProductsEssentailI3 } from "../ContainerLeft/ProductsEssentailI3";
 
 export const Sales = () => {
   const [getProductData, setGetProductData] = useState<any[]>([]);
@@ -39,11 +39,11 @@ export const Sales = () => {
         <Stack
           direction={"row"}
           flexWrap={"wrap"}
-          justifyContent={"space-between"}
           width={"100%"}
+          height={"100%"}
         >
           {getProductData.map((product, index) => (
-            <ProductsContainer
+            <ProductsEssentailI3
               key={product._id}
               imageUrl={product.image}
               title={product.name}

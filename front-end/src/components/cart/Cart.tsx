@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import Image from "next/image";
 export const Cart = () => {
   return (
     <>
@@ -18,7 +19,7 @@ export const Cart = () => {
             {/* =============================== */}
             <div className="flex *:flex *:justify-center *:items-center *:border-[1px] *:border-solid justify-between">
               <div className="w-[25%]">
-                <img src="" alt="" />
+                <Image src="" alt="" fill />
               </div>
               <div className="w-[25%] text-base font-semibold">
                 Detail V-Neck Sweater

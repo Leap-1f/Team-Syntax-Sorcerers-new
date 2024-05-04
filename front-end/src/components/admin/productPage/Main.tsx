@@ -13,6 +13,7 @@ import { getProducts } from "./network";
 import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
 import { BsPencilSquare } from "react-icons/bs";
 import DropdownGroup from "./selectgroup";
+import Image from "next/image";
 // remember to add the backend l8r
 export function Main() {
   const titles = [
@@ -139,7 +140,12 @@ export function Main() {
                   <Checkbox id={yotta.name} />
                 </Box>
                 <Stack key={index} direction="row">
-                  <img src={yotta.image} className="w-10 h-10 rounded-full" />
+                  <Image
+                    src={yotta.image}
+                    className="w-10 h-10 rounded-full"
+                    fill
+                    alt="zurag2"
+                  />
                   <Typography id={yotta.name} key={index}>
                     {yotta.name}
                   </Typography>

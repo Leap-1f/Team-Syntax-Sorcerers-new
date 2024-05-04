@@ -16,7 +16,6 @@ export async function POST(req: NextRequest) {
         { status: HttpStatusCode.Created }
       );
     }
-
     return NextResponse.json(
       { message: "User name is missing" },
       { status: HttpStatusCode.BadRequest }

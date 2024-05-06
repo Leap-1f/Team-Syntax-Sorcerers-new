@@ -74,7 +74,7 @@ export async function GET(req: NextRequest) {
     console.log(product);
 
     if (product.length > 0) {
-      return NextResponse.json({ product });
+      return NextResponse.json(product);
     } else {
       return NextResponse.json(
         { message: `Products not found` },

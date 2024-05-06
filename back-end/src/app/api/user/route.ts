@@ -35,14 +35,14 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(_: NextRequest) {
   try {
-    const product = await UserModel.find();
+    const user = await UserModel.find();
     // "6630a6a39ab1cf1e3e87aae9"
     // ).populate({
     //   path: "orderId",
     //   model: "order",
     // });
-    if (product) {
-      return NextResponse.json({ product });
+    if (user) {
+      return NextResponse.json(user);
     }
     return NextResponse.json(
       { message: `Product not found` },

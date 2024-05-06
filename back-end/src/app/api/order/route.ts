@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
   try {
     const order = await OrderModel.find();
     if (order) {
-      return NextResponse.json({ order });
+      return NextResponse.json(order);
     }
     return NextResponse.json(
       { message: `Order not found` },

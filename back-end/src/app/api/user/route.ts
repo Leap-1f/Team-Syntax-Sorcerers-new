@@ -1,6 +1,8 @@
 import { HttpStatusCode } from "axios";
 import UserModel from "../../../models/user.model";
+
 import { NextRequest, NextResponse } from "next/server";
+import OrderModel from "@/src/models/order.model";
 type CreateProductDto = {
   name: String;
   password: String;
@@ -12,16 +14,13 @@ type CreateProductDto = {
 };
 export async function POST(req: NextRequest) {
   try {
-    console.log("user deer huselt irlee");
     const body: CreateProductDto = await req.json();
-
     const user = await UserModel.create(body);
     return NextResponse.json(
       { user, message: "Your user has been created" },
       { status: HttpStatusCode.Created }
     );
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
@@ -29,13 +28,26 @@ export async function POST(req: NextRequest) {
   }
 }
 export async function GET(_: NextRequest) {
-  console.log("ajillaa");
   try {
     const user = await UserModel.find().populate("orders");
-    console.log(user);
     return NextResponse.json(user);
   } catch (error) {
-    console.log(error);
+    return NextResponse.json(
+      { message: error },
+      { status: HttpStatusCode.BadRequest }
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  console.log("delete huselt irlee");
+  try {
+    const body = req.json();
+    console.log("body", body);
+    const deleteUser = await OrderModel.deleteOne();
+    return NextResponse.json(deleteUser);
+  } catch (error) {
+    console.log("error garlaa", error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }

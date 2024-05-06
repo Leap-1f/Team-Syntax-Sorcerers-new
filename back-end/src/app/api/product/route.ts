@@ -20,9 +20,7 @@ type CreateProductDto = {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("product deer huselt irlee");
     const body: CreateProductDto = await req.json();
-
     if (body) {
       const product = await ProductModel.create(body);
       return NextResponse.json(
@@ -31,13 +29,13 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
     );
   }
 }
+
 export async function GET(_: NextRequest) {
   try {
     const product = await UserModel.find();

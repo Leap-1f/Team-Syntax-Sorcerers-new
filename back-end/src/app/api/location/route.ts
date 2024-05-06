@@ -1,26 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import LocationModel from "../../../models/location.model";
 import { HttpStatusCode } from "axios";
+type TLocation = {
+  district: String;
+  khoroo: String;
+  apartment: String;
+  orderNote: String;
+};
 export async function POST(req: NextRequest) {
   try {
-    type TLocation = {
-      district: String;
-      khoroo: String;
-      apartment: String;
-      orderNote: String;
-    };
     const body: TLocation = await req.json();
-    if (body) {
-      const user = await LocationModel.create(body);
-      return NextResponse.json(
-        { user, message: "Your user has been created" },
-        { status: HttpStatusCode.Created }
-      );
-    }
-
+    const user = await LocationModel.create(body);
     return NextResponse.json(
-      { message: "User name is missing" },
-      { status: HttpStatusCode.BadRequest }
+      { user, message: "Your user has been created" },
+      { status: HttpStatusCode.Created }
     );
   } catch (err) {
     console.log(err);

@@ -42,24 +42,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-//  const paramLimit = req.nextUrl.searchParams.get("limit");
-
-//     let products;
-
-//     if(paramLimit){
-
-//       products = await ProductModel.find().limit(parseInt(paramLimit));
-
-//     }
-
-//     else {
-
-//       products = await ProductModel.find({});
-
-//     }
-
-//     return NextResponse.json({products});
-
 export async function GET(req: NextRequest) {
   try {
     const paramLimit = req.nextUrl.searchParams.get("limit");
@@ -93,25 +75,6 @@ export async function GET(req: NextRequest) {
 // export async function GET(_: NextRequest) {
 //   try {
 //     const product = await ProductModel.find();
-//     if (product) {
-//       return NextResponse.json({ product });
-//     }
-//     return NextResponse.json(
-//       { message: `Product not found` },
-//       { status: HttpStatusCode.NotFound }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       { message: error },
-//       { status: HttpStatusCode.BadRequest }
-//     );
-//   }
-// }
-// export async function GET(_: NextRequest) {
-//   try {
-//     const product = await ProductModel.find();
-//     console.log(product);
-
 //     if (product) {
 //       return NextResponse.json({ product });
 //     }

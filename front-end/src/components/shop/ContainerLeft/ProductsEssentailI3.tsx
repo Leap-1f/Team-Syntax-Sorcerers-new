@@ -41,11 +41,11 @@ export const ProductsEssentailI3: FC<TCardProps> = ({
   };
   return (
     <>
-      <Stack direction={"row"} width={"33%"}>
+      <Stack direction={"row"} width={"25%"}>
         <Box
           sx={{
             width: "100%",
-            height: "400px",
+            height: "350px",
             boxShadow: "none",
             padding: "10px",
             transition: "box-shadow 0.3s",

@@ -11,10 +11,8 @@ import Option from "@mui/joy/Option";
 import { Bag } from "./myBags";
 import {
   Grid,
-  MenuItem,
   Paper,
   SelectChangeEvent,
-  SelectProps,
   Stack,
   Typography,
   styled,
@@ -143,7 +141,7 @@ function Header() {
           color={"white"}
         >
           <Stack direction={"row"} color={"#88888"}>
-            <Select
+            {/* <Select
               placeholder="USD"
               indicator={<KeyboardArrowDown />}
               variant="plain"
@@ -165,8 +163,8 @@ function Header() {
             >
               <Option value="usd">USD</Option>
               <Option value="mnt">MNT</Option>
-            </Select>
-            <Select
+            </Select> */}
+            {/* <Select
               placeholder="ENGLISH"
               indicator={<KeyboardArrowDown />}
               variant="plain"
@@ -188,7 +186,7 @@ function Header() {
             >
               <Option value="english">ENGLISH</Option>
               <Option value="mongolia">MONGOLIA</Option>
-            </Select>
+            </Select> */}
           </Stack>
           <Stack direction={"row"}>
             <Button
@@ -202,7 +200,7 @@ function Header() {
             >
               Wishlist
             </Button>
-            <Button
+            {/* <Button
               sx={{
                 textTransform: "uppercase",
                 color: "#adacac",
@@ -212,8 +210,8 @@ function Header() {
               }}
             >
               account
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               sx={{
                 textTransform: "uppercase",
                 color: "#adacac",
@@ -223,7 +221,7 @@ function Header() {
               }}
             >
               Checkout
-            </Button>
+            </Button> */}
             <Button
               sx={{
                 textTransform: "uppercase",
@@ -240,7 +238,7 @@ function Header() {
         <Grid container alignItems="center" justifyContent={"space-between"}>
           <Grid item sx={{ width: "20%" }}>
             <Stack sx={{ py: "30px", px: "48px" }}>
-              <Search>
+              {/* <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
                 </SearchIconWrapper>
@@ -249,7 +247,7 @@ function Header() {
                   inputProps={{ "aria-label": "search" }}
                   sx={gotaTypo}
                 />
-              </Search>
+              </Search> */}
             </Stack>
           </Grid>
           <Grid

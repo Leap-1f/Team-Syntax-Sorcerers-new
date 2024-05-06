@@ -1,5 +1,15 @@
-import { Stack, Box, Typography, Rating } from "@mui/material";
+import {
+  Stack,
+  Box,
+  Typography,
+  Rating,
+  OutlinedInput,
+  Button,
+} from "@mui/material";
+import Image from "next/image";
 import React, { FC, useState } from "react";
+import { CiHeart } from "react-icons/ci";
+import { CiCircleInfo } from "react-icons/ci";
 type TCardProps = {
   imageUrl: string;
   title: string;
@@ -8,7 +18,7 @@ type TCardProps = {
   brand: string;
   category: string;
 };
-export const ProductsListedThree: FC<TCardProps> = ({
+export const ProductsListedList: FC<TCardProps> = ({
   index,
   title,
   imageUrl,
@@ -41,52 +51,85 @@ export const ProductsListedThree: FC<TCardProps> = ({
   };
   return (
     <>
-      <Stack direction={"row"} width={"33%"}>
-        <Box
-          sx={{
-            width: "100%",
-            height: "400px",
-            boxShadow: "none",
-            padding: "10px",
-            transition: "box-shadow 0.3s",
-            "&:hover": {
-              boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.5)",
-            },
-          }}
-        >
-          <Stack
-            height={"80%"}
-            sx={{
-              backgroundImage: `url(${imageUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></Stack>
-          <Stack height={"20%"} spacing={"7px"}>
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
+      <Stack
+        direction={"row"}
+        width={"100%"}
+        spacing={2}
+        sx={{
+          paddingBottom: "30px",
+          borderBottom: "1px solid #ddd",
+        }}
+      >
+        <Stack sx={{ width: "40%" }}>
+          <Image src={imageUrl} width={470} height={470} alt="" />
+        </Stack>
+        <Stack spacing={2} sx={{ width: "60%", py: "70px" }}>
+          <Stack spacing={1}>
+            <Typography fontSize={"30px"} textTransform={"uppercase"}>
+              {title}
+            </Typography>
+            <Rating
+              name="simple-controlled"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            />
+          </Stack>
+          <Stack direction={"row"}>
+            <Typography sx={{ ...productCategoryText, color: "#669900" }}>
+              $
+            </Typography>
+            <Typography sx={{ ...productCategoryText, fontWeight: 900 }}>
+              {price}
+            </Typography>
+          </Stack>
+          <Stack direction={"row"} spacing={1}>
+            <Typography sx={productCategoryText}>Available :</Typography>
+            <Typography
               sx={{
-                borderBottom: "solid",
-                borderBottomWidth: "1px",
-                paddingBottom: "8px",
-                borderColor: "#2222",
+                ...productCategoryText,
+                color: "#669900",
               }}
             >
-              <Typography sx={productCategoryFont}>Shoes</Typography>
-              <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              />
-            </Stack>
-            <Typography sx={productCategoryText}>{title}</Typography>
-            <Typography sx={productCategoryText}>${price}</Typography>
+              In stock
+            </Typography>
           </Stack>
-        </Box>
+          <Typography sx={productCategoryFont}>
+            Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est
+            lacus, non pretium
+          </Typography>
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <Typography>Qty</Typography>
+            <OutlinedInput
+              sx={{
+                width: "140px",
+                height: "39px",
+                "&.MuiOutlinedInput-root": {
+                  color: "green",
+                },
+                "&.Mui-focused": {
+                  borderStyle: "1px",
+                  borderColor: "green",
+                },
+              }}
+              placeholder="1"
+            />
+            <Button
+              sx={{
+                backgroundColor: "#fc4a1a",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "green",
+                },
+              }}
+            >
+              Add To Card
+            </Button>
+            <CiHeart />
+            <CiCircleInfo />
+          </Stack>
+        </Stack>
       </Stack>
     </>
   );

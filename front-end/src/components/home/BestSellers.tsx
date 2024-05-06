@@ -91,7 +91,7 @@ export const BestSellers = () => {
   const getProduct = async () => {
     const data = await getProductsBestSellers();
     console.log(data);
-    setData(data.product);
+    setData(data);
   };
   useEffect(() => {
     getProduct();

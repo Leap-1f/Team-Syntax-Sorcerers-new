@@ -25,7 +25,10 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
   const handleClose = () => {
     onClose(selectedValue);
   };
-
+  const addToCart = () => {
+    const cart: Array<any> = JSON.parse(localStorage.getItem("cart") || "[]");
+    localStorage.setItem("cart", JSON.stringify([...cart, selectedValue]));
+  };
   const handleListItemClick = (value: string) => {
     onClose(value);
   };

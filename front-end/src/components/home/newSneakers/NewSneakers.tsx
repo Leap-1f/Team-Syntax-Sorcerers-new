@@ -89,7 +89,7 @@ export const FeaturesTwo = () => {
           </Typography>
         </Stack>
         <Stack direction={"row"} justifyContent={"center"} spacing={"40px"}>
-          {fetchedProductData.map((product, index) => (
+          {fetchedProductData?.map((product, index) => (
             <Card
               key={product._id}
               imageUrl={product.image}

@@ -91,12 +91,15 @@ export const BestSellers = () => {
   const getProduct = async () => {
     const data = await getProductsBestSellers();
     console.log(data);
-    setData(data.product);
+    setData(data);
   };
   useEffect(() => {
-    getProduct();
+    try {
+      getProduct();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -137,7 +140,7 @@ export const BestSellers = () => {
           className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px]"
           data-aos="slide-up"
         >
-          {data.map((product, index) => (
+          {data?.map((product, index) => (
             <ProductComponent
               key={product._id}
               imageUrl={product.image}

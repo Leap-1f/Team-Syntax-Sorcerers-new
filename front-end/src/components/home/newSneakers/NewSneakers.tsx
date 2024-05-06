@@ -11,7 +11,7 @@ export const FeaturesTwo = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getProductsBestSellers();
-      setFetchedProductData(data.product);
+      setFetchedProductData(data);
     };
 
     fetchData();

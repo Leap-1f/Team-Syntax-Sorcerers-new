@@ -30,7 +30,7 @@ export const FilterByPrice = () => {
             width: "fit-content",
           }}
         >
-          Product Categories
+          Filter By Price
         </Typography>
         <Stack direction={"column"} alignItems={"flex-start"} width={"500px"}>
           <Slider

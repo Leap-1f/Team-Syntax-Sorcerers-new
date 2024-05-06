@@ -35,7 +35,7 @@ export const TopRated = () => {
             width: "fit-content",
           }}
         >
-          Product Categories
+          Top Rated
         </Typography>
 
         <Stack direction={"column"} alignItems={"flex-start"} width={"500px"}>

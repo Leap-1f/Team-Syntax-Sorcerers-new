@@ -1,7 +1,8 @@
 "use client";
 import { Stack } from "@mui/material";
-import { Banner } from "../../components/shop/section-01/Banner";
-import { Sales } from "../../components/shop/section-01/Sales";
+import { Banner } from "../../components/shop/ContainerRight/Banner";
+import { Sales } from "../../components/shop/ContainerRight/Sales";
+import Header from "@/components/layout/Header";
 const Shop = () => {
   return (
     <>
@@ -11,8 +12,10 @@ const Shop = () => {
         spacing={"60px"}
         alignItems={"center"}
       >
-        <Banner />
-        <Stack width={"1440px"} direction={"row"} justifyContent={"center"}>
+        <Header />
+
+        {/* <Banner /> */}
+        <Stack width={"1700px"} direction={"row"} justifyContent={"center"}>
           <Sales />
         </Stack>
       </Stack>

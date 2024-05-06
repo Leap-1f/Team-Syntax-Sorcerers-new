@@ -1,5 +1,5 @@
 import { Stack, Box, Typography, Rating } from "@mui/material";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 type TCardProps = {
   imageUrl: string;
   title: string;
@@ -8,7 +8,7 @@ type TCardProps = {
   brand: string;
   category: string;
 };
-export const ProductsContainer: FC<TCardProps> = ({
+export const ProductsEssentialI2: FC<TCardProps> = ({
   index,
   title,
   imageUrl,
@@ -16,7 +16,7 @@ export const ProductsContainer: FC<TCardProps> = ({
   brand,
   category,
 }) => {
-  const [value, setValue] = React.useState<number | null>(2);
+  const [value, setValue] = useState<number | null>(2);
 
   const productCategoryText = {
     color: "#222",
@@ -46,6 +46,7 @@ export const ProductsContainer: FC<TCardProps> = ({
           sx={{
             width: "447px",
             height: "600px",
+
             boxShadow: "none",
             padding: "10px",
             transition: "box-shadow 0.3s",

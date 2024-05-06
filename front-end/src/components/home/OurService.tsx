@@ -32,7 +32,7 @@ export const OurService = () => {
         <Stack direction={"row"} alignItems={"center"} spacing={"10px"}>
           <TbWorldPin size={"100px"} />
           <Stack spacing={"10px"}>
-            <Typography sx={textTypo}>Worldwide Shipping</Typography>
+            <Typography sx={textTypo}>FAST DELIVERY</Typography>
             <Typography sx={textTypoTwo}>
               Duis autem vel eum iriure dolor in hendrerit <br></br> velit esse
               molestie consequat.

@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Stack, Box, Typography, Rating } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -1,7 +1,7 @@
 "use client";
 import { Button, Drawer, Stack, Typography } from "@mui/material";
-import Link from "next/link";
-
+import { useState, useEffect } from "react";
+import useLocalStorage from "usehooks-ts";
 export const Bag = (open: boolean, close: any) => {
   const productCategoryText = {
     color: "#666",
@@ -23,10 +23,26 @@ export const Bag = (open: boolean, close: any) => {
       background: "none",
     },
   };
+  const [data, setData] = useState<any[]>([]);
+  const getProduct = async () => {
+    const data: any = localStorage.getItem("cart");
+    if (data) {
+      const jsonified = JSON.parse(data);
+      setData(jsonified);
+    }
+  };
 
+  useEffect(() => {
+    try {
+      getProduct();
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("localstorage changed");
+  }, [useLocalStorage]);
   return (
     <>
-      <Drawer open={open} onClose={close} anchor="right">
+      <Drawer open={open} onClose={close} anchor="right" id="sidebar">
         <Stack
           width={"340px"}
           height={"100vh"}
@@ -52,29 +68,33 @@ export const Bag = (open: boolean, close: any) => {
                 X
               </Typography>
             </Stack>
-            <Stack
-              width={"100%"}
-              direction={"row"}
-              borderBottom="1px solid black"
-              borderColor={"gray"}
-              paddingBottom={"10px"}
-              paddingTop={"10px"}
-            >
-              <Stack width={"100%"} direction={"row"} spacing={"7px"}>
-                <Stack
-                  direction={"row"}
-                  justifyContent={"flex-start"}
-                  width={"75px"}
-                  height={"75px"}
-                  sx={{ border: "2px solid #DDD" }}
-                ></Stack>
-                <Stack direction={"column"} spacing={"5px"}>
-                  <Typography>Basketball shoes</Typography>
-                  <Typography sx={{ color: "#666" }}>1*$66</Typography>
+            {data?.map((product: any, index: any) => (
+              <Stack
+                width={"100%"}
+                direction={"row"}
+                borderBottom="1px solid black"
+                borderColor={"gray"}
+                paddingBottom={"10px"}
+                paddingTop={"10px"}
+              >
+                <Stack width={"100%"} direction={"row"} spacing={"7px"}>
+                  <Stack
+                    direction={"row"}
+                    justifyContent={"flex-start"}
+                    width={"75px"}
+                    height={"75px"}
+                    sx={{ border: "2px solid #DDD" }}
+                  ></Stack>
+                  <Stack direction={"column"} spacing={"5px"}>
+                    <Typography>{product.title}</Typography>
+                    <Typography sx={{ color: "#666" }}>
+                      {product.price}
+                    </Typography>
+                  </Stack>
                 </Stack>
+                <Stack>X</Stack>
               </Stack>
-              <Stack>X</Stack>
-            </Stack>
+            ))}
           </Stack>
           <Stack
             width={"100%"}

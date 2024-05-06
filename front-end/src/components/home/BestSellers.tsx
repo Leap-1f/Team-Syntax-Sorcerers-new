@@ -13,6 +13,7 @@ interface ProductProps {
   index: number;
   hoverImageUrl: string;
   brand: string;
+  pid: string;
   category: string;
 }
 const ProductComponent: FC<ProductProps> = ({
@@ -21,6 +22,7 @@ const ProductComponent: FC<ProductProps> = ({
   hoverImageUrl,
   price,
   index,
+  pid,
   brand,
   category,
 }) => {
@@ -32,11 +34,11 @@ const ProductComponent: FC<ProductProps> = ({
     hoverImageUrl,
     price,
     index,
+    pid,
     brand,
     category,
   });
-
-  const handleClickOpen = () => {
+  const handleClickOpen = (data: any) => {
     setOpen(true);
   };
 
@@ -44,6 +46,7 @@ const ProductComponent: FC<ProductProps> = ({
     setOpen(false);
     setSelectedValue(value);
   };
+  var bob = 0;
 
   return (
     <>
@@ -152,6 +155,7 @@ export const BestSellers = () => {
               price={product.price}
               index={index}
               hoverImageUrl={product.image}
+              pid={product.id}
               brand={product.brand}
               category={product.category}
             />

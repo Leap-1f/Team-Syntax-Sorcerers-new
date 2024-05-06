@@ -25,10 +25,30 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
   const handleClose = () => {
     onClose(selectedValue);
   };
-  const addToCart = () => {
+
+  function addToCart() {
     const cart: Array<any> = JSON.parse(localStorage.getItem("cart") || "[]");
-    localStorage.setItem("cart", JSON.stringify([...cart, selectedValue]));
-  };
+    var has = cart.some((item) => {
+      if (item.pid === selectedValue.pid) {
+        return true;
+      }
+      return false;
+    });
+    if (has === true) {
+      console.log(cart);
+      console.log(selectedValue);
+      console.log("already in cart");
+      var adjusted = selectedValue;
+      adjusted.quantity = 1;
+      adjusted.quantity += 1;
+      const index = cart.indexOf(selectedValue);
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify([...cart, adjusted]));
+    } else {
+      console.log("not in cart");
+      localStorage.setItem("cart", JSON.stringify([...cart, selectedValue]));
+    }
+  }
   const handleListItemClick = (value: string) => {
     onClose(value);
   };
@@ -127,6 +147,7 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                     backgroundColor: "green",
                   },
                 }}
+                onClick={addToCart}
               >
                 Add To Card
               </Button>

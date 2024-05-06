@@ -10,7 +10,7 @@ export const addProduct = async (data: any) => {
       image: data.image,
       color: data.color,
       brand: data.brand,
-      gender: data.gender,
+      category: data.gender,
       price: data.price,
       discount: data.discount,
       rest: data.rest,

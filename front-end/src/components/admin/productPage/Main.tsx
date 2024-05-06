@@ -34,7 +34,7 @@ export function Main() {
   async function refresh() {
     const mane = await getProducts();
     console.log(mane);
-    setData(mane.product);
+    setData(mane);
   }
   useEffect(() => {
     refresh();
@@ -125,7 +125,7 @@ export function Main() {
             </Typography>
           ))}
 
-          {data.map((yotta, index) => {
+          {data?.map((yotta, index) => {
             return (
               <>
                 <Box
@@ -142,8 +142,8 @@ export function Main() {
                 <Stack key={index} direction="row">
                   <Image
                     src={yotta.image}
-                    className="w-10 h-10 rounded-full"
-                    fill
+                    width={50}
+                    height={50}
                     alt="zurag2"
                   />
                   <Typography id={yotta.name} key={index}>

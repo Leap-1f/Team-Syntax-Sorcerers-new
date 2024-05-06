@@ -28,6 +28,20 @@ export default function Main() {
     "Converse",
     "Skechers",
   ];
+
+  // const [data, setData] = useState({
+  //   name: "",
+  //   image: "",
+  //   color: "",
+  //   brand: "",
+  //   gender: "",
+  //   price: "",
+  //   discount: "",
+  //   rest: "",
+  //   size: "",
+  //   category: "",
+  // });
+
   const [topCategory, setTopCategory] = useState("Сонгох");
   const [category, setCategory] = useState("Сонгох");
   const [name, setName] = useState("");
@@ -38,7 +52,7 @@ export default function Main() {
   const [stock, setStock] = useState("");
   const [discount, setDiscount] = useState("123");
   const [brand, setBrand] = useState("");
-  const [img, setImg] = useState(
+  const [imagine, setImg] = useState(
     "https://res.cloudinary.com/dqlupfpzv/image/upload/f_auto,q_auto/strragpojdatzwqlyi9h"
   );
   const [size, setSize] = useState("");
@@ -249,7 +263,9 @@ export default function Main() {
                   className="w-full h-full"
                   uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
                   onSuccess={(res: any) => {
-                    setImg(res.secure_url);
+                    console.log(res.info.secure_url);
+
+                    setImg(res.info.secure_url);
                   }}
                 >
                   <Button
@@ -505,6 +521,7 @@ export default function Main() {
               color: "white",
             }}
             onClick={async () => {
+              console.log(imagine);
               if (
                 name === "" ||
                 price === "" ||
@@ -519,9 +536,10 @@ export default function Main() {
                 return;
               } else {
                 try {
+                  console.log(imagine);
                   const res: any = await addProduct({
                     name: name,
-                    image: img,
+                    image: imagine,
                     color: color,
                     brand: brand,
                     gender: gender,

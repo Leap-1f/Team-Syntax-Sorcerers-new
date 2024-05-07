@@ -83,7 +83,7 @@ const categoriesLeftSide: CategoryItemProps[] = [
 ];
 const categoriesRightSide: CategoryItemProps[] = [
   {
-    label: "Pages",
+    label: "About us",
     href: "/aboutUs",
   },
   {
@@ -128,7 +128,7 @@ function Header() {
 
   return (
     <>
-      <Stack width={"100%"}>
+      <Stack width={"100%"} position={"fixed"} top={"0"} zIndex={"100"}>
         {Bag(showAddCard, openAddCard)}
         <Stack
           width={"100%"}
@@ -235,7 +235,12 @@ function Header() {
             </Button>
           </Stack>
         </Stack>
-        <Grid container alignItems="center" justifyContent={"space-between"}>
+        <Grid
+          container
+          alignItems="center"
+          justifyContent={"space-between"}
+          bgcolor={"white"}
+        >
           <Grid item sx={{ width: "20%" }}>
             <Stack sx={{ py: "30px", px: "48px" }}>
               {/* <Search>

@@ -1,14 +1,10 @@
-import React from "react";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import React, { FC } from "react";
 import ContactUsMap from "@/components/home/ContactUs/ContactUs";
 
-const ContactUs: React.FC = () => {
+const ContactUs: FC = () => {
   return (
     <>
-      <Header />
       <ContactUsMap />
-      <Footer />
     </>
   );
 };

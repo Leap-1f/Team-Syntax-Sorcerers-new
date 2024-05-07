@@ -1,17 +1,13 @@
-import React from "react";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
+import React, { FC } from "react";
+
 import PageLayout from "../../components/home/blogs/BlogHeader";
 import Body from "@/components/blog/body";
 
-
-const blog: React.FC = () => {
+const blog: FC = () => {
   return (
     <>
-      <Header />
       <PageLayout />
       <Body />
-      <Footer />
     </>
   );
 };

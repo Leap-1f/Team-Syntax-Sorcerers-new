@@ -1,4 +1,4 @@
-"use client"; // Important for using useState and useEffect
+"use client";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Box, Button, Divider } from "@mui/material";

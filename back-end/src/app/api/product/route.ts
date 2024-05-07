@@ -16,7 +16,7 @@ type CreateProductDto = {
   status: string;
 };
 
-export async function POST(req: NextRequest) {
+async function POST(req: NextRequest) {
   try {
     const body: CreateProductDto = await req.json();
     if (body) {
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-export async function GET(_: NextRequest) {
+async function GET(_: NextRequest) {
   try {
     const product = await ProductModel.find();
     if (product) {
@@ -55,3 +55,4 @@ export async function GET(_: NextRequest) {
     );
   }
 }
+export { GET };

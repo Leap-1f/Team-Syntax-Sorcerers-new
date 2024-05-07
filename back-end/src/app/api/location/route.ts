@@ -7,7 +7,7 @@ type TLocation = {
   apartment: String;
   orderNote: String;
 };
-export async function POST(req: NextRequest) {
+async function POST(req: NextRequest) {
   try {
     const body: TLocation = await req.json();
     const user = await LocationModel.create(body);
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     return { err };
   }
 }
-export async function GET(req: NextRequest) {
+async function GET(req: NextRequest) {
   try {
     const location = await LocationModel.find();
     if (location) {
@@ -36,3 +36,4 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+export { GET };

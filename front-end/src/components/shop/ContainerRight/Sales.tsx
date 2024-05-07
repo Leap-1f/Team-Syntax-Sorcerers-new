@@ -40,7 +40,7 @@ export const Sales = () => {
     const fetchProducts = async () => {
       const response = await getProducts();
       if (response.status === 200) {
-        setGetProductData(response.product);
+        setGetProductData(response);
       } else {
         console.error("Failed to fetch products");
       }
@@ -192,39 +192,37 @@ export const Sales = () => {
           )}
         </Stack>
         <Box sx={{ flexGrow: 1 }}>
-          {getProductData.length > 0 ? (
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 2, sm: 8, md: 12 }}
-            >
-              {getProductData.map((data, index) => (
-                <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
-                  <Item>
-                    <Image
-                      className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"
-                      alt="profile"
-                      objectFit="cover"
-                      fill
-                      src={data.image}
-                    />
-                  </Item>
-                  <Stack paddingTop={"20px"}>
-                    <Typography sx={productCardTitle}>{data.name}</Typography>
-                    <Typography sx={pruductCardSubtitle}>
-                      {data.brand}
-                    </Typography>
-                    <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
-                  </Stack>
-                  <Typography paddingTop={"10px"} sx={productCardTitle}>
-                    ${data.price}
-                  </Typography>
-                </Grid>
-              ))}
-            </Grid>
-          ) : (
+          {/* {getProductData.length > 0 ? ( */}
+          <Grid
+            container
+            spacing={{ xs: 2, md: 3 }}
+            columns={{ xs: 2, sm: 8, md: 12 }}
+          >
+            {getProductData.map((data, index) => (
+              <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
+                <Item>
+                  <Image
+                    className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"
+                    alt="profile"
+                    objectFit="cover"
+                    fill
+                    src={data.image}
+                  />
+                </Item>
+                <Stack paddingTop={"20px"}>
+                  <Typography sx={productCardTitle}>{data.name}</Typography>
+                  <Typography sx={pruductCardSubtitle}>{data.brand}</Typography>
+                  <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
+                </Stack>
+                <Typography paddingTop={"10px"} sx={productCardTitle}>
+                  ${data.price}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
+          {/* ) : (
             <Typography>No products available</Typography>
-          )}
+          )} */}
         </Box>
       </Stack>
     </Stack>

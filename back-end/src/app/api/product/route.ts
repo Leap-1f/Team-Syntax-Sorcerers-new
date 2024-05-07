@@ -2,6 +2,8 @@ import { HttpStatusCode } from "axios";
 
 import ProductModel from "../../../models/product.model";
 import { NextRequest, NextResponse } from "next/server";
+import OrderModel from "@/src/models/order.model";
+import UserModel from "@/src/models/user.model";
 
 type CreateProductDto = {
   name: string;
@@ -18,9 +20,7 @@ type CreateProductDto = {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("product deer huselt irlee");
     const body: CreateProductDto = await req.json();
-
     if (body) {
       const product = await ProductModel.create(body);
       return NextResponse.json(
@@ -34,34 +34,22 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
     );
   }
 }
-
-export async function GET(req: NextRequest) {
+export async function GET(_: NextRequest) {
   try {
-    const paramLimit = req.nextUrl.searchParams.get("limit");
-    let product;
-
-    if (paramLimit) {
-      product = await ProductModel.find().limit(parseInt(paramLimit));
-    } else {
-      product = await ProductModel.find();
-    }
-
-    console.log(product);
-
-    if (product.length > 0) {
+    const product = await UserModel.find();
+    if (product) {
       return NextResponse.json(product);
-    } else {
-      return NextResponse.json(
-        { message: `Products not found` },
-        { status: HttpStatusCode.NotFound }
-      );
+    }
+    return NextResponse.json(
+      { message: `Product not found` },
+      { status: HttpStatusCode.NotFound }
+    );
     }
   } catch (error) {
     console.error(error);

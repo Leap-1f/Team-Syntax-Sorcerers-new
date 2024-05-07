@@ -3,4 +3,5 @@ export const COLLECTIONS = {
   ORDER: "order",
   PRODUCT: "product",
   LOCATION: "location",
+  ORDERITEMS: "orderItems",
 };

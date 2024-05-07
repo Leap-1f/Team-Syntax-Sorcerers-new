@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Checkbox,
@@ -15,7 +16,6 @@ import { IoFilterOutline } from "react-icons/io5";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
-
 type TCheckedBox = {
   name: string;
   label: string;
@@ -28,6 +28,7 @@ const checkboxes: TCheckedBox[] = [
 
 export const Sales = () => {
   const [getProductData, setGetProductData] = useState<any[]>([]);
+
   const [expanded, setExpanded] = useState(false);
   const [checked, setChecked] = useState({
     label: true,
@@ -37,8 +38,12 @@ export const Sales = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getProducts();
-      setGetProductData(data.product);
+      const response = await getProducts();
+      if (response.status === 200) {
+        setGetProductData(response.product);
+      } else {
+        console.error("Failed to fetch products");
+      }
     };
     fetchProducts();
   }, []);
@@ -53,6 +58,7 @@ export const Sales = () => {
   const handleToggle = () => {
     setExpanded(!expanded);
   };
+  console.log("ari", getProductData);
 
   /* ///////////////////// TYPO  //////////////////////////*/
   const categoryTypo = {
@@ -186,39 +192,39 @@ export const Sales = () => {
           )}
         </Stack>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 2, sm: 8, md: 12 }}
-          >
-            {Array.from(Array(6)).map((_, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
-                <Item>
-                  <Image
-                    className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"
-                    alt="profile"
-                    objectFit="cover"
-                    fill
-                    src={
-                      "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036836/7_scirkj.jpg"
-                    }
-                  />
-                </Item>
-                <Stack paddingTop={"20px"}>
-                  <Typography sx={productCardTitle}>
-                    Tatum 2 'Legacy' PF
+          {getProductData.length > 0 ? (
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 2, sm: 8, md: 12 }}
+            >
+              {getProductData.map((data, index) => (
+                <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
+                  <Item>
+                    <Image
+                      className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"
+                      alt="profile"
+                      objectFit="cover"
+                      fill
+                      src={data.image}
+                    />
+                  </Item>
+                  <Stack paddingTop={"20px"}>
+                    <Typography sx={productCardTitle}>{data.name}</Typography>
+                    <Typography sx={pruductCardSubtitle}>
+                      {data.brand}
+                    </Typography>
+                    <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
+                  </Stack>
+                  <Typography paddingTop={"10px"} sx={productCardTitle}>
+                    ${data.price}
                   </Typography>
-                  <Typography sx={pruductCardSubtitle}>
-                    Basketball Shoes
-                  </Typography>
-                  <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
-                </Stack>
-                <Typography paddingTop={"10px"} sx={productCardTitle}>
-                  $500
-                </Typography>
-              </Grid>
-            ))}
-          </Grid>
+                </Grid>
+              ))}
+            </Grid>
+          ) : (
+            <Typography>No products available</Typography>
+          )}
         </Box>
       </Stack>
     </Stack>

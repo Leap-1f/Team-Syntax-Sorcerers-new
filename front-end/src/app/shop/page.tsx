@@ -10,6 +10,7 @@ const Shop = () => {
         direction={"column"}
         spacing={"60px"}
         alignItems={"center"}
+        paddingTop={"200px"}
       >
         {/* <Banner /> */}
         <Stack width={"1700px"} direction={"row"} justifyContent={"center"}>

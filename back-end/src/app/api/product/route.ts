@@ -18,9 +18,7 @@ type CreateProductDto = {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("product deer huselt irlee");
     const body: CreateProductDto = await req.json();
-
     if (body) {
       const product = await ProductModel.create(body);
       return NextResponse.json(
@@ -34,58 +32,26 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
     );
   }
 }
-
-export async function GET(req: NextRequest) {
+export async function GET(_: NextRequest) {
   try {
-    const paramLimit = req.nextUrl.searchParams.get("limit");
-    let product;
-
-    if (paramLimit) {
-      product = await ProductModel.find().limit(parseInt(paramLimit));
-    } else {
-      product = await ProductModel.find();
-    }
-
-    console.log(product);
-
-    if (product.length > 0) {
+    const product = await ProductModel.find();
+    if (product) {
       return NextResponse.json(product);
-    } else {
-      return NextResponse.json(
-        { message: `Products not found` },
-        { status: HttpStatusCode.NotFound }
-      );
     }
+    return NextResponse.json(
+      { message: `Product not found` },
+      { status: HttpStatusCode.NotFound }
+    );
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { message: "Error occurred while fetching products" },
       { status: HttpStatusCode.InternalServerError }
     );
   }
 }
-
-// export async function GET(_: NextRequest) {
-//   try {
-//     const product = await ProductModel.find();
-//     if (product) {
-//       return NextResponse.json({ product });
-//     }
-//     return NextResponse.json(
-//       { message: `Product not found` },
-//       { status: HttpStatusCode.NotFound }
-//     );
-//   } catch (error) {
-//     return NextResponse.json(
-//       { message: error },
-//       { status: HttpStatusCode.BadRequest }
-//     );
-//   }
-// }

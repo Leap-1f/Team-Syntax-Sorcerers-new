@@ -14,6 +14,7 @@ const ProductSchema = new Schema(
     size: { type: Number, required: true },
     description: { type: String },
   },
+
   {
     timestamps: true,
     toJSON: {

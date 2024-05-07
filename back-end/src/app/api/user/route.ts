@@ -1,5 +1,6 @@
 import { HttpStatusCode } from "axios";
 import UserModel from "../../../models/user.model";
+
 import { NextRequest, NextResponse } from "next/server";
 type CreateProductDto = {
   name: String;
@@ -12,21 +13,13 @@ type CreateProductDto = {
 };
 export async function POST(req: NextRequest) {
   try {
-    console.log("user deer huselt irlee");
     const body: CreateProductDto = await req.json();
-    if (body) {
-      const user = await UserModel.create(body);
-      return NextResponse.json(
-        { user, message: "Your user has been created" },
-        { status: HttpStatusCode.Created }
-      );
-    }
+    const user = await UserModel.create(body);
     return NextResponse.json(
-      { message: "User name is missing" },
-      { status: HttpStatusCode.BadRequest }
+      { user, message: "Your user has been created" },
+      { status: HttpStatusCode.Created }
     );
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
@@ -35,24 +28,25 @@ export async function POST(req: NextRequest) {
 }
 export async function GET(_: NextRequest) {
   try {
-    const user = await UserModel.find();
-    // "6630a6a39ab1cf1e3e87aae9"
-    // ).populate({
-    //   path: "orderId",
-    //   model: "order",
-    // });
-    if (user) {
-      return NextResponse.json(user);
-    }
-    return NextResponse.json(
-      { message: `Product not found` },
-      { status: HttpStatusCode.NotFound }
-    );
+    const user = await UserModel.find().populate("orders");
+    return NextResponse.json(user);
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }
     );
   }
 }
+
+// export async function DELETE(req: NextRequest) {
+//   try {
+//     const body = req.json();
+//     const deleteUser = await OrderModel.deleteOne();
+//     return NextResponse.json(deleteUser);
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: error },
+//       { status: HttpStatusCode.BadRequest }
+//     );
+//   }
+// }

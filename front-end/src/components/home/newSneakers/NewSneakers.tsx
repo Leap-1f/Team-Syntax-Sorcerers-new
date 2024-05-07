@@ -1,6 +1,31 @@
+"use client";
+import React, { use, useEffect, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 import { Card } from "./Card";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { getProductsBestSellers } from "@/components/admin/productPage/network";
+
 export const FeaturesTwo = () => {
+  const [fetchedProductData, setFetchedProductData] = useState<any[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProductsBestSellers();
+      setFetchedProductData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      easing: "ease",
+      once: false,
+    });
+    AOS.refresh();
+  }, []);
+
   const featureTypoGraphy = {
     color: "#FFF",
     textAlign: "center",
@@ -37,6 +62,7 @@ export const FeaturesTwo = () => {
           paddingTop: "60px",
           paddingBottom: "80px",
         }}
+        data-aos="fade-up"
       >
         <div
           style={{
@@ -63,10 +89,17 @@ export const FeaturesTwo = () => {
           </Typography>
         </Stack>
         <Stack direction={"row"} justifyContent={"center"} spacing={"40px"}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {fetchedProductData.map((product, index) => (
+            <Card
+              key={product._id}
+              imageUrl={product.image}
+              title={product.name}
+              price={product.price}
+              index={product._id}
+              brand={product.brand}
+              category={product.category}
+            />
+          ))}
         </Stack>
       </Stack>
     </>

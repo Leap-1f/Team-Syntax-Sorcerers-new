@@ -1,9 +1,5 @@
-"use client";
-import React, { FC, useEffect, useState } from "react";
 import { Stack, Box, Typography, Rating } from "@mui/material";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import ProductDialog from "@/components/hover/ProductHover";
+import React, { FC, useState } from "react";
 type TCardProps = {
   imageUrl: string;
   title: string;
@@ -12,8 +8,7 @@ type TCardProps = {
   brand: string;
   category: string;
 };
-
-export const Card: FC<TCardProps> = ({
+export const ProductsEssentailI3: FC<TCardProps> = ({
   index,
   title,
   imageUrl,
@@ -21,17 +16,10 @@ export const Card: FC<TCardProps> = ({
   brand,
   category,
 }) => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease",
-      once: false,
-    });
-    AOS.refresh();
-  }, []);
+  const [value, setValue] = useState<number | null>(2);
 
   const productCategoryText = {
-    color: "black",
+    color: "#222",
     fontFamily: "Barlow",
     fontSize: "18px",
     fontStyle: "normal",
@@ -51,56 +39,13 @@ export const Card: FC<TCardProps> = ({
     padding: 0,
     cursor: "pointer",
   };
-  const productCategorySortTypography = {
-    color: "#888",
-    fontFamily: "Barlow",
-    fontSize: "14px",
-    fontStyle: "normal",
-    fontWeight: 400,
-    lineHeight: "21px",
-    textTransform: "uppercase",
-  };
-  const [isHovered, setIsHovered] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState({
-    imageUrl,
-    title,
-    price,
-    index,
-    brand,
-    category,
-  });
-  const handleClickOpen = (data: any) => {
-    setOpen(true);
-  };
-  const handleClose = (value: any) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
   return (
     <>
-      <ProductDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      ></ProductDialog>
-      <Stack
-        onClick={handleClickOpen}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        direction={"row"}
-        width={"308px"}
-        sx={{
-          borderRadius: "10px",
-
-          backgroundColor: "white",
-        }}
-        data-aos="slide-left"
-      >
+      <Stack direction={"row"} width={"25%"}>
         <Box
           sx={{
-            width: "308px",
-            height: "450px",
+            width: "100%",
+            height: "350px",
             boxShadow: "none",
             padding: "10px",
             transition: "box-shadow 0.3s",
@@ -118,12 +63,10 @@ export const Card: FC<TCardProps> = ({
               backgroundRepeat: "no-repeat",
             }}
           ></Stack>
-
           <Stack height={"20%"} spacing={"7px"}>
             <Stack
               direction={"row"}
               justifyContent={"space-between"}
-              alignItems={"center"}
               sx={{
                 borderBottom: "solid",
                 borderBottomWidth: "1px",
@@ -131,8 +74,14 @@ export const Card: FC<TCardProps> = ({
                 borderColor: "#2222",
               }}
             >
-              <Typography sx={productCategorySortTypography}>Shoes</Typography>
-              <Rating name="read-only" readOnly sx={{ fontSize: "20px" }} />
+              <Typography sx={productCategoryFont}>Shoes</Typography>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              />
             </Stack>
             <Typography sx={productCategoryText}>{title}</Typography>
             <Typography sx={productCategoryText}>${price}</Typography>

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 @keyframes size {
     from {
@@ -19,22 +19,120 @@
     animation: size 1.5s linear infinite alternate;
 }
 #top-sale {
-width: 732px;
-height: 837px;
+    width: 732px;
+    height: 837px;
 }
 
 @keyframes gota {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-2.5%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2.5%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .gota-limited {
-  animation: gota 1.75s ease-in-out infinite; 
+    animation: gota 1.75s ease-in-out infinite;
+}
+@keyframes top {
+    25% {
+        transform: translateX(-10%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    75% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.top-limited {
+    animation: top 7.75s ease-in-out infinite;
+}
+.neonText {
+    color: #fff;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #2bb9a9,
+        0 0 82px #2bb9a9, 0 0 92px #2bb9a9, 0 0 102px #2bb9a9, 0 0 151px #2bb9a9;
+    font-size: 6.2rem;
+    animation: pulsate 1.5s infinite alternate;
+    border: 0.2rem solid #fff;
+    border-radius: 2rem;
+    padding: 0.4em;
+    background-color: #2bb9a9;
+    box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #2bb9a9,
+        0 0 0.8rem #2bb9a9, 0 0 2.8rem #2bb9a9, inset 0 0 1.3rem #2bb9a9;
+    font-weight: 400;
+}
+
+@keyframes pulsate {
+    100% {
+        text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff,
+            0 0 40px #2bb9a9, 0 0 80px #2bb9a9, 0 0 90px #2bb9a9,
+            0 0 100px #2bb9a9, 0 0 150px #2bb9a9;
+    }
+
+    0% {
+        text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #2bb9a9,
+            0 0 45px #2bb9a9, 0 0 55px #2bb9a9, 0 0 70px #2bb9a9,
+            0 0 80px #2bb9a9;
+    }
+}
+.text-light {
+    color: #000000; /* Default text color in light mode */
+}
+
+.background-light {
+    background-color: #ffffff; /* Default background color in light mode */
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    --text-color: #ffffff; /* Text color in dark mode */
+    --background-color: #000000; /* Background color in dark mode */
+}
+
+.text-dark {
+    color: var(--text-color); /* Apply dark mode text color */
+}
+
+.background-dark {
+    background-color: var(
+        --background-color
+    ); /* Apply dark mode background color */
+}
+
+/* Apply dark mode styles to specific elements */
+.dark-mode .text-light {
+    color: var(--text-color); /* Apply dark mode text color */
+}
+
+.dark-mode .background-light {
+    background-color: var(
+        --background-color
+    ); /* Apply dark mode background color */
+}
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    --background-color: #000000; /* Dark mode background color */
+    --text-color: #ffffff; /* Dark mode text color */
+}
+:root {
+    --background-color: #ffffff; /* Light mode background color */
+    --text-color: #000000; /* Light mode text color */
+}
+/* White box shadow in dark mode */
+.dark-mode .white-box-shadow {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adjust the shadow properties as needed */
 }

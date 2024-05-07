@@ -30,7 +30,6 @@ export const ProductCategory = () => {
         alignItems={"flex-start"}
         spacing={"30px"}
         width={"100%"}
-        height={"500px"}
       >
         <Typography
           sx={{
@@ -45,8 +44,8 @@ export const ProductCategory = () => {
         </Typography>
         <Stack direction={"column"} alignItems={"flex-start"} width={"500px"}>
           <button>Woman</button>
-          <button>Sneakers</button>
-          <button>Traning Wear</button>
+          <button>Man</button>
+          <button>Kids</button>
         </Stack>
       </Stack>
     </>

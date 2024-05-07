@@ -27,31 +27,31 @@ const AdminNavBar = () => {
     window.location.href = where;
   }
   const allButtons = [
-    {
-      name: "Хяналтын самбар",
-      startIcon: <GridViewIcon />,
-      link: "/admin/",
-    },
-    {
-      name: "Захиалах",
-      startIcon: <BookmarkBorderIcon />,
-      link: "/admin/orders",
-    },
-    {
-      name: "Орлого",
-      startIcon: <DiscountIcon />,
-      link: "/admin/discounts",
-    },
+    // {
+    //   name: "Хяналтын самбар",
+    //   startIcon: <GridViewIcon />,
+    //   link: "/admin/",
+    // },
+    // {
+    //   name: "Захиалах",
+    //   startIcon: <BookmarkBorderIcon />,
+    //   link: "/admin/orders",
+    // },
+    // {
+    //   name: "Орлого",
+    //   startIcon: <DiscountIcon />,
+    //   link: "/admin/discounts",
+    // },
     {
       name: "Бүтээгдэхүүн",
       startIcon: <ListAltIcon />,
       link: "/admin/product",
     },
-    {
-      name: "Тохиргоо",
-      startIcon: <SettingsIcon />,
-      link: "/admin/settings",
-    },
+    // {
+    //   name: "Тохиргоо",
+    //   startIcon: <SettingsIcon />,
+    //   link: "/admin/settings",
+    // },
   ];
 
   return (

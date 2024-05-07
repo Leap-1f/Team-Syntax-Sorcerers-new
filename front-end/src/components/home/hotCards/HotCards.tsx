@@ -4,7 +4,7 @@ const FeaturesOne = () => {
   const h1Typo = {
     color: "#FFF",
     fontFamily: "Barlow",
-    fontSize: "35px",
+    fontSize: "25px",
     fontStyle: "normal",
     fontWeight: 600,
     lineHeight: "42px",
@@ -31,22 +31,22 @@ const FeaturesOne = () => {
         width={"25%"}
         height={"409px"}
         direction={"column"}
-        justifyContent={"space-between"}
+        justifyContent={"flex-end"}
+        alignItems={"flex-start"}
         sx={{
           px: "30px",
           py: "20px",
           backgroundImage:
-            "url('https://res.cloudinary.com/dqhy9ufze/image/upload/v1714037448/banar3-1_jxnqf3.png')",
+            "url('https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715063912/nadkvs1thbvtwt1jvfwc.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Stack> {/* <HoteSaleTag /> */}</Stack>{" "}
-        <Typography sx={h1Typo}>Helmet Sport for women’s</Typography>
+        <Stack> {/* <HoteSaleTag /> */}</Stack>
+        <Typography sx={h1Typo}>Tatum 2 Vortex </Typography>
         <Typography sx={textTypo}>
-          sale <span style={{ color: "#FFC000" }}>20%</span> Off Helmet for
-          Women’s
+          <span style={{ color: "#FFC000" }}>20%</span> sale
         </Typography>
       </Stack>
       <Stack
@@ -63,7 +63,7 @@ const FeaturesOne = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Stack direction={"column"} alignItems={"center"} spacing={"20px"}>
+        <Stack direction={"column"} alignItems={"center"} spacing={"10px"}>
           <Typography sx={textTypo}>THIS MONTH BIG SALE</Typography>
           <Typography sx={h1Typo}>
             <span style={{ fontWeight: 800 }}>Jacket </span>Sportwear

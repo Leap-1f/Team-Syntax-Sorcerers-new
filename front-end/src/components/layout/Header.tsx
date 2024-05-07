@@ -92,7 +92,7 @@ const categoriesRightSide: CategoryItemProps[] = [
   },
   {
     label: "Contact us",
-    href: "/contactUs",
+    href: "/contactus",
   },
 ];
 const headerCurrencyTypo = {

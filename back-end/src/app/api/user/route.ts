@@ -2,7 +2,6 @@ import { HttpStatusCode } from "axios";
 import UserModel from "../../../models/user.model";
 
 import { NextRequest, NextResponse } from "next/server";
-import OrderModel from "@/src/models/order.model";
 type CreateProductDto = {
   name: String;
   password: String;
@@ -39,18 +38,15 @@ export async function GET(_: NextRequest) {
   }
 }
 
-export async function DELETE(req: NextRequest) {
-  console.log("delete huselt irlee");
-  try {
-    const body = req.json();
-    console.log("body", body);
-    const deleteUser = await OrderModel.deleteOne();
-    return NextResponse.json(deleteUser);
-  } catch (error) {
-    console.log("error garlaa", error);
-    return NextResponse.json(
-      { message: error },
-      { status: HttpStatusCode.BadRequest }
-    );
-  }
-}
+// export async function DELETE(req: NextRequest) {
+//   try {
+//     const body = req.json();
+//     const deleteUser = await OrderModel.deleteOne();
+//     return NextResponse.json(deleteUser);
+//   } catch (error) {
+//     return NextResponse.json(
+//       { message: error },
+//       { status: HttpStatusCode.BadRequest }
+//     );
+//   }
+// }

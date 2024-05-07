@@ -10,13 +10,12 @@ type TLocation = {
 export async function POST(req: NextRequest) {
   try {
     const body: TLocation = await req.json();
-     const user = await LocationModel.create(body);
+    const user = await LocationModel.create(body);
     return NextResponse.json(
       { user, message: "Your user has been created" },
       { status: HttpStatusCode.Created }
     );
   } catch (err) {
-    console.log(err);
     return { err };
   }
 }
@@ -31,7 +30,6 @@ export async function GET(req: NextRequest) {
       { status: HttpStatusCode.NotFound }
     );
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { message: error },
       { status: HttpStatusCode.BadRequest }

@@ -58,7 +58,7 @@ export const Sales = () => {
   const handleToggle = () => {
     setExpanded(!expanded);
   };
-  console.log("ari", getProductData);
+  console.log("ariguun", getProductData);
 
   /* ///////////////////// TYPO  //////////////////////////*/
   const categoryTypo = {

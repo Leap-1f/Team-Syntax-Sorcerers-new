@@ -10,12 +10,16 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+
 import { useEffect, useState } from "react";
 import { getProducts } from "@/components/admin/productPage/network";
 import { IoFilterOutline } from "react-icons/io5";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
+import Search from "./Search";
+import { string } from "yup";
+
 type TCheckedBox = {
   name: string;
   label: string;
@@ -25,8 +29,7 @@ const checkboxes: TCheckedBox[] = [
   { name: "Tatum", label: "Required" },
   { name: "Jordan", label: "Disabled" },
 ];
-
-export const Sales = () => {
+export const Sales = ({ query }: { query: string }) => {
   const [getProductData, setGetProductData] = useState<any[]>([]);
 
   const [expanded, setExpanded] = useState(false);
@@ -121,11 +124,7 @@ export const Sales = () => {
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Typography sx={categoryTypo}>Men`s basketball shoes(10)</Typography>
           <Stack direction={"row"} spacing={5}>
-            <input
-              type="text"
-              placeholder="search"
-              className="border px-3 rounded-[4px]"
-            />
+            <Search />
             <button className="flex items-center gap-2	">
               Hide Filters
               <IoFilterOutline size={20} />

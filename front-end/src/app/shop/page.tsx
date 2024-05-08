@@ -2,7 +2,13 @@
 import { Stack } from "@mui/material";
 import { Banner } from "../../components/shop/ContainerRight/Banner";
 import { Sales } from "../../components/shop/ContainerRight/Sales";
-const Shop = () => {
+import { string } from "yup";
+const Shop = async ({
+  searchParams,
+}: {
+  searchParams?: { query?: string; page?: string };
+}) => {
+  const query = searchParams?.query || "";
   return (
     <>
       <Stack
@@ -14,7 +20,7 @@ const Shop = () => {
       >
         {/* <Banner /> */}
         <Stack width={"1700px"} direction={"row"} justifyContent={"center"}>
-          <Sales />
+          <Sales query={query} />
         </Stack>
       </Stack>
     </>

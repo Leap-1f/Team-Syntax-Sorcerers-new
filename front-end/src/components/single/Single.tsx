@@ -77,7 +77,7 @@ export const Single = () => {
                 </div>
               </div>
             </div>
-            <Link href="/cart">
+            <Link href="/checkout">
               <button className="py-[20px] text-white bg-teal-500 hover:bg-teal-600 w-[100%] rounded-[30px] my-[10px]">
                 Add to Bag
               </button>

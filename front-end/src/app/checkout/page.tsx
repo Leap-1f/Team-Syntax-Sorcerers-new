@@ -1,7 +1,7 @@
 import { CheckOut } from "@/components/checkout/CheckOut";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-const Home = () => {
+const checkout = () => {
   return (
     <>
       <Header></Header>
@@ -10,4 +10,4 @@ const Home = () => {
     </>
   );
 };
-export default Home;
+export default checkout;

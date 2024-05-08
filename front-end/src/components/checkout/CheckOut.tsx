@@ -57,7 +57,7 @@ export const CheckOut = () => {
 
   return (
     <>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mt-[200px]">
         {/* {showConfirmation && (
           <div className="flex bg-[#2BB9A9] items-center p-[10px] rounded-md gap-3">
             <MdDone className="text-white text-2xl" />

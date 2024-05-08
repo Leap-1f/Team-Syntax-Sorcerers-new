@@ -1,5 +1,6 @@
 "use client";
 import { Button, Drawer, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
 export const Bag = (open: boolean, close: any) => {
   const productCategoryText = {
@@ -12,9 +13,11 @@ export const Bag = (open: boolean, close: any) => {
     textTransform: "uppercase",
   };
   const buttonStyle = {
+    width: "100%",
     border: "3px solid #666",
     background: "none",
     color: "black",
+
     "&:hover": {
       border: "3px solid #2BB9A9",
       background: "none",
@@ -96,8 +99,14 @@ export const Bag = (open: boolean, close: any) => {
                 $500
               </Typography>
             </Stack>
-            <Button sx={buttonStyle}>view cart</Button>
-            <Button sx={buttonStyle}>checkout</Button>
+            {/* <Link href="/cart">
+              <div className="w-[100%]">
+                <Button sx={buttonStyle}>view cart</Button>
+              </div>
+            </Link> */}
+            <Link href="/checkout">
+              <Button sx={buttonStyle}>checkout</Button>
+            </Link>
           </Stack>
         </Stack>
       </Drawer>

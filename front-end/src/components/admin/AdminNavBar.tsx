@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Button, Drawer } from "@mui/material";
+import { Box, Button, Drawer } from "@mui/material";
 import GridViewIcon from "@mui/icons-material/GridView";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import DiscountIcon from "@mui/icons-material/Discount";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import { IoMdMenu } from "react-icons/io";
 const buttonStyle = {
   width: "100%",
@@ -47,6 +48,12 @@ const AdminNavBar = () => {
       startIcon: <ListAltIcon />,
       link: "/admin/product",
     },
+    {
+      name: "Post",
+      startIcon: <PostAddIcon />,
+      link: "/admin/post",
+
+    }
     // {
     //   name: "Тохиргоо",
     //   startIcon: <SettingsIcon />,
@@ -55,12 +62,12 @@ const AdminNavBar = () => {
   ];
 
   return (
-    <div className="flex">
+    <Box className="flex">
       <Button onClick={toggleSidebarcollapse}>
         <IoMdMenu fill="white" width={30} height={30} />
       </Button>
       <Drawer open={isCollapsed} onClose={toggleSidebarcollapse} anchor="left">
-        <div className="w-[20vw] border-3 pt-[20px] px-[20px] flex flex-col gap-[20px]  ">
+        <Box className="w-[20vw] border-3 pt-[20px] px-[20px] flex flex-col gap-[20px]  ">
           {allButtons.map((button) => (
             <Button
               sx={buttonStyle}
@@ -72,9 +79,9 @@ const AdminNavBar = () => {
               {button.name}
             </Button>
           ))}
-        </div>
+        </Box>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 export default AdminNavBar;

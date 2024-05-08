@@ -2,12 +2,15 @@ import React, { FC } from "react";
 
 import PageLayout from "../../components/home/blogs/BlogHeader";
 import Body from "@/components/blog/body";
+import { Stack } from "@mui/material";
 
 const blog: FC = () => {
   return (
     <>
-      <PageLayout />
-      <Body />
+      <Stack paddingTop={"150px"}>
+        <PageLayout />
+        <Body />
+      </Stack>
     </>
   );
 };

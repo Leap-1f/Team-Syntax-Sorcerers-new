@@ -136,3 +136,7 @@ body {
 .dark-mode .white-box-shadow {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adjust the shadow properties as needed */
 }
+.spin {
+    transform: rotateX(360deg);
+    transition-duration: 0.5s;
+}

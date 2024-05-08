@@ -11,7 +11,7 @@ type CreateProductDto = {
   role: String;
   orders: String[];
 };
-export async function POST(req: NextRequest) {
+async function POST(req: NextRequest) {
   try {
     const body: CreateProductDto = await req.json();
     const user = await UserModel.create(body);
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-export async function GET(_: NextRequest) {
+async function GET(_: NextRequest) {
   try {
     const user = await UserModel.find().populate("orders");
     return NextResponse.json(user);
@@ -37,8 +37,8 @@ export async function GET(_: NextRequest) {
     );
   }
 }
-
-// export async function DELETE(req: NextRequest) {
+export { GET };
+//  async function DELETE(req: NextRequest) {
 //   try {
 //     const body = req.json();
 //     const deleteUser = await OrderModel.deleteOne();

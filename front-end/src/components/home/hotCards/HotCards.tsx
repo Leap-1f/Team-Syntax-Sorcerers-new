@@ -46,53 +46,55 @@ const FeaturesOne = () => {
         <Stack> {/* <HoteSaleTag /> */}</Stack>
         <Typography sx={h1Typo}>Tatum 2 Vortex </Typography>
         <Typography sx={textTypo}>
-          <span style={{ color: "#FFC000" }}>20%</span> sale
+          <span style={{ color: "#2BB9A9" }}>20%</span> sale
         </Typography>
       </Stack>
       <Stack
         width={"50%"}
         direction={"column"}
+        paddingBottom={"20px"}
         alignItems={"center"}
-        spacing={"50px"}
+        justifyContent={"space-between"}
+        spacing={"20px"}
         sx={{
           paddingTop: "60px",
           backgroundImage:
-            "url('https://res.cloudinary.com/dqhy9ufze/image/upload/v1714037460/banar3-2_glxmfx.png')",
+            "url('https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715072211/gvhgpu8e7tpcpvntmglv.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
+        <Typography sx={textTypo}>THIS MONTH BIG SALE</Typography>
         <Stack direction={"column"} alignItems={"center"} spacing={"10px"}>
-          <Typography sx={textTypo}>THIS MONTH BIG SALE</Typography>
-          <Typography sx={h1Typo}>
-            <span style={{ fontWeight: 800 }}>Jacket </span>Sportwear
+          <Typography sx={{ ...h1Typo, fontWeight: 800 }}>
+            Jacket Sportwear
+          </Typography>
+          <Typography sx={textTypo}>
+            sale <span style={{ color: "#FFC000" }}>20%</span> Off Helmet for
+            Women’s
           </Typography>
         </Stack>
-        <Typography sx={textTypo}>
-          sale <span style={{ color: "#FFC000" }}>20%</span> Off Helmet for
-          Women’s
-        </Typography>
       </Stack>
       <Stack
         width={"25%"}
         direction={"column"}
-        justifyContent={"space-between"}
+        justifyContent={"flex-end"}
+        alignItems={"flex-start"}
         sx={{
           px: "30px",
           py: "20px",
           backgroundImage:
-            "url('https://res.cloudinary.com/dqhy9ufze/image/upload/v1714037467/banar3-3_zjvndu.png')",
+            "url('https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715070904/iy6dmtrgz6dgo4fjqrcz.jpg')",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
         }}
       >
         <Stack></Stack>
-        <Typography sx={h1Typo}>Helmet Sport for women’s</Typography>
+        <Typography sx={h1Typo}>LeBron NXXT Gen </Typography>
         <Typography sx={textTypo}>
-          sale <span style={{ color: "#A80E0E" }}>20%</span> Off Helmet for
-          Women’s
+          <span style={{ color: "orange" }}>20%</span> sale
         </Typography>
       </Stack>
     </Stack>

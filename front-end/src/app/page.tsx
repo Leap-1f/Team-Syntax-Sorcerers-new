@@ -13,7 +13,7 @@ import { FC } from "react";
 const Home: FC = () => {
   return (
     <>
-      <Stack direction={"column"} alignItems={"center"}>
+      <Stack direction={"column"} alignItems={"center"} paddingTop={"150px"}>
         <Carousel2 />
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <FeaturesOne />

@@ -14,6 +14,7 @@ interface ProductProps {
   hoverImageUrl: string;
   brand: string;
   pid: string;
+  quantity: number;
   category: string;
 }
 const ProductComponent: FC<ProductProps> = ({
@@ -24,6 +25,7 @@ const ProductComponent: FC<ProductProps> = ({
   index,
   pid,
   brand,
+  quantity,
   category,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -35,6 +37,7 @@ const ProductComponent: FC<ProductProps> = ({
     price,
     index,
     pid,
+    quantity,
     brand,
     category,
   });
@@ -157,6 +160,7 @@ export const BestSellers = () => {
               hoverImageUrl={product.image}
               pid={product.id}
               brand={product.brand}
+              quantity={0}
               category={product.category}
             />
           ))}

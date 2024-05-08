@@ -1,13 +1,9 @@
 "use client";
 import Button from "@mui/material/Button";
-import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import InputBase from "@mui/material/InputBase";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import React, { FC, useState } from "react";
-import Select, { selectClasses } from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
+import { FC, useState, useSyncExternalStore } from "react";
 import { Bag } from "./myBags";
 import {
   Grid,
@@ -22,6 +18,14 @@ interface CategoryItemProps {
   label: string;
   href: string;
 }
+const store = {
+  getSnapshot: () => sessionStorage.getItem("cart") || "[]",
+  subscribe: (listener: () => void) => {
+    window.addEventListener("storage", listener);
+    return () => void window.removeEventListener("storage", listener);
+  },
+};
+
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -125,7 +129,8 @@ function Header() {
   const openAddCard = () => {
     setShowAddCard((prev) => !prev);
   };
-
+  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const wart: any = JSON.parse(kart);
   return (
     <>
       <Stack width={"100%"} position={"fixed"} top={"0"} zIndex={"100"}>
@@ -335,7 +340,7 @@ function Header() {
                     px: "10px",
                   }}
                 >
-                  My Bag (2)
+                  My Bag ({wart?.length})
                 </Typography>
               </Button>
             </Stack>

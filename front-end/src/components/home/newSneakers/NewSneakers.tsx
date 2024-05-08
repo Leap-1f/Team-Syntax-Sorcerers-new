@@ -97,6 +97,8 @@ export const FeaturesTwo = () => {
               price={product.price}
               index={index + 1}
               brand={product.brand}
+              pid={product.id}
+              quantity={0}
               category={product.category}
             />
           ))}

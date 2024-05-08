@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
 import { getProductsBestSellers } from "../admin/productPage/network";
+import Link from "next/link";
 const email = ["dasda"];
 interface ProductProps {
   imageUrl: string;
@@ -74,12 +75,14 @@ const ProductComponent: FC<ProductProps> = ({
             <p onClick={handleClickOpen}>Star</p>
           </div>
           <div className="border border-gray-400 w-[310px]"></div>
-          <div className="text-[16px] font-semibold tracking-tight flex flex-col gap-[10px]">
-            <h1 className={isHovered ? "" : ""}>
-              {isHovered ? "Add to cart" : title}
-            </h1>
-            <p>{price}</p>
-          </div>
+          <Link href="/single">
+            <div className="text-[16px] font-semibold tracking-tight flex flex-col gap-[10px]">
+              <h1 className={isHovered ? "" : ""}>
+                {isHovered ? "Add to cart" : title}
+              </h1>
+              <p>{price}</p>
+            </div>
+          </Link>
         </div>
       </div>
     </>

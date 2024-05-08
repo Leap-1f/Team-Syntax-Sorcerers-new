@@ -7,6 +7,7 @@ export const getProducts = async () => {
     },
   });
   var zov = await res.json();
+
   zov.status = res.status;
   return zov;
 };

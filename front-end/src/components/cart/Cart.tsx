@@ -5,7 +5,7 @@ import Image from "next/image";
 export const Cart = () => {
   return (
     <>
-      <div className="flex justify-center my-[100px]">
+      <div className="flex justify-center my-[100px] mt-[200px]">
         <div className="container flex">
           <div className="w-[70%] mx-3 rounded-md">
             <div className="flex *:py-[23px] *:flex *:justify-center *:border-[1px] *:border-solid justify-between">
@@ -63,13 +63,13 @@ export const Cart = () => {
                 <div className="font-semibold w-[30%] py-[16px]">Total</div>
                 <div className=" text-2xl w-[70%]"> $50.00</div>
               </div>
-              <div className="p-[30px]">
-                <Link href="/checkout">
+              <Link href="/checkout">
+                <div className="p-[30px]">
                   <button className="py-[16px] w-[100%] hover:bg-teal-600 bg-teal-500 rounded-[8px] text-white font-semibold">
                     Procced To Checkout
                   </button>
-                </Link>
-              </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

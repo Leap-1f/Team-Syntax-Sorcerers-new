@@ -1,9 +1,11 @@
 import { model, models, Schema } from "mongoose";
 import { COLLECTIONS } from "../constant";
+
 const orderItemsSChema = new Schema({
-  product: { type: [Schema.Types.ObjectId], ref: COLLECTIONS.PRODUCT },
+  product: { type: String, ref: COLLECTIONS.PRODUCT },
   count: { type: Number, required: true },
 });
+
 const OrderSchema = new Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: COLLECTIONS.USER },

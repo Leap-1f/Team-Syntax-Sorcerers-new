@@ -11,6 +11,8 @@ async function POST(req: NextRequest) {
       { status: HttpStatusCode.Created }
     );
   } catch (err) {
+    console.log(err);
+
     return { err };
   }
 }

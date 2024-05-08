@@ -121,6 +121,11 @@ export const Sales = () => {
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Typography sx={categoryTypo}>Men`s basketball shoes(10)</Typography>
           <Stack direction={"row"} spacing={5}>
+            <input
+              type="text"
+              placeholder="search"
+              className="border px-3 rounded-[4px]"
+            />
             <button className="flex items-center gap-2	">
               Hide Filters
               <IoFilterOutline size={20} />

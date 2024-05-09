@@ -15,7 +15,13 @@ const Post: React.FC<PostDataProps> = ({
   date,
 }) => (
   <div className="flex gap-[2.5rem]">
-    <Image src={img}  alt="" className="w-[25.5rem] h-[14.6rem]" width={255} height={146} />
+    <Image
+      src={img}
+      alt=""
+      className="w-[25.5rem] h-[14.6rem]"
+      width={255}
+      height={146}
+    />
     <div className=" flex flex-col gap-3 w-[35rem]">
       <div className="text-[#2BB9A9] text-[15px] font-normal">{category}</div>
       <div className="text-[2rem] font-semibold">{title}</div>
@@ -31,8 +37,7 @@ const Post: React.FC<PostDataProps> = ({
 
 const Data: PostDataProps[] = [
   {
-    img: "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036669/a68b632a9ef3eaba80f8070d323a16ba_lcjrkb.jpg", 
-    
+    img: "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714036669/a68b632a9ef3eaba80f8070d323a16ba_lcjrkb.jpg",
 
     category: "Creative, Creative, graphy",
     title: "DIAM ARCU, FRINGILLA A SEM CON",

@@ -1,7 +1,7 @@
 "use client";
 import { Stack } from "@mui/material";
-import { Banner } from "../../components/shop/ContainerRight/Banner";
-import { Sales } from "../../components/shop/ContainerRight/Sales";
+import { Banner } from "../../components/shop/productContainer/Banner";
+import { Sales } from "../../components/shop/productContainer/Sales";
 const Shop = () => {
   return (
     <>

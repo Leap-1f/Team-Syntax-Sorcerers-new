@@ -1,12 +1,8 @@
 import { CheckOut } from "@/components/checkout/CheckOut";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 const checkout = () => {
   return (
     <>
-      <Header></Header>
       <CheckOut></CheckOut>
-      <Footer></Footer>
     </>
   );
 };

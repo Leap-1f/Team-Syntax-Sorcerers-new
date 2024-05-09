@@ -1,5 +1,3 @@
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
 import FeaturesOne from "../components/home/hotCards/HotCards";
 import FeaturesTwo from "../components/home/newSneakers/NewSneakers";
 import Blog from "../components/home/Blog";
@@ -23,14 +21,13 @@ const Home: React.FC = () => {
   return (
     <>
       <Stack direction={"column"} alignItems={"center"}>
-        <Header />
         <Carousel2 />
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <FeaturesOne />
           <AboutOurTeam />
           <OurService />
         </Stack>
-        <Stack
+        {/* <Stack
           direction={"row"}
           spacing={3}
           width={"100vw"}
@@ -39,7 +36,7 @@ const Home: React.FC = () => {
         >
           <NewArrivals />
           <OurFeatures />
-        </Stack>
+        </Stack> */}
         <BestSellers2 />
         <BestSellers />
         <FeaturesTwo />
@@ -47,7 +44,6 @@ const Home: React.FC = () => {
           <Blog />
         </Stack>
         <GetInTouch />
-        <Footer />
       </Stack>
     </>
   );

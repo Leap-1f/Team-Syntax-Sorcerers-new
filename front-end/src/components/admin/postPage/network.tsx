@@ -1,5 +1,5 @@
-export const getProducts = async () => {
-  const res = await fetch("http://localhost:8080/api/product", {
+export const getPosts = async () => {
+  const res = await fetch("http://localhost:8080/api/blog", {
     mode: "cors",
     method: "GET",
     headers: {
@@ -12,8 +12,8 @@ export const getProducts = async () => {
   return zov;
 };
 
-export const getProductsBestSellers = async () => {
-  const res = await fetch("http://localhost:8080/api/product?limit=4", {
+export const getPostsBestSellers = async () => {
+  const res = await fetch("http://localhost:8080/api/blog?limit=4", {
     mode: "cors",
     method: "GET",
     headers: {

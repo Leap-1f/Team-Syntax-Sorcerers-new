@@ -264,12 +264,12 @@ function Header() {
             item
             direction={"row"}
             justifyContent={"center"}
-            sx={{ width: "60%" }}
+            sx={{ width: "50%" }}
           >
             <Stack
               width={"100%"}
               direction={"row"}
-              justifyContent={"center"}
+              justifyContent={"space-evenly"}
               sx={{ py: "30px", px: "48px" }}
               spacing={"10px"}
             >
@@ -289,14 +289,19 @@ function Header() {
                   {category.label}
                 </Button>
               ))}
-              <Image
-                loading="lazy"
-                width={75}
-                height={69}
-                src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714038144/9c66d8dd02f3646ac9a10299bb4346aab9ee290841253a496877330db28584fd_bpr2lk.png"
-                alt=""
-                className="shrink-0 self-stretch my-auto aspect-[2.44] w-[69px]"
-              />
+              <a href="/">
+                {" "}
+                {/* Adjust the href accordingly */}
+                <Image
+                  loading="lazy"
+                  width={75}
+                  height={69}
+                  src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714038144/9c66d8dd02f3646ac9a10299bb4346aab9ee290841253a496877330db28584fd_bpr2lk.png"
+                  alt=""
+                  className="flex justify-center shrink-0 self-stretch my-auto aspect-[2.44] w-[69px] cursor-pointer"
+                />
+              </a>
+
               {categoriesRightSide.map((category, index) => (
                 <Button
                   sx={{

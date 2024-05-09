@@ -1,15 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import LocationModel from "../../../models/location.model";
 import { HttpStatusCode } from "axios";
-type TLocation = {
-  district: String;
-  khoroo: String;
-  apartment: String;
-  orderNote: String;
-};
+
 async function POST(req: NextRequest) {
   try {
-    const body: TLocation = await req.json();
+    const body = await req.json();
     const user = await LocationModel.create(body);
     return NextResponse.json(
       { user, message: "Your user has been created" },
@@ -36,4 +31,4 @@ async function GET(req: NextRequest) {
     );
   }
 }
-export { GET };
+export { GET, POST };

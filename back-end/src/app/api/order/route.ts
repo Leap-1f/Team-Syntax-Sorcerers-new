@@ -1,16 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import OrderModel from "../../../models/order.model";
 import { HttpStatusCode } from "axios";
-import { log } from "console";
-type TOrder = {
-  userId: string;
-  status: string;
-  location: string;
-  orderItems: object[];
-};
+
 async function POST(req: NextRequest) {
   try {
-    const body: TOrder = await req.json();
+    const body = await req.json();
     const order = await OrderModel.create(body);
     return NextResponse.json(
       { order, message: "Your order has been created" },
@@ -38,4 +32,4 @@ async function GET(req: NextRequest) {
     );
   }
 }
-export { GET };
+export { GET, POST };

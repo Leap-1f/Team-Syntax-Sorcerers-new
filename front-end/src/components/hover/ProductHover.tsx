@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC, useState, useSyncExternalStore } from "react";
 import {
   Button,
   Dialog,
@@ -16,6 +16,13 @@ export type TSimpleDialogProps = {
   selectedValue: any;
   onClose: (value: string) => void;
 };
+const store = {
+  getSnapshot: () => sessionStorage.getItem("cart") || "[]",
+  subscribe: (listener: () => void) => {
+    window.addEventListener("storage", listener);
+    return () => void window.removeEventListener("storage", listener);
+  },
+};
 
 const ProductDialog: FC<TSimpleDialogProps> = ({
   open,
@@ -25,7 +32,37 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
   const handleClose = () => {
     onClose(selectedValue);
   };
-
+  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const wart: any = JSON.parse(kart);
+  const [quantity, setQuantity] = useState(1);
+  function addToCart() {
+    var has = wart.some((item: any) => {
+      if (item.pid === selectedValue.pid) {
+        return true;
+      }
+      return false;
+    });
+    if (has === true) {
+      console.log("has");
+      var adjusted = wart.find((item: any) => item.pid === selectedValue.pid);
+      adjusted.quantity += quantity;
+      console.log(adjusted.quantity);
+      const index = wart.indexOf(adjusted);
+      wart.splice(index, 1);
+      setQuantity(1);
+      sessionStorage.setItem("cart", JSON.stringify([...wart, adjusted]));
+    } else {
+      console.log("hasb't");
+      var adjusted = selectedValue;
+      console.log(adjusted);
+      adjusted.quantity += quantity;
+      console.log(adjusted.quantity + "adjusted");
+      console.log(quantity);
+      setQuantity(1);
+      sessionStorage.setItem("cart", JSON.stringify([...wart, selectedValue]));
+      adjusted.quantity -= quantity;
+    }
+  }
   const handleListItemClick = (value: string) => {
     onClose(value);
   };
@@ -44,6 +81,7 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
     color: "#666",
   };
   const [value, setValue] = useState<number | null>(2);
+
   return (
     <>
       <Dialog onClose={handleClose} open={open} fullWidth maxWidth={"lg"}>
@@ -114,6 +152,9 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                     borderColor: "green",
                   },
                 }}
+                type="number"
+                value={quantity}
+                onChange={(event) => setQuantity(Number(event.target.value))}
                 placeholder="1"
               />
               <Button
@@ -123,6 +164,10 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                   "&:hover": {
                     backgroundColor: "green",
                   },
+                }}
+                onClick={() => {
+                  addToCart();
+                  handleClose();
                 }}
               >
                 Add To Card

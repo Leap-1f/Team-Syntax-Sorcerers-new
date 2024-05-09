@@ -1,7 +1,8 @@
 "use client";
 import { Button, Drawer, Stack, Typography } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
-
+import { useEffect, useSyncExternalStore } from "react";
 export const Bag = (open: boolean, close: any) => {
   const productCategoryText = {
     color: "#666",
@@ -23,10 +24,30 @@ export const Bag = (open: boolean, close: any) => {
       background: "none",
     },
   };
-
+  const store = {
+    getSnapshot: () => sessionStorage.getItem("cart") || "[]",
+    subscribe: (listener: () => void) => {
+      window.addEventListener("storage", listener);
+      return () => void window.removeEventListener("storage", listener);
+    },
+  };
+  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const wart: any = JSON.parse(kart);
+  const totalPrice = wart?.reduce(
+    (acc: number, item: any) => acc + item.price * item.quantity,
+    0
+  );
+  function removeFromCart(index: number, pid: string) {
+    console.log(index, pid);
+    const cart: Array<any> = JSON.parse(sessionStorage.getItem("cart") || "[]");
+    const item = document.getElementById(pid);
+    item?.classList.add("hidden");
+    var adjusted = cart.filter((item: any, i: number) => pid !== item.pid);
+    sessionStorage.setItem("cart", JSON.stringify([...adjusted]));
+  }
   return (
     <>
-      <Drawer open={open} onClose={close} anchor="right">
+      <Drawer open={open} onClose={close} anchor="right" id="sidebar">
         <Stack
           width={"340px"}
           height={"100vh"}
@@ -52,29 +73,48 @@ export const Bag = (open: boolean, close: any) => {
                 X
               </Typography>
             </Stack>
-            <Stack
-              width={"100%"}
-              direction={"row"}
-              borderBottom="1px solid black"
-              borderColor={"gray"}
-              paddingBottom={"10px"}
-              paddingTop={"10px"}
-            >
-              <Stack width={"100%"} direction={"row"} spacing={"7px"}>
+            {wart?.map((product: any, index: any) => (
+              <div id={product.pid}>
                 <Stack
+                  width={"100%"}
                   direction={"row"}
-                  justifyContent={"flex-start"}
-                  width={"75px"}
-                  height={"75px"}
-                  sx={{ border: "2px solid #DDD" }}
-                ></Stack>
-                <Stack direction={"column"} spacing={"5px"}>
-                  <Typography>Basketball shoes</Typography>
-                  <Typography sx={{ color: "#666" }}>1*$66</Typography>
+                  borderBottom="1px solid black"
+                  borderColor={"gray"}
+                  paddingBottom={"10px"}
+                  paddingTop={"10px"}
+                >
+                  <Stack width={"100%"} direction={"row"} spacing={"7px"}>
+                    <Stack
+                      direction={"row"}
+                      justifyContent={"flex-start"}
+                      width={"75px"}
+                      height={"75px"}
+                      sx={{ border: "2px solid #DDD" }}
+                    >
+                      <Image
+                        src={product.imageUrl}
+                        width={75}
+                        height={75}
+                        alt=""
+                      />
+                    </Stack>
+                    <Stack direction={"column"} spacing={"5px"}>
+                      <Typography>{product.title}</Typography>
+                      <Typography sx={{ color: "#666" }}>
+                        {product.price}
+                      </Typography>
+                      <Typography>Quantity: {product.quantity}</Typography>
+                    </Stack>
+                  </Stack>
+                  <Stack
+                    onClick={() => removeFromCart(index, product.pid)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    X
+                  </Stack>
                 </Stack>
-              </Stack>
-              <Stack>X</Stack>
-            </Stack>
+              </div>
+            ))}
           </Stack>
           <Stack
             width={"100%"}
@@ -96,7 +136,7 @@ export const Bag = (open: boolean, close: any) => {
                   color: "#2BB9A9",
                 }}
               >
-                $500
+                ${totalPrice}
               </Typography>
             </Stack>
             {/* <Link href="/cart">

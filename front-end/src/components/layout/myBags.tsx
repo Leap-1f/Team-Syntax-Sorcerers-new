@@ -101,7 +101,8 @@ export const Bag = (open: boolean, close: any) => {
                     <Stack direction={"column"} spacing={"5px"}>
                       <Typography>{product.title}</Typography>
                       <Typography sx={{ color: "#666" }}>
-                        {product.price}
+                        {product.price} x {product.quantity} = $
+                        {product.price * product.quantity}
                       </Typography>
                       <Typography>Quantity: {product.quantity}</Typography>
                     </Stack>

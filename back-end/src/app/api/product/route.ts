@@ -3,22 +3,9 @@ import { HttpStatusCode } from "axios";
 import ProductModel from "../../../models/product.model";
 import { NextRequest, NextResponse } from "next/server";
 
-type CreateProductDto = {
-  name: string;
-  image: string;
-  color: string;
-  brand: string;
-  category: string;
-  price: number;
-  discount: string;
-  rest: number;
-  size: number;
-  status: string;
-};
-
 async function POST(req: NextRequest) {
   try {
-    const body: CreateProductDto = await req.json();
+    const body = await req.json();
     if (body) {
       const product = await ProductModel.create(body);
       return NextResponse.json(
@@ -55,4 +42,4 @@ async function GET(_: NextRequest) {
     );
   }
 }
-export { GET };
+export { GET, POST };

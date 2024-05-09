@@ -2,18 +2,10 @@ import { HttpStatusCode } from "axios";
 import UserModel from "../../../models/user.model";
 
 import { NextRequest, NextResponse } from "next/server";
-type CreateProductDto = {
-  name: String;
-  password: String;
-  firstName: String;
-  lastName: String;
-  phoneNumber: Number;
-  role: String;
-  orders: String[];
-};
+
 async function POST(req: NextRequest) {
   try {
-    const body: CreateProductDto = await req.json();
+    const body = await req.json();
     const user = await UserModel.create(body);
     return NextResponse.json(
       { user, message: "Your user has been created" },
@@ -37,7 +29,7 @@ async function GET(_: NextRequest) {
     );
   }
 }
-export { GET };
+export { GET, POST };
 //  async function DELETE(req: NextRequest) {
 //   try {
 //     const body = req.json();

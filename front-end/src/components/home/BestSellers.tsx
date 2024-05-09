@@ -5,7 +5,10 @@ import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
 import { getProductsBestSellers } from "../admin/productPage/network";
 import Link from "next/link";
-const email = ["dasda"];
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Button } from "@mui/material";
+import { Box } from "@mui/material";
+
 interface ProductProps {
   imageUrl: string;
   title: string;
@@ -17,6 +20,7 @@ interface ProductProps {
   quantity: number;
   category: string;
 }
+
 const ProductComponent: FC<ProductProps> = ({
   imageUrl,
   title,
@@ -64,9 +68,10 @@ const ProductComponent: FC<ProductProps> = ({
         onMouseLeave={() => setIsHovered(false)}
         data-aos="slide-up"
         data-aos-delay={`${index * 200}`}
+        style={{ position: "relative" }}
       >
         <div
-          className="w-[250px] h-[300px]"
+          className="w-[250px] h-[300px] relative"
           style={{
             padding: "30px",
             backgroundImage: `url(${isHovered ? hoverImageUrl : imageUrl})`,
@@ -74,7 +79,25 @@ const ProductComponent: FC<ProductProps> = ({
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-        />
+        >
+          {isHovered && (
+            <div
+              className="absolute inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center transition-opacity duration-500"
+              style={{ opacity: 0.8, zIndex: 1 }}
+            >
+              <Box
+                className="rounded-[50%] px-4 py-2 hover:"
+                onClick={handleClickOpen}
+              >
+                <VisibilityIcon
+                  className="text-black hover:text-white"
+                  style={{ fontSize: "2rem" }} // Adjust the font size as needed
+                  onClick={handleClickOpen}
+                />
+              </Box>
+            </div>
+          )}
+        </div>
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
             <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>

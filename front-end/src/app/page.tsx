@@ -10,6 +10,10 @@ import AboutOurTeam from "../components/home/AboutOurTeam";
 import OurService from "../components/home/OurService";
 import GetInTouch from "../components/home/GetInTouch";
 import { Stack } from "@mui/material";
+import {
+  NewArrivals,
+  OurFeatures,
+} from "@/components/home/ExploreArrivalFueature";
 
 const Home: React.FC = () => {
   var bob = 0;
@@ -25,6 +29,16 @@ const Home: React.FC = () => {
           <FeaturesOne />
           <AboutOurTeam />
           <OurService />
+        </Stack>
+        <Stack
+          direction={"row"}
+          spacing={3}
+          width={"100vw"}
+          px={6}
+          marginBottom={15}
+        >
+          <NewArrivals />
+          <OurFeatures />
         </Stack>
         <BestSellers2 />
         <BestSellers />

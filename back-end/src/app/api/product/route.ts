@@ -1,7 +1,23 @@
 import { HttpStatusCode } from "axios";
-
 import ProductModel from "../../../models/product.model";
 import { NextRequest, NextResponse } from "next/server";
+
+interface Product {
+  _id: string;
+  name: string;
+  image: string;
+  color: string;
+  brand: string;
+  category: string;
+  price: number;
+  discount: string;
+  rest: number;
+  status: string;
+  size: number;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
 
 async function POST(req: NextRequest) {
   try {
@@ -25,21 +41,28 @@ async function POST(req: NextRequest) {
     );
   }
 }
-async function GET(_: NextRequest) {
+async function GET(req: NextRequest) {
   try {
-    const product = await ProductModel.find();
-    if (product) {
-      return NextResponse.json(product);
+    const paramLimit = req.nextUrl.searchParams.get("limit");
+    const limit: any = paramLimit ? parseInt(paramLimit) : undefined;
+
+    const products: Product[] = await ProductModel.find().limit(limit);
+
+    if (products.length === 0) {
+      return NextResponse.json(
+        { message: `Products not found` },
+        { status: HttpStatusCode.NotFound }
+      );
     }
-    return NextResponse.json(
-      { message: `Product not found` },
-      { status: HttpStatusCode.NotFound }
-    );
+
+    return NextResponse.json(products);
   } catch (error) {
+    console.error("Error occurred while fetching products:", error);
     return NextResponse.json(
       { message: "Error occurred while fetching products" },
       { status: HttpStatusCode.InternalServerError }
     );
   }
 }
+
 export { GET, POST };

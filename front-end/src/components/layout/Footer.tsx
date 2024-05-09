@@ -129,9 +129,7 @@ function Footer() {
             </Button>
           </div>
           <div className="mt-9 leading-7 text-teal-500 max-md:max-w-full">
-            Copyright © <span className="text-teal-500">Gota Store</span> All
-            Rights Reserved. Powered by{" "}
-            <span className="text-teal-500">Team-Syntax</span>
+            Gota.mn 2024. Made with heart. Powered by Team-Syntax
           </div>
         </div>
         <nav className="flex flex-col self-stretch text-base text-zinc-500">

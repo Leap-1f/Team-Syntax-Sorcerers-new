@@ -73,29 +73,29 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 const categoriesLeftSide: CategoryItemProps[] = [
   {
-    label: "Home",
+    label: "Нүүр хуудас",
     href: "/",
   },
   {
-    label: "Shop",
+    label: "Бүх бараа",
     href: "/shop",
   },
   {
-    label: "Blog",
+    label: "Мэдээ",
     href: "/blog",
   },
 ];
 const categoriesRightSide: CategoryItemProps[] = [
   {
-    label: "About us",
+    label: "Бидний тухай",
     href: "/aboutUs",
   },
   {
-    label: "Portfolio",
+    label: "Үйлчилгээ",
     href: "/ourService",
   },
   {
-    label: "Contact us",
+    label: "Холбоо барих",
     href: "/contactus",
   },
 ];
@@ -133,7 +133,7 @@ function Header() {
   const wart: any = JSON.parse(kart);
   return (
     <>
-      <Stack width={"100%"} position={"fixed"} top={"0"} zIndex={"100"}>
+      <Stack width={"100%"} position={"sticky"} top={"0"} zIndex={"100"}>
         {Bag(showAddCard, openAddCard)}
         <Stack
           width={"100%"}
@@ -203,7 +203,7 @@ function Header() {
                 },
               }}
             >
-              Wishlist
+              Бүртгүүлэх
             </Button>
             {/* <Button
               sx={{
@@ -236,7 +236,7 @@ function Header() {
                 },
               }}
             >
-              login&register
+              Нэвтрэх
             </Button>
           </Stack>
         </Stack>
@@ -277,6 +277,9 @@ function Header() {
                 <Button
                   sx={{
                     ...buttonTypo,
+                    direction: "flex",
+                    justifyContent: "center",
+
                     "&:hover": {
                       backgroundColor: "none",
                       border: "none !important",
@@ -345,7 +348,7 @@ function Header() {
                     px: "10px",
                   }}
                 >
-                  My Bag ({wart?.length})
+                  Сагс ({wart?.length})
                 </Typography>
               </Button>
             </Stack>

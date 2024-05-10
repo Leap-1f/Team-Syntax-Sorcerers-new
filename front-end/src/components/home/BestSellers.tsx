@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, use } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
@@ -8,10 +8,12 @@ import Link from "next/link";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Button } from "@mui/material";
 import { Box } from "@mui/material";
+import { Single } from "../single/Single";
+import { useSearchParams } from "next/navigation";
 
 interface ProductProps {
-  imageUrl: string;
-  title: string;
+  image: string;
+  name: string;
   price: string;
   index: number;
   hoverImageUrl: string;
@@ -22,8 +24,8 @@ interface ProductProps {
 }
 
 const ProductComponent: FC<ProductProps> = ({
-  imageUrl,
-  title,
+  image,
+  name,
   hoverImageUrl,
   price,
   index,
@@ -35,8 +37,8 @@ const ProductComponent: FC<ProductProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState({
-    imageUrl,
-    title,
+    image,
+    name,
     hoverImageUrl,
     price,
     index,
@@ -74,7 +76,7 @@ const ProductComponent: FC<ProductProps> = ({
           className="w-[250px] h-[300px] relative"
           style={{
             padding: "30px",
-            backgroundImage: `url(${isHovered ? hoverImageUrl : imageUrl})`,
+            backgroundImage: `url(${isHovered ? hoverImageUrl : image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -91,7 +93,7 @@ const ProductComponent: FC<ProductProps> = ({
               >
                 <VisibilityIcon
                   className="text-black hover:text-white"
-                  style={{ fontSize: "2rem" }} // Adjust the font size as needed
+                  style={{ fontSize: "2rem" }}
                   onClick={handleClickOpen}
                 />
               </Box>
@@ -106,9 +108,9 @@ const ProductComponent: FC<ProductProps> = ({
           <div className="border border-gray-400 w-[310px]" />
 
           <div className="text-[16px] font-semibold tracking-tight flex flex-col gap-[10px]">
-            <Link href="/single">
+            <Link href={"/single?id=" + pid}>
               <h1 className={`${isHovered ? "spin" : ""} transition-all`}>
-                {isHovered ? "Add to cart" : title}
+                {isHovered ? "Add to cart" : name}
               </h1>
             </Link>
             <p>{price}</p>
@@ -119,7 +121,11 @@ const ProductComponent: FC<ProductProps> = ({
   );
 };
 
-export const BestSellers = () => {
+export const BestSellers = ({
+  searchParams,
+}: {
+  searchParams: { id: string | undefined };
+}) => {
   const [data, setData] = useState<any[]>([]);
   const getProduct = async () => {
     const data = await getProductsBestSellers();
@@ -176,8 +182,8 @@ export const BestSellers = () => {
           {data?.map((product, index) => (
             <ProductComponent
               key={product._id}
-              imageUrl={product.image}
-              title={product.name}
+              image={product.image}
+              name={product.name}
               price={product.price}
               index={index}
               hoverImageUrl={product.image}

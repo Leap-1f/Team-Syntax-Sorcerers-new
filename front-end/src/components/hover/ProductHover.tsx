@@ -87,17 +87,12 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
       <Dialog onClose={handleClose} open={open} fullWidth maxWidth={"lg"}>
         <Stack direction={"row"} spacing={2}>
           <Stack sx={{ width: "40%" }}>
-            <Image
-              src={selectedValue.imageUrl}
-              width={470}
-              height={470}
-              alt=""
-            />
+            <Image src={selectedValue.image} width={470} height={470} alt="" />
           </Stack>
           <Stack spacing={2} sx={{ width: "60%", py: "70px" }}>
             <Stack spacing={1}>
               <Typography fontSize={"30px"} textTransform={"uppercase"}>
-                {selectedValue.title}
+                {selectedValue.name}
               </Typography>
               <Rating
                 name="simple-controlled"

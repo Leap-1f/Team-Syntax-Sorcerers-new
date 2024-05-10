@@ -17,6 +17,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+
 type TCheckedBox = {
   name: string;
   label: string;
@@ -202,7 +203,7 @@ export const Sales = () => {
           >
             {getProductData.map((data, index) => (
               <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
-                <Link href="/single">
+                <Link href={"/single?id=" + data.id}>
                   <Item>
                     <Image
                       className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"

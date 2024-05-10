@@ -9,25 +9,20 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getProducts } from "./network";
+import { getPosts } from "./network";
 import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
 import { BsPencilSquare } from "react-icons/bs";
 import Image from "next/image";
 // remember to add the backend l8r
 export function Main() {
-  const titles = [
-    "Post title",
-    "Description",
-    "Image",
-    "Added date",
-  ];
+  const titles = ["Image", "Title", "Description", "Added date"];
   function navigate(where: string) {
     window.location.href = where;
   }
 
   const [data, setData] = useState<any[]>([]);
   async function refresh() {
-    const mane = await getProducts();
+    const mane = await getPosts();
     console.log(mane);
     setData(mane);
   }
@@ -97,15 +92,8 @@ export function Main() {
           }}
         />
       </Box>
-      <Stack spacing={2} direction="column" sx={{ width: "100%" }}>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(8, 1fr)",
-            gridTemplateRows: "repeat(11, 1fr)",
-            gap: "0px",
-          }}
-        >
+      <Stack sx={{ display: "flex", gap:"3rem", justifyContent:"center", alignItems:"center" }}>
+        <Box sx={{ display: "flex", gap: "30rem" }}>
           {titles.map((title, index) => (
             <Typography
               key={index}
@@ -118,10 +106,47 @@ export function Main() {
               {title}
             </Typography>
           ))}
-
-          {data?.map((yotta, index) => {
+        </Box>
+        <Box sx={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+          {data?.map((data, index) => {
             return (
               <>
+                <Box sx={{display:'flex'}}>
+                  <Checkbox sx={{paddingRight:"8rem"}}></Checkbox>
+                  <Image src={data.image} width={250} height={250} alt="zurag2" />
+                  <Typography id={data.name} key={index} sx={{width:"40rem", paddingLeft:"15rem"}}>
+                    {data.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "semibold",
+                      color: "black",
+                      width:"35rem",
+                      paddingLeft:"3rem"
+                    }}
+                  >
+                    {data.description}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: "semibold",
+                      color: "black",
+                      paddingLeft:"12rem"
+                    }}
+                  >
+                    {data.createdAt}
+                  </Typography>
+                  <Stack sx={{display:"flex", flexDirection:"row", paddingLeft:"5rem", paddingBottom:"8rem" }}>
+                    <Button>
+                      <FaTrash />
+                    </Button>
+                    <Button>
+                      <FaMagnifyingGlass />
+                    </Button>
+                  </Stack>
+                </Box>
               </>
             );
           })}

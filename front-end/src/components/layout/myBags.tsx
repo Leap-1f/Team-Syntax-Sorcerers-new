@@ -92,14 +92,14 @@ export const Bag = (open: boolean, close: any) => {
                       sx={{ border: "2px solid #DDD" }}
                     >
                       <Image
-                        src={product.imageUrl}
+                        src={product.image}
                         width={75}
                         height={75}
                         alt=""
                       />
                     </Stack>
                     <Stack direction={"column"} spacing={"5px"}>
-                      <Typography>{product.title}</Typography>
+                      <Typography>{product.name}</Typography>
                       <Typography sx={{ color: "#666" }}>
                         {product.price}
                       </Typography>

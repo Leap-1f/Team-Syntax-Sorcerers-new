@@ -148,7 +148,7 @@ export const CheckOut = () => {
                     <div className="w-[70%] flex flex-col justify-center items-center">
                       {wart?.map((product: any, index: any) => (
                         <div key={index} className="flex flex-row items-center">
-                          <h1>{product.title} </h1>{" "}
+                          <h1>{product.name} </h1>
                           <IoCloseOutline size={20} color="#14B8A6" />
                           <h1>{product.quantity}</h1>
                         </div>

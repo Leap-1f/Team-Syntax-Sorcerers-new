@@ -19,7 +19,7 @@ import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
 import Search from "./Search";
 import { string } from "yup";
-
+import TestSearch from "./TestSearch";
 type TCheckedBox = {
   name: string;
   label: string;
@@ -51,7 +51,6 @@ export const Sales = ({ query }: { query: string }) => {
     fetchProducts();
   }, []);
 
-  /* ///////////////////// HANDLER  //////////////////////////*/
   const handleClick = () => {
     console.log("Typography clicked!");
   };
@@ -63,7 +62,6 @@ export const Sales = ({ query }: { query: string }) => {
   };
   console.log("ariguun", getProductData);
 
-  /* ///////////////////// TYPO  //////////////////////////*/
   const categoryTypo = {
     flex: "1 1 0%",
     fontSize: "24px",
@@ -202,7 +200,7 @@ export const Sales = ({ query }: { query: string }) => {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 2, sm: 8, md: 12 }}
           >
-            {getProductData.map((data, index) => (
+            {/* {getProductData.map((data, index) => (
               <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
                 <Item>
                   <Image
@@ -222,7 +220,8 @@ export const Sales = ({ query }: { query: string }) => {
                   ${data.price}
                 </Typography>
               </Grid>
-            ))}
+            ))} */}
+            <TestSearch query={query} />
           </Grid>
           {/* ) : (
             <Typography>No products available</Typography>

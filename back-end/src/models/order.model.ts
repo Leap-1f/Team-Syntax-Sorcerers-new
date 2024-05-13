@@ -1,6 +1,6 @@
 import { model, models, Schema } from "mongoose";
 import { COLLECTIONS } from "../constant";
-
+import { v4 as uuidv4 } from "uuid";
 const orderItemsSChema = new Schema({
   product: { type: String, ref: COLLECTIONS.PRODUCT },
   count: { type: Number, required: true },
@@ -8,6 +8,7 @@ const orderItemsSChema = new Schema({
 
 const OrderSchema = new Schema(
   {
+    orderNumber: { type: String, default: uuidv4 },
     user: { type: Schema.Types.ObjectId, ref: COLLECTIONS.USER },
     status: {
       type: String,

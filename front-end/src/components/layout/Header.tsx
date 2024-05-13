@@ -1,8 +1,8 @@
 "use client";
-import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { FC, useState, useSyncExternalStore } from "react";
+import InputBase from "@mui/material/InputBase";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { FC, useState, useSyncExternalStore } from "react";
 import { Bag } from "./myBags";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {
@@ -12,9 +12,8 @@ import {
   Stack,
   Typography,
   styled,
-  Button
+  Button,
 } from "@mui/material";
-
 
 interface CategoryItemProps {
   label: string;
@@ -160,7 +159,6 @@ function Header() {
             >
               account
             </Button> */}
-  
 
             {user && (
               <Stack direction={"row"} spacing={"10px"} alignItems={"center"}>
@@ -178,7 +176,7 @@ function Header() {
                 </Button>
 
                 <Image
-                  src={user.image as string}
+                  src={user.picture as string}
                   alt={user.name as string}
                   width={50}
                   height={50}

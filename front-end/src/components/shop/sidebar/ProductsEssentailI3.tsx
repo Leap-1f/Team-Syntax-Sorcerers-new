@@ -84,7 +84,7 @@ export const ProductsEssentailI3: FC<TCardProps> = ({
               />
             </Stack>
             <Typography sx={productCategoryText}>{title}</Typography>
-            <Typography sx={productCategoryText}>${price}</Typography>
+            <Typography sx={productCategoryText}>₮{price}</Typography>
           </Stack>
         </Box>
       </Stack>

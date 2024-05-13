@@ -221,7 +221,7 @@ export const Sales = () => {
                     <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
                   </Stack>
                   <Typography paddingTop={"10px"} sx={productCardTitle}>
-                    ${data.price}
+                  ₮{data.price}
                   </Typography>
                 </Link>
               </Grid>

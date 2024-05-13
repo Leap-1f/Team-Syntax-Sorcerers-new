@@ -141,10 +141,9 @@ export const Card: FC<TCardProps> = ({
               }}
             >
               <Typography sx={productCategorySortTypography}>Shoes</Typography>
-              <Rating name="read-only" readOnly sx={{ fontSize: "20px" }} />
             </Stack>
             <Typography sx={productCategoryText}>{name}</Typography>
-            <Typography sx={productCategoryText}>${price}</Typography>
+            <Typography sx={productCategoryText}>₮{price}</Typography>
           </Stack>
         </Box>
       </Stack>

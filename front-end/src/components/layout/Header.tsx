@@ -208,7 +208,7 @@ function Header() {
                     loading="lazy"
                     width={100}
                     height={100}
-                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715339533/vortexkicks/Screenshot_2024-05-10_at_19.11.40-removebg-preview_zla5fj.png"
+                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715593234/Screenshot_2024-05-13_at_17.30.08-removebg-preview_qk0xld.png"
                     alt=""
                     className="cursor-pointer"
                   />

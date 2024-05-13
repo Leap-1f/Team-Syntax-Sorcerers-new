@@ -146,7 +146,9 @@ export const Bag = (open: boolean, close: any) => {
               </div>
             </Link> */}
             <Link href="/checkout">
-              <Button sx={buttonStyle}>checkout</Button>
+              <Button onClick={close} sx={buttonStyle}>
+                checkout
+              </Button>
             </Link>
           </Stack>
         </Stack>

@@ -148,6 +148,7 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
                   },
                 }}
                 type="number"
+                defaultValue={1}
                 value={quantity}
                 onChange={(event) => setQuantity(Number(event.target.value))}
                 placeholder="1"
@@ -167,8 +168,6 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
               >
                 Add To Card
               </Button>
-              <CiHeart />
-              <CiCircleInfo />
             </Stack>
             <Stack sx={{ paddingTop: "30px" }}>
               <Stack direction={"row"} spacing={1}>

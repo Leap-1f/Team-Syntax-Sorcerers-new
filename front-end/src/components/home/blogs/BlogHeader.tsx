@@ -1,4 +1,4 @@
-const BlogHeader = () => {
+const PageLayout = () => {
   return (
       <>
           <div className=" overflow-hidden">
@@ -28,4 +28,4 @@ const BlogHeader = () => {
       </>
   );
 };
-export default BlogHeader;
+export default PageLayout;

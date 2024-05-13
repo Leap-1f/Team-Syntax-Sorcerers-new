@@ -66,7 +66,7 @@ function Footer() {
               <div className="flex flex-col self-stretch my-auto text-base max-md:max-w-full">
                   <Image
                       loading="lazy"
-                      src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715339533/vortexkicks/Screenshot_2024-05-10_at_19.11.40-removebg-preview_zla5fj.png"
+                      src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715593234/Screenshot_2024-05-13_at_17.30.08-removebg-preview_qk0xld.png"
                       width={100}
                       height={100}
                       alt="Gota Store logo"

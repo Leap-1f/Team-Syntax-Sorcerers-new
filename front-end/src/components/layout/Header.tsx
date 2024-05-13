@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Image from "next/image";
 import InputBase from "@mui/material/InputBase";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FC, useState, useSyncExternalStore } from "react";
+import { FC, useEffect, useState, useSyncExternalStore } from "react";
 import { Bag } from "./myBags";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {
@@ -133,6 +133,9 @@ function Header() {
   };
   const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
   const wart: any = JSON.parse(kart);
+  useEffect(() => {
+    console.log(user);
+  });
   return (
     <>
       <Stack width={"100%"} position={"sticky"} top={"0"} zIndex={"100"}>
@@ -235,7 +238,7 @@ function Header() {
                 </Button>
 
                 <Image
-                  src={user.image as string}
+                  src={user.picture as string}
                   alt={user.name as string}
                   width={50}
                   height={50}

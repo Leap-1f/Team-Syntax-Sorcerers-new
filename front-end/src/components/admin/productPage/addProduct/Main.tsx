@@ -52,12 +52,17 @@ export default function Main() {
   const [stock, setStock] = useState("");
   const [discount, setDiscount] = useState("123");
   const [brand, setBrand] = useState("");
-  const [imagine, setImg] = useState(
-    "https://res.cloudinary.com/dqlupfpzv/image/upload/f_auto,q_auto/strragpojdatzwqlyi9h"
-  );
+  const [img, setImg] = useState([
+    {
+      color: "regular",
+      imgs: ["asd"],
+    },
+  ]);
+  const [currentColor, setCurrentColor] = useState("color");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [error, setError] = useState("");
+  const [imageColors, setImageColors] = useState(["regular"]);
   const [uploaded, setUploaded] = useState(false);
   const [success, setSuccess] = useState("");
   const handleSizeChange = (event: { target: { value: string } }) => {
@@ -116,6 +121,7 @@ export default function Main() {
       }, 3000);
     }
   }, [error]);
+
   useEffect(() => {
     if (success) {
       const successAlert = document.getElementById("success-alert")!;
@@ -126,33 +132,24 @@ export default function Main() {
       }, 3000);
     }
   }, [success]);
-  const mockData = [
-    "Shumagh",
-    "Tashkent",
-    "Dushanbe",
-    "Samarkand",
-    "Andijan",
-    "Khiva",
-    "Bukhara",
-    "Ishkashim",
-    "Almaty",
-    "Orenburg",
-    "Ulaanbaatar",
-    "Novosibirsk",
-    "Yekaterinburg",
-    "Krasnoyarsk",
-    "Irkutsk",
-    "Omsk",
-    "Barnaul",
-    "Tomsk",
-    "Moscow",
-    "Kazan",
-    "Ekaterinburg",
-    "Nizhny Novgorod",
-  ];
+  const mockData = ["Nizhny Novgorod"];
+  useEffect(() => {
+    console.log(img);
+    if (img.some((e) => e.imgs[0] === "asd")) {
+      console.log("found empty");
+      img[0].imgs.splice(0, 1);
+    } else {
+    }
+  }, [img]);
+
   return (
     <Box
-      sx={{ py: "3vh", bgcolor: "#f7f7f8", width: "100vw", height: "100vh" }}
+      sx={{
+        py: "3vh",
+        bgcolor: "#f7f7f8",
+        width: "100vw",
+        height: "100vh",
+      }}
     >
       {/* Below is the go back button and title of page */}
       <Stack
@@ -251,6 +248,7 @@ export default function Main() {
                 borderRadius: 4,
                 bgcolor: "white",
                 height: "20vh",
+                overflow: "scroll",
               }}
             >
               <Stack direction={"row"} spacing={2}>
@@ -258,24 +256,63 @@ export default function Main() {
                   Бүтээгдэхүүний зураг
                 </Typography>
               </Stack>
+              {imageColors.map((item, index) => (
+                <Stack direction="row" spacing={2}>
+                  <Typography sx={{ fontSize: 20 }}>{item}</Typography>
+                  <CldUploadButton
+                    options={{
+                      multiple: true,
+                    }}
+                    className="w-full h-full"
+                    uploadPreset={
+                      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME
+                    }
+                    onSuccess={(res: any) => {
+                      const ra = img.findIndex((e) => e.color === item);
+                      const arr = img[ra].imgs;
+                      arr.push(res.info.secure_url);
+                    }}
+                  >
+                    <Button
+                      component="label"
+                      variant="contained"
+                      sx={{ width: "100%", height: "100%    " }}
+                    >
+                      <FaImage fill="black" size={20} />
+                    </Button>
+                  </CldUploadButton>
+                </Stack>
+              ))}
               <Stack direction="row" spacing={2}>
-                <CldUploadButton
-                  className="w-full h-full"
-                  uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
-                  onSuccess={(res: any) => {
-                    console.log(res.info.secure_url);
-
-                    setImg(res.info.secure_url);
+                <Typography sx={{ fontSize: 20 }}>
+                  Add color to product.
+                </Typography>
+                <input
+                  type="text"
+                  id="colorAdd"
+                  value={currentColor}
+                  onChange={(e) => {
+                    setCurrentColor(e.target.value);
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    if (currentColor === "") {
+                      setError("Please fill all the fields");
+                      return;
+                    } else if (imageColors.includes(currentColor)) {
+                      setError("Color already added");
+                      return;
+                    } else {
+                      setImageColors([...imageColors, currentColor]);
+                      setCurrentColor("color");
+                      setImg([...img, { color: currentColor, imgs: [] }]);
+                    }
                   }}
                 >
-                  <Button
-                    component="label"
-                    variant="contained"
-                    sx={{ width: "100%", height: "100%    " }}
-                  >
-                    <FaImage fill="black" size={20} />
-                  </Button>
-                </CldUploadButton>
+                  Add
+                </Button>
               </Stack>
             </Stack>
             {/* Below is the price and stock part of the form */}
@@ -521,7 +558,6 @@ export default function Main() {
               color: "white",
             }}
             onClick={async () => {
-              console.log(imagine);
               if (
                 name === "" ||
                 price === "" ||
@@ -530,16 +566,16 @@ export default function Main() {
                 gender === "" ||
                 discount === "" ||
                 stock === "" ||
-                size === ""
+                size === "" ||
+                img[0].imgs[0] === ""
               ) {
                 setError("Please fill all the fields");
                 return;
               } else {
                 try {
-                  console.log(imagine);
                   const res: any = await addProduct({
                     name: name,
-                    image: imagine,
+                    image: img,
                     color: color,
                     brand: brand,
                     gender: gender,
@@ -548,16 +584,26 @@ export default function Main() {
                     rest: stock,
                     size: size,
                   });
-                  console.log(res);
+                  console.log({
+                    name: name,
+                    image: img,
+                    color: color,
+                    brand: brand,
+                    gender: gender,
+                    price: price,
+                    discount: 300,
+                    rest: stock,
+                    size: size,
+                  });
                   if (res.status === 201) {
                     setSuccess("Product has been created");
                   } else {
                     setError(res._message);
+                    console.log(res);
                   }
                 } catch (e: any) {
                   setError(e);
                 }
-                console.log(success);
               }
             }}
           >

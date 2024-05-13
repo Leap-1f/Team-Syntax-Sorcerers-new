@@ -276,11 +276,21 @@ export default function Main() {
                     <Button
                       component="label"
                       variant="contained"
-                      sx={{ width: "100%", height: "100%    " }}
+                      sx={{ width: "100%", height: "100%" }}
                     >
                       <FaImage fill="black" size={20} />
                     </Button>
                   </CldUploadButton>
+                  {img.map((item, i) => {
+                    return (
+                      <img
+                        src={item.imgs[i]}
+                        alt="image"
+                        key={index}
+                        style={{ width: "50px", height: "50px" }}
+                      />
+                    );
+                  })}
                 </Stack>
               ))}
               <Stack direction="row" spacing={2}>

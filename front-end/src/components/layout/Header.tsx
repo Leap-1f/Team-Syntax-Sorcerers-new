@@ -4,17 +4,7 @@ import Image from "next/image";
 import { FC, useState, useSyncExternalStore } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Bag } from "./myBags";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import {
-  Grid,
-  Paper,
-  SelectChangeEvent,
-  Stack,
-  Typography,
-  styled,
-  Button
-} from "@mui/material";
-
+import { Grid, Paper, SelectChangeEvent, styled, Button } from "@mui/material";
 
 interface CategoryItemProps {
   label: string;
@@ -121,7 +111,6 @@ const buttonTypo = {
   paddingRight: "30px",
 };
 function Header() {
-  const { user, error, isLoading } = useUser();
   const [currency, setCurrency] = useState<string>("USD");
   const handleChange = (event: SelectChangeEvent) => {
     setCurrency(event.target.value as string);
@@ -148,7 +137,6 @@ function Header() {
         >
           <Stack direction={"row"} color={"#88888"}></Stack>
           <Stack direction={"row"}>
-            {/* <Button
             <Button
               sx={{
                 textTransform: "uppercase",
@@ -158,48 +146,19 @@ function Header() {
                 },
               }}
             >
-              account
-            </Button> */}
-  
-
-            {user && (
-              <Stack direction={"row"} spacing={"10px"} alignItems={"center"}>
-                <Button
-                  sx={{
-                    textTransform: "uppercase",
-                    color: "#adacac",
-                    "&:hover": {
-                      color: "#2bb9a9",
-                    },
-                  }}
-                  href="/api/auth/logout"
-                >
-                  Log Out
-                </Button>
-
-                <Image
-                  src={user.image as string}
-                  alt={user.name as string}
-                  width={50}
-                  height={50}
-                />
-              </Stack>
-            )}
-
-            {!user && (
-              <Button
-                sx={{
-                  textTransform: "uppercase",
-                  color: "#adacac",
-                  "&:hover": {
-                    color: "#2bb9a9",
-                  },
-                }}
-                href="/api/auth/login"
-              >
-                Нэвтрэх
-              </Button>
-            )}
+              Бүртгүүлэх
+            </Button>
+            <Button
+              sx={{
+                textTransform: "uppercase",
+                color: "#adacac",
+                "&:hover": {
+                  color: "#2bb9a9",
+                },
+              }}
+            >
+              Нэвтрэх
+            </Button>
           </Stack>
         </Stack>
         <Grid

@@ -1,9 +1,8 @@
 "use client";
-import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import InputBase from "@mui/material/InputBase";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FC, useEffect, useState, useSyncExternalStore } from "react";
+import { FC, useState, useSyncExternalStore } from "react";
 import { Bag } from "./myBags";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {
@@ -132,9 +131,6 @@ function Header() {
   };
   const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
   const wart: any = JSON.parse(kart);
-  useEffect(() => {
-    console.log(user);
-  });
   return (
     <>
       <Stack width={"100%"} position={"sticky"} top={"0"} zIndex={"100"}>

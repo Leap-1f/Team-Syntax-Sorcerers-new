@@ -1,9 +1,8 @@
 "use client";
-import Button from "@mui/material/Button";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import InputBase from "@mui/material/InputBase";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FC, useState, useSyncExternalStore } from "react";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Bag } from "./myBags";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {
@@ -13,7 +12,9 @@ import {
   Stack,
   Typography,
   styled,
+  Button
 } from "@mui/material";
+
 
 interface CategoryItemProps {
   label: string;
@@ -36,12 +37,10 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled("input")(({ theme }) => ({
   color: "inherit",
   width: "100%",
-  "& .MuiInputBase-input": {
-    paddingLeft: "20px",
-  },
+  paddingLeft: "20px",
 }));
 const Search = styled("div")({
   display: "flex",
@@ -147,56 +146,10 @@ function Header() {
           alignItems={"center"}
           color={"white"}
         >
-          <Stack direction={"row"} color={"#88888"}>
-            {/* <Select
-              placeholder="USD"
-              indicator={<KeyboardArrowDown />}
-              variant="plain"
-              sx={{
-                ...headerCurrencyTypo,
-                width: 85,
-                backgroundColor: "#202020",
-                [`& .${selectClasses.indicator}`]: {
-                  transition: "0.2s",
-                  [`&.${selectClasses.expanded}`]: {
-                    transform: "rotate(-180deg)",
-                  },
-                },
-                "&:hover": {
-                  color: "#2bb9a9",
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <Option value="usd">USD</Option>
-              <Option value="mnt">MNT</Option>
-            </Select> */}
-            {/* <Select
-              placeholder="ENGLISH"
-              indicator={<KeyboardArrowDown />}
-              variant="plain"
-              sx={{
-                ...headerCurrencyTypo,
-                width: 120,
-                backgroundColor: "#202020",
-                [`& .${selectClasses.indicator}`]: {
-                  transition: "0.2s",
-                  [`&.${selectClasses.expanded}`]: {
-                    transform: "rotate(-180deg)",
-                  },
-                },
-                "&:hover": {
-                  color: "#2bb9a9",
-                  backgroundColor: "#202020",
-                },
-              }}
-            >
-              <Option value="english">ENGLISH</Option>
-              <Option value="mongolia">MONGOLIA</Option>
-            </Select> */}
-          </Stack>
+          <Stack direction={"row"} color={"#88888"}></Stack>
           <Stack direction={"row"}>
             {/* <Button
+            <Button
               sx={{
                 textTransform: "uppercase",
                 color: "#adacac",
@@ -207,17 +160,7 @@ function Header() {
             >
               account
             </Button> */}
-            {/* <Button
-              sx={{
-                textTransform: "uppercase",
-                color: "#adacac",
-                "&:hover": {
-                  color: "#2bb9a9",
-                },
-              }}
-            >
-              Checkout
-            </Button> */}
+  
 
             {user && (
               <Stack direction={"row"} spacing={"10px"} alignItems={"center"}>
@@ -265,25 +208,12 @@ function Header() {
           justifyContent={"space-between"}
           bgcolor={"white"}
         >
-          <Grid item sx={{ width: "20%" }}>
-            <Stack sx={{ py: "30px", px: "48px" }}>
-              {/* <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search"
-                  inputProps={{ "aria-label": "search" }}
-                  sx={gotaTypo}
-                />
-              </Search> */}
-            </Stack>
-          </Grid>
+          <Grid item sx={{ width: "20%" }}></Grid>
           <Grid
             item
             direction={"row"}
             justifyContent={"center"}
-            sx={{ width: "50%" }}
+            sx={{ width: "60%" }}
           >
             <Stack
               width={"100%"}
@@ -298,7 +228,8 @@ function Header() {
                     ...buttonTypo,
                     direction: "flex",
                     justifyContent: "center",
-
+                    display: "flex",
+                    alignItems: "center",
                     "&:hover": {
                       backgroundColor: "none",
                       border: "none !important",
@@ -314,20 +245,40 @@ function Header() {
               <a href="/">
                 {" "}
                 {/* Adjust the href accordingly */}
-                <Image
-                  loading="lazy"
-                  width={75}
-                  height={69}
-                  src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1714038144/9c66d8dd02f3646ac9a10299bb4346aab9ee290841253a496877330db28584fd_bpr2lk.png"
-                  alt=""
-                  className="flex justify-center shrink-0 self-stretch my-auto aspect-[2.44] w-[69px] cursor-pointer"
-                />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    loading="lazy"
+                    width={100}
+                    height={100}
+                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715339533/Screenshot_2024-05-10_at_19.11.40-removebg-preview_zla5fj.png"
+                    alt=""
+                    className="cursor-pointer"
+                  />
+                  <Typography
+                    sx={{
+                      ...buttonTypo,
+                      color: "#222222",
+                    }}
+                  >
+                    {/* Text aligned with the image */}
+                  </Typography>
+                </div>
               </a>
 
               {categoriesRightSide.map((category, index) => (
                 <Button
                   sx={{
                     ...buttonTypo,
+                    direction: "flex",
+                    justifyContent: "center",
+                    display: "flex",
+                    alignItems: "center",
                     "&:hover": {
                       backgroundColor: "none",
                       border: "none !important",
@@ -340,38 +291,38 @@ function Header() {
                   {category.label}
                 </Button>
               ))}
-            </Stack>
-          </Grid>
-
-          <Grid item sx={{ width: "20%" }}>
-            <Stack
-              direction={"row"}
-              justifyContent={"flex-end"}
-              sx={{ paddingRight: "48px" }}
-            >
-              <Button
-                sx={{
-                  padding: "0px",
-                  display: "flex",
-                  width: "fit-content",
-                }}
-                onClick={openAddCard}
-              >
-                <span style={{ color: "black", fontSize: "24px" }}>
-                  <AiOutlineShoppingCart />
-                </span>
-                <Typography
-                  sx={{
-                    ...gotaTypo,
-                    fontSize: "16px",
-                    px: "10px",
-                  }}
+              <Grid item sx={{ width: "14%" }}>
+                <Stack
+                  direction={"row"}
+                  justifyContent={"flex-end"}
+                  sx={{ paddingRight: "48px" }}
                 >
-                  Сагс ({wart?.length})
-                </Typography>
-              </Button>
+                  <Button
+                    sx={{
+                      padding: "0px",
+                      display: "flex",
+                      width: "fit-content",
+                    }}
+                    onClick={openAddCard}
+                  >
+                    <span style={{ color: "black", fontSize: "24px" }}>
+                      <AiOutlineShoppingCart />
+                    </span>
+                    <Typography
+                      sx={{
+                        ...gotaTypo,
+                        fontSize: "16px",
+                        px: "10px",
+                      }}
+                    >
+                      My Bag ({wart.length})
+                    </Typography>
+                  </Button>
+                </Stack>
+              </Grid>
             </Stack>
           </Grid>
+          <Grid item sx={{ width: "20%" }}></Grid>
         </Grid>
       </Stack>
     </>

@@ -7,7 +7,7 @@ async function POST(req: NextRequest) {
     const body = await req.json();
     const user = await LocationModel.create(body);
     return NextResponse.json(
-      { user, message: "Your user has been created" },
+      { user, message: "Таны захиалга амжилттай боллоо" },
       { status: HttpStatusCode.Created }
     );
   } catch (err) {

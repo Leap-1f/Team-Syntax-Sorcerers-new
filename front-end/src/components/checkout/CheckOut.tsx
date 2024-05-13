@@ -4,9 +4,9 @@ import { Alert, Checkbox } from "@mui/material";
 import { FormikProvider, useFormik } from "formik";
 import { validationSchema } from "./validationSchema";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import Image from "next/image";
-import { MdDone } from "react-icons/md";
+import { PostProductData } from "../networkProduct/ProductPOST";
 import { IoCloseOutline } from "react-icons/io5";
+import { MdDone } from "react-icons/md";
 export const CheckOut = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
@@ -24,6 +24,7 @@ export const CheckOut = () => {
     (acc: number, item: any) => acc + item.price * item.quantity,
     0
   );
+
   const handleCheckboxChange = (event: any) => {
     setIsChecked(event.target.checked);
   };
@@ -47,6 +48,16 @@ export const CheckOut = () => {
           body: JSON.stringify(values),
         });
         const response = await data.json();
+        console.log(response.user._id);
+        PostProductData({
+          location: response.user._id,
+          orderItems: wart.map((product: any) => {
+            return {
+              product: product._id,
+              count: product.quantity,
+            };
+          }),
+        });
         if (response.message) {
           setWarningMessage(response.message);
         } else if (response.success) {
@@ -71,13 +82,13 @@ export const CheckOut = () => {
   return (
     <>
       <div className="flex justify-center mt-[200px]">
-        {/* {showConfirmation && (
+        {showConfirmation && (
           <div className="flex bg-[#2BB9A9] items-center p-[10px] rounded-md gap-3">
             <MdDone className="text-white text-2xl" />
             <p className="text-white ">Захиалга амжилттай бүртгэгдлээ</p>
           </div>
-        )} */}
-        {warningMessage && <Alert severity="error">{warningMessage}</Alert>}
+        )}
+        {warningMessage && <Alert>{warningMessage}</Alert>}
       </div>
       <div className="flex justify-center my-[50px]">
         <FormikProvider value={formikCheckout}>

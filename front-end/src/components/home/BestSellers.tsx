@@ -1,42 +1,53 @@
 "use client";
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, use } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
 import { getProductsBestSellers } from "../admin/productPage/network";
 import Link from "next/link";
-const email = ["dasda"];
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Button } from "@mui/material";
+import { Box } from "@mui/material";
+import { Single } from "../single/Single";
+import { useSearchParams } from "next/navigation";
+
 interface ProductProps {
-  imageUrl: string;
-  title: string;
+  image: string;
+  name: string;
   price: string;
   index: number;
   hoverImageUrl: string;
   brand: string;
+  pid: string;
+  quantity: number;
   category: string;
 }
+
 const ProductComponent: FC<ProductProps> = ({
-  imageUrl,
-  title,
+  image,
+  name,
   hoverImageUrl,
   price,
   index,
+  pid,
   brand,
+  quantity,
   category,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState({
-    imageUrl,
-    title,
+    image,
+    name,
     hoverImageUrl,
     price,
     index,
+    pid,
+    quantity,
     brand,
     category,
   });
-
-  const handleClickOpen = () => {
+  const handleClickOpen = (data: any) => {
     setOpen(true);
   };
 
@@ -44,6 +55,7 @@ const ProductComponent: FC<ProductProps> = ({
     setOpen(false);
     setSelectedValue(value);
   };
+  var bob = 0;
 
   return (
     <>
@@ -58,17 +70,36 @@ const ProductComponent: FC<ProductProps> = ({
         onMouseLeave={() => setIsHovered(false)}
         data-aos="slide-up"
         data-aos-delay={`${index * 200}`}
+        style={{ position: "relative" }}
       >
         <div
-          className="w-[250px] h-[300px]"
+          className="w-[250px] h-[300px] relative"
           style={{
             padding: "30px",
-            backgroundImage: `url(${isHovered ? hoverImageUrl : imageUrl})`,
+            backgroundImage: `url(${isHovered ? hoverImageUrl : image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-        />
+        >
+          {isHovered && (
+            <div
+              className="absolute inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center transition-opacity duration-500"
+              style={{ opacity: 0.8, zIndex: 1 }}
+            >
+              <Box
+                className="rounded-[50%] px-4 py-2 hover:"
+                onClick={handleClickOpen}
+              >
+                <VisibilityIcon
+                  className="text-black hover:text-white"
+                  style={{ fontSize: "2rem" }}
+                  onClick={handleClickOpen}
+                />
+              </Box>
+            </div>
+          )}
+        </div>
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
             <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>
@@ -77,9 +108,9 @@ const ProductComponent: FC<ProductProps> = ({
           <div className="border border-gray-400 w-[310px]" />
 
           <div className="text-[16px] font-semibold tracking-tight flex flex-col gap-[10px]">
-            <Link href="/single">
+            <Link href={"/single?id=" + pid}>
               <h1 className={`${isHovered ? "spin" : ""} transition-all`}>
-                {isHovered ? "Add to cart" : title}
+                {isHovered ? "Add to cart" : name}
               </h1>
             </Link>
             <p>{price}</p>
@@ -90,7 +121,11 @@ const ProductComponent: FC<ProductProps> = ({
   );
 };
 
-export const BestSellers = () => {
+export const BestSellers = ({
+  searchParams,
+}: {
+  searchParams: { id: string | undefined };
+}) => {
   const [data, setData] = useState<any[]>([]);
   const getProduct = async () => {
     const data = await getProductsBestSellers();
@@ -98,9 +133,12 @@ export const BestSellers = () => {
     setData(data);
   };
   useEffect(() => {
-    getProduct();
+    try {
+      getProduct();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -141,15 +179,17 @@ export const BestSellers = () => {
           className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px]"
           data-aos="slide-up"
         >
-          {data.map((product, index) => (
+          {data?.map((product, index) => (
             <ProductComponent
               key={product._id}
-              imageUrl={product.image}
-              title={product.name}
+              image={product.image}
+              name={product.name}
               price={product.price}
               index={index}
               hoverImageUrl={product.image}
+              pid={product.id}
               brand={product.brand}
+              quantity={0}
               category={product.category}
             />
           ))}

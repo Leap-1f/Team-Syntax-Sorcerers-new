@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
-
+import "../models/location.model";
+import "../models/order.model";
+import "../models/product.model";
+import "../models/user.model";
 const MONGO_URI =
   "mongodb+srv://mygmar090:vZSG6yTfO4eHR6y9@leap-test.q3ptkvy.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -20,7 +23,7 @@ async function connectMongo() {
   }
   if (!cached.promise) {
     const opts = {
-      // bufferCommands: false,
+      bufferCommands: false,
     };
     cached.promise = mongoose.connect(MONGO_URI, opts);
   }

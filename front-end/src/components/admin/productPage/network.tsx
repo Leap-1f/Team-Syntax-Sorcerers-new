@@ -24,3 +24,16 @@ export const getProductsBestSellers = async () => {
   zov.status = res.status;
   return zov;
 };
+
+export const getNewFourArrivals = async () => {
+  const res = await fetch("http://localhost:8080/api/product?newArrivals=4", {
+    mode: "cors",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  var zov = await res.json();
+  zov.status = res.status;
+  return zov;
+};

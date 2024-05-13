@@ -3,13 +3,27 @@
 import { Alert, Checkbox } from "@mui/material";
 import { FormikProvider, useFormik } from "formik";
 import { validationSchema } from "./validationSchema";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { PostProductData } from "../networkProduct/ProductPOST";
+import { IoCloseOutline } from "react-icons/io5";
 import { MdDone } from "react-icons/md";
-
 export const CheckOut = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const store = {
+    getSnapshot: () => sessionStorage.getItem("cart") || "[]",
+    subscribe: (listener: () => void) => {
+      window.addEventListener("storage", listener);
+      return () => void window.removeEventListener("storage", listener);
+    },
+  };
+  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const wart: any = JSON.parse(kart);
+  const subTotal = wart?.reduce(
+    (acc: number, item: any) => acc + item.price * item.quantity,
+    0
+  );
 
   const handleCheckboxChange = (event: any) => {
     setIsChecked(event.target.checked);
@@ -34,6 +48,16 @@ export const CheckOut = () => {
           body: JSON.stringify(values),
         });
         const response = await data.json();
+        console.log(response.user._id);
+        PostProductData({
+          location: response.user._id,
+          orderItems: wart.map((product: any) => {
+            return {
+              product: product._id,
+              count: product.quantity,
+            };
+          }),
+        });
         if (response.message) {
           setWarningMessage(response.message);
         } else if (response.success) {
@@ -58,13 +82,13 @@ export const CheckOut = () => {
   return (
     <>
       <div className="flex justify-center mt-[200px]">
-        {/* {showConfirmation && (
+        {showConfirmation && (
           <div className="flex bg-[#2BB9A9] items-center p-[10px] rounded-md gap-3">
             <MdDone className="text-white text-2xl" />
             <p className="text-white ">Захиалга амжилттай бүртгэгдлээ</p>
           </div>
-        )} */}
-        {warningMessage && <Alert severity="error">{warningMessage}</Alert>}
+        )}
+        {warningMessage && <Alert>{warningMessage}</Alert>}
       </div>
       <div className="flex justify-center my-[50px]">
         <FormikProvider value={formikCheckout}>
@@ -129,12 +153,22 @@ export const CheckOut = () => {
                 <h1 className="text-[20px] font-semibold">YOUR ORDER</h1>
                 <div className="border-[1px] border-solid my-[30px]">
                   <div className="flex *:border-[1px] *:border-solid *:text-[#666] *:flex *:justify-center *:p-[25px]">
-                    <div className="w-[30%]">Product</div>
-                    <div className="w-[70%]">NikeCourts Air Zoom × 1</div>
+                    <div className="w-[30%] flex justify-center items-center">
+                      Product
+                    </div>
+                    <div className="w-[70%] flex flex-col justify-center items-center">
+                      {wart?.map((product: any, index: any) => (
+                        <div key={index} className="flex flex-row items-center">
+                          <h1>{product.name} </h1>
+                          <IoCloseOutline size={20} color="#14B8A6" />
+                          <h1>{product.quantity}</h1>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div className="flex *:border-[1px] *:border-solid  *:flex *:justify-center *:p-[25px]">
                     <div className="w-[30%] text-[#666]">Subtotal</div>
-                    <div className="w-[70%] text-teal-500">$20.00</div>
+                    <div className="w-[70%] text-teal-500">${subTotal}.00</div>
                   </div>
                   <div className="flex *:border-[1px] *:border-solid *:text-[#666] *:flex *:justify-center *:items-center ">
                     <div className="w-[30%] p-[25px]">Shipping</div>
@@ -144,7 +178,7 @@ export const CheckOut = () => {
                   </div>
                   <div className="flex *:border-[1px] *:border-solid *:flex *:justify-center *:p-[25px]">
                     <div className="w-[30%] text-[#666]">Total</div>
-                    <div className="w-[70%] text-teal-500">$50.00</div>
+                    <div className="w-[70%] text-teal-500">${subTotal}.00</div>
                   </div>
                 </div>
                 <div>

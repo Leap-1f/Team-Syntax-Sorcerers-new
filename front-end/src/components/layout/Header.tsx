@@ -196,20 +196,6 @@ function Header() {
             </Select> */}
           </Stack>
           <Stack direction={"row"}>
-            {!user && (
-              <Button
-                sx={{
-                  textTransform: "uppercase",
-                  color: "#adacac",
-                  "&:hover": {
-                    color: "#2bb9a9",
-                  },
-                }}
-                href="/api/auth/login?screen_hint=signup"
-              >
-                Бүртгүүлэх
-              </Button>
-            )}
             {/* <Button
               sx={{
                 textTransform: "uppercase",

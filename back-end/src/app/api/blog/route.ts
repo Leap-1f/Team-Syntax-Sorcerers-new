@@ -7,6 +7,7 @@ type CreatePostDto = {
   title: string;
   image: string;
   description: string;
+  date: number;
 };
 
 async function POST(req: NextRequest) {

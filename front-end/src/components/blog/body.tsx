@@ -16,15 +16,17 @@ const Body = () => {
   }, []);
   return (
     <>
-      <Box sx={{display:"flex" , flexDirection:"column" , gap:"5rem" , justifyContent:"center" , alignItems:"center"}}>
+      <Box></Box>
+      <Box sx={{display:"flex" , flexDirection:"column" , gap:"5rem" , justifyContent:"center" , alignItems:"center" , paddingBottom:"5rem"}}>
         {data?.map((data, index) => {
           return (
             <>
               <Box sx={{display:"flex", gap:"3rem"}}>
-                <Image src={data.image} width={250} height={250} alt=""></Image>
-                <Box>
-                  <Typography>{data.title}</Typography>
-                  <Typography>{data.description}</Typography>
+                <Image src={data.image} width={300} height={300} alt="" style={{width:"250px", height:"250px"}}></Image>
+                <Box sx={{display:"flex" , flexDirection:"column",  width:"30rem" , gap:"2rem" , paddingTop:"2rem"}}>
+                  <Typography sx={{fontSize:"1.5rem" , fontWeight:"600"}}>{data.title}</Typography>
+                  <Typography sx={{}}>{data.description}</Typography>
+                  <Typography>{data.date}</Typography>
                 </Box>
               </Box>
             </>

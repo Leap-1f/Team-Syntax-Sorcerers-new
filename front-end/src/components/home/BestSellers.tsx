@@ -65,7 +65,7 @@ const ProductComponent: FC<ProductProps> = ({
         onClose={handleClose}
       />
       <div
-        className="w-[330px] h-[460px] flex flex-col overflow-hidden justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300"
+        className="w-[330px] h-[460px] flex flex-col overflow-hidden justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300 overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         data-aos="slide-up"
@@ -73,7 +73,7 @@ const ProductComponent: FC<ProductProps> = ({
         style={{ position: "relative" }}
       >
         <div
-          className="w-[250px] h-[300px] relative"
+          className="w-[93%] h-[300px] relative"
           style={{
             padding: "30px",
             backgroundImage: `url(${isHovered ? hoverImageUrl : image})`,
@@ -101,7 +101,7 @@ const ProductComponent: FC<ProductProps> = ({
         </div>
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
-            <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>
+            <p className="text-[12px] text-gray-400 uppercase ">Sneaker</p>
             {/* <p onClick={handleClickOpen}>Star</p> */}
           </div>
           <div className="border border-gray-400 w-[310px]" />
@@ -112,7 +112,7 @@ const ProductComponent: FC<ProductProps> = ({
                 {isHovered ? "Add to cart" : name}
               </h1>
             </Link>
-            <p>{price}</p>
+            <p>₮{price}</p>
           </div>
         </div>
       </div>

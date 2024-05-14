@@ -38,9 +38,11 @@ const Home: React.FC = () => {
           <OurFeatures />
         </Stack> */}
         <BestSellers2 />
-        <BestSellers searchParams={{
-          id: undefined
-        }} />
+        <BestSellers
+          searchParams={{
+            id: undefined,
+          }}
+        />
         <FeaturesTwo />
         <Stack width={"1400px"} direction={"column"} alignItems={"center"}>
           <Blog />

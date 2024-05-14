@@ -17,7 +17,8 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-
+import SearchMain from "./SearchMain";
+import Search from "./Search";
 type TCheckedBox = {
   name: string;
   label: string;
@@ -28,7 +29,7 @@ const checkboxes: TCheckedBox[] = [
   { name: "Jordan", label: "Disabled" },
 ];
 
-export const Sales = () => {
+export const Sales = ({ query }: { query: string }) => {
   const [getProductData, setGetProductData] = useState<any[]>([]);
 
   const [expanded, setExpanded] = useState(false);
@@ -61,8 +62,6 @@ export const Sales = () => {
     setExpanded(!expanded);
   };
 
-  console.log("ariguun", getProductData);
-
   /* ///////////////////// TYPO  //////////////////////////*/
   const categoryTypo = {
     flex: "1 1 0%",
@@ -83,39 +82,10 @@ export const Sales = () => {
       cursor: "pointer",
     },
   };
-  const sortTypo = {
-    fontFamily: "'Helvetica Now Text', Helvetica, Arial, sans-serif",
-    fontSize: "1rem",
-    fontWeight: 400,
-    color: "#333",
-    lineHeight: 1.5,
-    py: "0px",
-  };
+
   const pxZeroTypo = {
     py: "0px",
   };
-  const pruductCardSubtitle = {
-    color: "#707072",
-    fontSize: "16px",
-  };
-  const productCardTitle = {
-    color: "#111111",
-    fontWeight: 600,
-    fontSize: "16px",
-    lineHeight: "1.5",
-    fontFamily: "'Helvetica Now Text Medium', Helvetica, Arial, sans-serif",
-  };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    width: "100%",
-    height: "400px",
-    position: "relative",
-  }));
 
   return (
     <Stack width={"100%"} spacing={"20px"}>
@@ -124,6 +94,7 @@ export const Sales = () => {
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Typography sx={categoryTypo}>Men`s basketball shoes(10)</Typography>
           <Stack direction={"row"} spacing={5}>
+            <Search />
             <button className="flex items-center gap-2	">
               Hide Filters
               <IoFilterOutline size={20} />
@@ -201,31 +172,9 @@ export const Sales = () => {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 2, sm: 8, md: 12 }}
           >
-            {getProductData.map((data, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index} width={"600px"}>
-                <Link href={"/single?id=" + data.id}>
-                  <Item>
-                    <Image
-                      className="w-full h-[full] top-0 left-0 object-cover rounded-2xl"
-                      alt="profile"
-                      objectFit="cover"
-                      fill
-                      src={data.image}
-                    />
-                  </Item>
-                  <Stack paddingTop={"20px"}>
-                    <Typography sx={productCardTitle}>{data.name}</Typography>
-                    <Typography sx={pruductCardSubtitle}>
-                      {data.brand}
-                    </Typography>
-                    <Typography sx={pruductCardSubtitle}>1 Colour</Typography>
-                  </Stack>
-                  <Typography paddingTop={"10px"} sx={productCardTitle}>
-                    ${data.price}
-                  </Typography>
-                </Link>
-              </Grid>
-            ))}
+            <div className="pt-10">
+              <SearchMain query={query} />
+            </div>
           </Grid>
           {/* ) : (
             <Typography>No products available</Typography>

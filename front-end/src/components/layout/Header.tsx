@@ -274,7 +274,7 @@ function Header() {
                         px: "10px",
                       }}
                     >
-                      My Bag (2)
+                      My Bag ({wart.length})
                     </Typography>
                   </Button>
                 </Stack>

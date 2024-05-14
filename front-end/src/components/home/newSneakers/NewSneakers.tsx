@@ -80,7 +80,7 @@ export const FeaturesTwo = () => {
         />
         <Stack>
           <Typography sx={featureTypoGraphy}>
-            EXPLORE OUR <br /> FEATURED
+            Онцлох <br /> бараанууд
           </Typography>
           <Typography sx={paraTypoGraphy}>
             Commodo sociosqu venenatis cras dolor sagittis integer luctus sem

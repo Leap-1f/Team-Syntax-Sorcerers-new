@@ -57,7 +57,7 @@ const FeaturesOne = () => {
         justifyContent={"space-between"}
         spacing={"20px"}
         sx={{
-          paddingTop: "60px",
+          paddingTop: "30px",
           backgroundImage:
             "url('https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715072211/gvhgpu8e7tpcpvntmglv.jpg')",
           backgroundSize: "cover",
@@ -65,14 +65,13 @@ const FeaturesOne = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Typography sx={textTypo}>THIS MONTH BIG SALE</Typography>
+        <Typography sx={textTypo}>Хамгийн Том Хямдрал</Typography>
         <Stack direction={"column"} alignItems={"center"} spacing={"10px"}>
           <Typography sx={{ ...h1Typo, fontWeight: 800 }}>
-            Jacket Sportwear
+            Jordan air 1
           </Typography>
           <Typography sx={textTypo}>
-            sale <span style={{ color: "#FFC000" }}>20%</span> Off Helmet for
-            Women’s
+            sale <span style={{ color: "#FFC000" }}>20%</span>
           </Typography>
         </Stack>
       </Stack>

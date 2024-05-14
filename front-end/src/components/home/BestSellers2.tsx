@@ -17,7 +17,7 @@ function BestsellerProducts({ products }: BestsellerProductsProps) {
       </div>{" "}
       <div className="flex flex-col items-center mx-auto mt-8 mb-auto w-full h-[440px] max-w-[1242px] max-md:max-w-full">
         <h2 className="mx-auto text-lg font-semibold text-teal-500 uppercase">
-          Bestseller products
+          Bestseller Бүтээгдэхүүн
         </h2>
         {products.map((product, index) => (
           <React.Fragment key={index}>

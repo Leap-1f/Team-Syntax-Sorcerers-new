@@ -7,7 +7,7 @@ export const OurService = () => {
   const textTypo = {
     color: "#222",
     fontFamily: "Barlow",
-    fontSize: "16px",
+    fontSize: "20px",
     fontStyle: "normal",
     fontWeight: 600,
     lineHeight: "19.2px",
@@ -32,7 +32,7 @@ export const OurService = () => {
         <Stack direction={"row"} alignItems={"center"} spacing={"10px"}>
           <TbWorldPin size={"100px"} />
           <Stack spacing={"10px"}>
-            <Typography sx={textTypo}>FAST DELIVERY</Typography>
+            <Typography sx={textTypo}>Шуурхай хүргэлт</Typography>
             <Typography sx={textTypoTwo}>
               Duis autem vel eum iriure dolor in hendrerit <br></br> velit esse
               molestie consequat.
@@ -42,7 +42,7 @@ export const OurService = () => {
         <Stack direction={"row"} alignItems={"center"} spacing={"10px"}>
           <RiCustomerService2Line size={"100px"} />
           <Stack spacing={"10px"}>
-            <Typography sx={textTypo}>ONLINE SUPPORT 24/7</Typography>
+            <Typography sx={textTypo}>24н цагын онлайн </Typography>
             <Typography sx={textTypoTwo}>
               Duis autem vel eum iriure dolor in hendrerit <br></br> velit esse
               molestie consequat.

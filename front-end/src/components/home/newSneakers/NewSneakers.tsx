@@ -92,8 +92,8 @@ export const FeaturesTwo = () => {
           {fetchedProductData?.map((product, index) => (
             <Card
               key={product._id}
-              imageUrl={product.image}
-              title={product.name}
+              image={product.image}
+              name={product.name}
               price={product.price}
               index={index + 1}
               brand={product.brand}

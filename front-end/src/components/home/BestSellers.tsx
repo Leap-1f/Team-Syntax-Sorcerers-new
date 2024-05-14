@@ -155,7 +155,7 @@ export const BestSellers = ({
         <div className="flex flex-col justify-center items-center gap-[30px] ">
           <h1 className="text-[36px] font-semibold">Онцгой Хямдралтай Бараа</h1>
           <p className="text-center text-[15px] text-[#666]">
-            Commodo sociosqu venenatis cras dolor sagittis integer luctus <br />{" "}
+            Commodo sociosqu venenatis cras dolor sagittis integer luctus <br />
             sem primis eget maecenas sed urna malesuada.
           </p>
 

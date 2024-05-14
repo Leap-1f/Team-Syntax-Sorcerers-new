@@ -26,7 +26,6 @@ const Body = () => {
                 <Box sx={{display:"flex" , flexDirection:"column",  width:"30rem" , gap:"2rem" , paddingTop:"2rem"}}>
                   <Typography sx={{fontSize:"1.5rem" , fontWeight:"600"}}>{data.title}</Typography>
                   <Typography sx={{}}>{data.description}</Typography>
-                  <Typography>{data.date}</Typography>
                 </Box>
               </Box>
             </>

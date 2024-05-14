@@ -42,7 +42,7 @@ function BestsellerProducts({ products }: BestsellerProductsProps) {
           id="top-limited"
           className="absolute left-[650px] top-[250px]  justify-center items-center z-2 top-limited"
           src={
-            "https://res.cloudinary.com/dqhy9ufze/image/upload/v1714730312/882602fbfb1d792aaf914f94828111d8_donydl.png"
+            "https://res.cloudinary.com/dmz3nwq2t/image/upload/v1715676374/black_domeuo.png"
           }
           alt={""}
           width={1032}

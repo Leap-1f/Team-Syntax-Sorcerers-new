@@ -5,7 +5,7 @@ import { FC, useState, useSyncExternalStore } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Bag } from "./myBags";
 import { Grid, SelectChangeEvent, Button } from "@mui/material";
-
+import { useUser } from "@auth0/nextjs-auth0/client";
 interface CategoryItemProps {
   label: string;
   href: string;
@@ -80,6 +80,7 @@ const buttonTypo = {
   paddingX: "20px",
 };
 function Header() {
+  const { user, error, isLoading } = useUser();
   const [currency, setCurrency] = useState<string>("USD");
   const handleChange = (event: SelectChangeEvent) => {
     setCurrency(event.target.value as string);
@@ -107,31 +108,46 @@ function Header() {
         >
           <Stack direction={"row"} color={"#88888"}></Stack>
           <Stack direction={"row"}>
-            <Button
-              sx={{
-                textTransform: "uppercase",
-                color: "#adacac",
-                "&:hover": {
-                  color: "#2bb9a9",
-                },
-              }}
-            >
-              Бүртгүүлэх
-            </Button>
-            <Button
-              sx={{
-                textTransform: "uppercase",
-                color: "#adacac",
-                "&:hover": {
-                  color: "#2bb9a9",
-                },
-              }}
-            >
-              Нэвтрэх
-            </Button>
+            {user && (
+              <Stack direction={"row"} spacing={"10px"} alignItems={"center"}>
+                <Button
+                  sx={{
+                    textTransform: "uppercase",
+                    color: "#adacac",
+                    "&:hover": {
+                      color: "#2bb9a9",
+                    },
+                  }}
+                  href="/api/auth/logout"
+                >
+                  Log Out
+                </Button>
+
+                <Image
+                  src={user.picture as string}
+                  alt={user.name as string}
+                  width={50}
+                  height={50}
+                />
+              </Stack>
+            )}
+
+            {!user && (
+              <Button
+                sx={{
+                  textTransform: "uppercase",
+                  color: "#adacac",
+                  "&:hover": {
+                    color: "#2bb9a9",
+                  },
+                }}
+                href="/api/auth/login"
+              >
+                Нэвтрэх
+              </Button>
+            )}
           </Stack>
         </Stack>
-        {/* //====================================================================== */}
         <Grid
           container
           alignItems="center"

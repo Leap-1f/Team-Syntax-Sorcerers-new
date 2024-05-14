@@ -59,7 +59,6 @@ function Footer() {
     "Basketball",
     "Men's Running",
   ];
-
   return (
       <footer className="w-[100%] flex justify-center items-center px-16 py-20 bg-neutral-800 max-md:px-5">
           <div className="flex gap-5 justify-between items-start mt-6 max-w-full w-[1662px] max-md:flex-wrap">

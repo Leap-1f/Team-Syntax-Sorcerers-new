@@ -95,7 +95,7 @@ export const Single = () => {
           <div className="w-[40%]  px-[20px]">
             <h1 className=" font-medium text-[23px]">{productData.name}</h1>
             <p className=" font-medium pb-[15px]">Basketball Shoes</p>
-            <h2 className=" font-medium">${productData.price}</h2>
+            <h2 className=" font-medium">₮{productData.price}</h2>
             <div className=" text-[#757575]">
               <p>incl. of taxes</p>
               <p>(Also includes all applicable duties)</p>

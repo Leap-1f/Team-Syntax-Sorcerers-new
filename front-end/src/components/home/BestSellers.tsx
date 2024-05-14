@@ -94,7 +94,6 @@ const ProductComponent: FC<ProductProps> = ({
                 <VisibilityIcon
                   className="text-black hover:text-white"
                   style={{ fontSize: "2rem" }}
-                  onClick={handleClickOpen}
                 />
               </Box>
             </div>
@@ -103,7 +102,7 @@ const ProductComponent: FC<ProductProps> = ({
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
             <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>
-            <p onClick={handleClickOpen}>Star</p>
+            {/* <p onClick={handleClickOpen}>Star</p> */}
           </div>
           <div className="border border-gray-400 w-[310px]" />
 

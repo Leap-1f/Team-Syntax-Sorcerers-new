@@ -137,7 +137,7 @@ export const Bag = (open: boolean, close: any) => {
                   color: "#2BB9A9",
                 }}
               >
-                ${totalPrice}
+                ₮ {totalPrice}
               </Typography>
             </Stack>
             {/* <Link href="/cart">

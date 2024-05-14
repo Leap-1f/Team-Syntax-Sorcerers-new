@@ -140,7 +140,9 @@ export const Card: FC<TCardProps> = ({
                 borderColor: "#2222",
               }}
             >
-              <Typography sx={productCategorySortTypography}>Shoes</Typography>
+              <Typography sx={productCategorySortTypography}>
+                Sneaker
+              </Typography>
             </Stack>
             <Typography sx={productCategoryText}>{name}</Typography>
             <Typography sx={productCategoryText}>₮{price}</Typography>

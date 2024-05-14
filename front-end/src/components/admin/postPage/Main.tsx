@@ -15,7 +15,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import Image from "next/image";
 // remember to add the backend l8r
 export function Main() {
-  const titles = ["Image", "Title", "Description", "Added date"];
+  const titles = ["Image", "Title", "Description"];
   function navigate(where: string) {
     window.location.href = where;
   }
@@ -66,7 +66,7 @@ export function Main() {
           input.innerText = "Post нэмэх";
         }}
         onClick={() => {
-          navigate("/admin/product/addPost");
+          navigate("/admin/post/addPost");
         }}
       >
         Post нэмэх.

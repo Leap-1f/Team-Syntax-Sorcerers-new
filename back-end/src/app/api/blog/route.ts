@@ -3,16 +3,15 @@ import { HttpStatusCode } from "axios";
 import BlogModel from "../../../models/blog.model";
 import { NextRequest, NextResponse } from "next/server";
 
-type CreatePostDto = {
+interface Post {
   title: string;
   image: string;
   description: string;
-  date: number;
-};
+}
 
 async function POST(req: NextRequest) {
   try {
-    const body: CreatePostDto = await req.json();
+    const body: Post = await req.json();
     if (body) {
       const post = await BlogModel.create(body);
       return NextResponse.json(
@@ -32,22 +31,28 @@ async function POST(req: NextRequest) {
     );
   }
 }
-export { POST };
-async function GET(_: NextRequest) {
+async function GET(req: NextRequest) {
   try {
-    const post = await BlogModel.find();
-    if (post) {
-      return NextResponse.json(post);
+    const paramLimit = req.nextUrl.searchParams.get("limit");
+    const limit: any = paramLimit ? parseInt(paramLimit) : undefined;
+
+    const posts: Post[] = await BlogModel.find().limit(limit);
+
+    if (posts.length === 0) {
+      return NextResponse.json(
+        { message: `Products not found` },
+        { status: HttpStatusCode.NotFound }
+      );
     }
-    return NextResponse.json(
-      { message: `Post not found` },
-      { status: HttpStatusCode.NotFound }
-    );
+
+    return NextResponse.json(posts);
   } catch (error) {
+    console.error("Error occurred while fetching products:", error);
     return NextResponse.json(
-      { message: "Error occurred while fetching posts" },
+      { message: "Error occurred while fetching products" },
       { status: HttpStatusCode.InternalServerError }
     );
   }
 }
-export { GET };
+
+export { GET, POST };

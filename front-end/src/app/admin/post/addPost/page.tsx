@@ -1,4 +1,4 @@
-import Main from "@/components/admin/productPage/addProduct/Main";
+import Main from "@/components/admin/postPage/addPost/Main";
 
 export default function AddProductPage() {
   return (

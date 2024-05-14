@@ -65,7 +65,7 @@ const ProductComponent: FC<ProductProps> = ({
         onClose={handleClose}
       />
       <div
-        className="w-[330px] h-[460px] flex flex-col overflow-hidden justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300"
+        className="w-[330px] h-[460px] flex flex-col overflow-hidden justify-center items-center group group-hover:rotate-3 group-hover:scale-125 hover:shadow-xl duration-300 overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         data-aos="slide-up"
@@ -73,7 +73,7 @@ const ProductComponent: FC<ProductProps> = ({
         style={{ position: "relative" }}
       >
         <div
-          className="w-[250px] h-[300px] relative"
+          className="w-[93%] h-[300px] relative"
           style={{
             padding: "30px",
             backgroundImage: `url(${isHovered ? hoverImageUrl : image})`,
@@ -94,7 +94,6 @@ const ProductComponent: FC<ProductProps> = ({
                 <VisibilityIcon
                   className="text-black hover:text-white"
                   style={{ fontSize: "2rem" }}
-                  onClick={handleClickOpen}
                 />
               </Box>
             </div>
@@ -102,8 +101,8 @@ const ProductComponent: FC<ProductProps> = ({
         </div>
         <div className="flex flex-col w-[310px] h-[100px] gap-[15px]">
           <div className="flex justify-between items-center">
-            <p className="text-[12px] text-gray-400 uppercase ">Shoes</p>
-            <p onClick={handleClickOpen}>Star</p>
+            <p className="text-[12px] text-gray-400 uppercase ">Sneaker</p>
+            {/* <p onClick={handleClickOpen}>Star</p> */}
           </div>
           <div className="border border-gray-400 w-[310px]" />
 
@@ -113,7 +112,7 @@ const ProductComponent: FC<ProductProps> = ({
                 {isHovered ? "Add to cart" : name}
               </h1>
             </Link>
-            <p>{price}</p>
+            <p>₮{price}</p>
           </div>
         </div>
       </div>
@@ -151,10 +150,10 @@ export const BestSellers = ({
     <>
       <div
         data-aos="slide-up"
-        className="w-[100vw] h-[90vh] flex flex-col items-center bg-white gap-[50px]"
+        className="w-[100vw] h-[90vh] flex flex-col items-center bg-white gap-[50px] mt-[20px]"
       >
         <div className="flex flex-col justify-center items-center gap-[30px] ">
-          <h1 className="text-[36px] font-semibold">EXPLORE OUR BESTSELLERS</h1>
+          <h1 className="text-[36px] font-semibold">Онцгой Хямдралтай Бараа</h1>
           <p className="text-center text-[15px] text-[#666]">
             Commodo sociosqu venenatis cras dolor sagittis integer luctus <br />
             sem primis eget maecenas sed urna malesuada.
@@ -162,21 +161,18 @@ export const BestSellers = ({
 
           <div className="flex gap-[1px] font-semibold cursor-pointer">
             <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200 flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-              All Shoes
+              Бүгд
             </div>
             <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200 flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-              Men,s
+              Эрэгтэй
             </div>
             <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200 flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-              Women,s
-            </div>
-            <div className="w-[140px] h-[50px] border-2 border-gray-400 duration-200 flex justify-center items-center hover:border-[#2BB9A9] hover:text-[#2BB9A9] hover:duration-200">
-              Kids
+              Эмэгтэй
             </div>
           </div>
         </div>
         <div
-          className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px]"
+          className="flex items-center justify-evenly w-[1400px] cursor-pointer gap-[20px] h-[360px] pt-4"
           data-aos="slide-up"
         >
           {data?.map((product, index) => (

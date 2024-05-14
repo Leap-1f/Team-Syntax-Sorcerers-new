@@ -57,7 +57,7 @@ const Dashboard = () => {
                 200
               </div>
               <div className=" col-span-2 flex justify-center items-center">
-                12,000$
+                12,000₮
               </div>
             </div>
             {/* END Бүтээгдэхүүн нэмэж байгаа хэсэг */}
@@ -85,7 +85,7 @@ const Dashboard = () => {
                 200
               </div>
               <div className=" col-span-2 flex justify-center items-center">
-                12,000$
+                12,000₮
               </div>
             </div>
             {/* END Бүтээгдэхүүн нэмэж байгаа хэсэг */}

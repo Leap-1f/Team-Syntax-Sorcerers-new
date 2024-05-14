@@ -1,20 +1,11 @@
 "use client";
+import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import InputBase from "@mui/material/InputBase";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FC, useState, useSyncExternalStore } from "react";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Bag } from "./myBags";
+import { Grid, SelectChangeEvent, Button } from "@mui/material";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import {
-  Grid,
-  Paper,
-  SelectChangeEvent,
-  Stack,
-  Typography,
-  styled,
-  Button,
-} from "@mui/material";
-
 interface CategoryItemProps {
   label: string;
   href: string;
@@ -27,25 +18,6 @@ const store = {
   },
 };
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled("input")(({ theme }) => ({
-  color: "inherit",
-  width: "100%",
-  paddingLeft: "20px",
-}));
-const Search = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  borderRadius: "5px",
-});
 const CategoryItem: FC<CategoryItemProps> = ({ label, href }) => (
   <Button
     component="a"
@@ -63,13 +35,6 @@ const CategoryItem: FC<CategoryItemProps> = ({ label, href }) => (
   </Button>
 );
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 const categoriesLeftSide: CategoryItemProps[] = [
   {
     label: "Нүүр хуудас",
@@ -98,12 +63,7 @@ const categoriesRightSide: CategoryItemProps[] = [
     href: "/contactus",
   },
 ];
-const headerCurrencyTypo = {
-  fontSize: "16px",
-  fontFamily: "Barlow",
-  fontWeight: 500,
-  color: "#adacac",
-};
+
 const gotaTypo = {
   fontSize: "16px",
   textTransform: "uppercase",
@@ -117,7 +77,7 @@ const buttonTypo = {
   fontWeight: 600,
   textTransform: "uppercase",
   display: "block",
-  paddingRight: "30px",
+  paddingX: "20px",
 };
 function Header() {
   const { user, error, isLoading } = useUser();
@@ -131,6 +91,7 @@ function Header() {
   };
   const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
   const wart: any = JSON.parse(kart);
+
   return (
     <>
       <Stack width={"100%"} position={"sticky"} top={"0"} zIndex={"100"}>
@@ -147,19 +108,6 @@ function Header() {
         >
           <Stack direction={"row"} color={"#88888"}></Stack>
           <Stack direction={"row"}>
-            {/* <Button
-            <Button
-              sx={{
-                textTransform: "uppercase",
-                color: "#adacac",
-                "&:hover": {
-                  color: "#2bb9a9",
-                },
-              }}
-            >
-              account
-            </Button> */}
-
             {user && (
               <Stack direction={"row"} spacing={"10px"} alignItems={"center"}>
                 <Button
@@ -207,27 +155,20 @@ function Header() {
           bgcolor={"white"}
         >
           <Grid item sx={{ width: "20%" }}></Grid>
-          <Grid
-            item
-            direction={"row"}
-            justifyContent={"center"}
-            sx={{ width: "60%" }}
-          >
+          <Grid item justifyContent={"center"} sx={{ width: "60%" }}>
             <Stack
               width={"100%"}
               direction={"row"}
               justifyContent={"space-evenly"}
               sx={{ py: "30px", px: "48px" }}
-              spacing={"10px"}
             >
               {categoriesLeftSide.map((category, index) => (
                 <Button
                   sx={{
                     ...buttonTypo,
-                    direction: "flex",
-                    justifyContent: "center",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     "&:hover": {
                       backgroundColor: "none",
                       border: "none !important",
@@ -241,8 +182,6 @@ function Header() {
                 </Button>
               ))}
               <a href="/">
-                {" "}
-                {/* Adjust the href accordingly */}
                 <div
                   style={{
                     display: "flex",
@@ -254,7 +193,7 @@ function Header() {
                     loading="lazy"
                     width={100}
                     height={100}
-                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715339533/Screenshot_2024-05-10_at_19.11.40-removebg-preview_zla5fj.png"
+                    src="https://res.cloudinary.com/dqhy9ufze/image/upload/v1715593234/Screenshot_2024-05-13_at_17.30.08-removebg-preview_qk0xld.png"
                     alt=""
                     className="cursor-pointer"
                   />
@@ -263,9 +202,7 @@ function Header() {
                       ...buttonTypo,
                       color: "#222222",
                     }}
-                  >
-                    {/* Text aligned with the image */}
-                  </Typography>
+                  ></Typography>
                 </div>
               </a>
 
@@ -273,7 +210,6 @@ function Header() {
                 <Button
                   sx={{
                     ...buttonTypo,
-                    direction: "flex",
                     justifyContent: "center",
                     display: "flex",
                     alignItems: "center",
@@ -289,38 +225,37 @@ function Header() {
                   {category.label}
                 </Button>
               ))}
-              <Grid item sx={{ width: "14%" }}>
-                <Stack
-                  direction={"row"}
-                  justifyContent={"flex-end"}
-                  sx={{ paddingRight: "48px" }}
-                >
-                  <Button
-                    sx={{
-                      padding: "0px",
-                      display: "flex",
-                      width: "fit-content",
-                    }}
-                    onClick={openAddCard}
-                  >
-                    <span style={{ color: "black", fontSize: "24px" }}>
-                      <AiOutlineShoppingCart />
-                    </span>
-                    <Typography
-                      sx={{
-                        ...gotaTypo,
-                        fontSize: "16px",
-                        px: "10px",
-                      }}
-                    >
-                      My Bag ({wart.length})
-                    </Typography>
-                  </Button>
-                </Stack>
-              </Grid>
             </Stack>
           </Grid>
-          <Grid item sx={{ width: "20%" }}></Grid>
+          <Grid item sx={{ width: "20%" }}>
+            <Stack
+              direction={"row"}
+              justifyContent={"flex-end"}
+              sx={{ paddingRight: "48px" }}
+            >
+              <Button
+                sx={{
+                  paddingX: "20px ",
+                  display: "flex",
+                  width: "fit-content",
+                }}
+                onClick={openAddCard}
+              >
+                <span style={{ color: "black", fontSize: "24px" }}>
+                  <AiOutlineShoppingCart />
+                </span>
+                <Typography
+                  sx={{
+                    ...gotaTypo,
+                    fontSize: "16px",
+                    px: "10px",
+                  }}
+                >
+                  Сагс ({wart.length})
+                </Typography>
+              </Button>
+            </Stack>
+          </Grid>
         </Grid>
       </Stack>
     </>

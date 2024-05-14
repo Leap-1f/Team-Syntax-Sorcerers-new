@@ -5,8 +5,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "@/components/hover/ProductHover";
 type TCardProps = {
-  imageUrl: string;
-  title: string;
+  image: string;
+  name: string;
   price: string;
   index: number;
   quantity: number;
@@ -17,8 +17,8 @@ type TCardProps = {
 
 export const Card: FC<TCardProps> = ({
   index,
-  title,
-  imageUrl,
+  name,
+  image,
   price,
   pid,
   quantity,
@@ -69,8 +69,8 @@ export const Card: FC<TCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState({
-    imageUrl,
-    title,
+    image,
+    name,
     price,
     index,
     brand,
@@ -104,7 +104,7 @@ export const Card: FC<TCardProps> = ({
           backgroundColor: "white",
         }}
         data-aos="fade-in"
-        data-aos-delay={animationDelay} // Set the delay here
+        data-aos-delay={animationDelay}
       >
         <Box
           sx={{
@@ -121,7 +121,7 @@ export const Card: FC<TCardProps> = ({
           <Stack
             height={"80%"}
             sx={{
-              backgroundImage: `url(${imageUrl})`,
+              backgroundImage: `url(${image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -140,11 +140,12 @@ export const Card: FC<TCardProps> = ({
                 borderColor: "#2222",
               }}
             >
-              <Typography sx={productCategorySortTypography}>Shoes</Typography>
-              <Rating name="read-only" readOnly sx={{ fontSize: "20px" }} />
+              <Typography sx={productCategorySortTypography}>
+                Sneaker
+              </Typography>
             </Stack>
-            <Typography sx={productCategoryText}>{title}</Typography>
-            <Typography sx={productCategoryText}>${price}</Typography>
+            <Typography sx={productCategoryText}>{name}</Typography>
+            <Typography sx={productCategoryText}>₮{price}</Typography>
           </Stack>
         </Box>
       </Stack>

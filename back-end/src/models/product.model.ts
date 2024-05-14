@@ -3,7 +3,7 @@ import { model, models, Schema } from "mongoose";
 const ProductSchema = new Schema(
   {
     name: { type: String, required: true },
-    image: { type: String, required: true },
+    image: { type: Array, required: true },
     color: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, enum: ["male", "female"], required: true },

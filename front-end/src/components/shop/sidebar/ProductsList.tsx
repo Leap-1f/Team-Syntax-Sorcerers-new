@@ -78,7 +78,7 @@ export const ProductsListedList: FC<TCardProps> = ({
           </Stack>
           <Stack direction={"row"}>
             <Typography sx={{ ...productCategoryText, color: "#669900" }}>
-              $
+            ₮
             </Typography>
             <Typography sx={{ ...productCategoryText, fontWeight: 900 }}>
               {price}

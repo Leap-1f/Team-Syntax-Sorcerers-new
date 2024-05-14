@@ -1,10 +1,10 @@
 "use client";
 import { Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { FC, use, useState, useSyncExternalStore } from "react";
+import { FC, useState, useSyncExternalStore } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Bag } from "./myBags";
-import { Grid, Paper, SelectChangeEvent, styled, Button } from "@mui/material";
+import { Grid, SelectChangeEvent, Button } from "@mui/material";
 
 interface CategoryItemProps {
   label: string;
@@ -18,25 +18,6 @@ const store = {
   },
 };
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-const StyledInputBase = styled("input")(({ theme }) => ({
-  color: "inherit",
-  width: "100%",
-  paddingLeft: "20px",
-}));
-const Search = styled("div")({
-  display: "flex",
-  alignItems: "center",
-  borderRadius: "5px",
-});
 const CategoryItem: FC<CategoryItemProps> = ({ label, href }) => (
   <Button
     component="a"
@@ -54,13 +35,6 @@ const CategoryItem: FC<CategoryItemProps> = ({ label, href }) => (
   </Button>
 );
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 const categoriesLeftSide: CategoryItemProps[] = [
   {
     label: "Нүүр хуудас",
@@ -89,12 +63,7 @@ const categoriesRightSide: CategoryItemProps[] = [
     href: "/contactus",
   },
 ];
-const headerCurrencyTypo = {
-  fontSize: "16px",
-  fontFamily: "Barlow",
-  fontWeight: 500,
-  color: "#adacac",
-};
+
 const gotaTypo = {
   fontSize: "16px",
   textTransform: "uppercase",
@@ -266,7 +235,7 @@ function Header() {
                     px: "10px",
                   }}
                 >
-                  My Bag ({wart.length})
+                  Сагс ({wart.length})
                 </Typography>
               </Button>
             </Stack>

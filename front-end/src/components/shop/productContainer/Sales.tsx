@@ -62,8 +62,6 @@ export const Sales = ({ query }: { query: string }) => {
     setExpanded(!expanded);
   };
 
-  console.log("ariguun", getProductData);
-
   /* ///////////////////// TYPO  //////////////////////////*/
   const categoryTypo = {
     flex: "1 1 0%",
@@ -84,39 +82,10 @@ export const Sales = ({ query }: { query: string }) => {
       cursor: "pointer",
     },
   };
-  const sortTypo = {
-    fontFamily: "'Helvetica Now Text', Helvetica, Arial, sans-serif",
-    fontSize: "1rem",
-    fontWeight: 400,
-    color: "#333",
-    lineHeight: 1.5,
-    py: "0px",
-  };
+
   const pxZeroTypo = {
     py: "0px",
   };
-  const pruductCardSubtitle = {
-    color: "#707072",
-    fontSize: "16px",
-  };
-  const productCardTitle = {
-    color: "#111111",
-    fontWeight: 600,
-    fontSize: "16px",
-    lineHeight: "1.5",
-    fontFamily: "'Helvetica Now Text Medium', Helvetica, Arial, sans-serif",
-  };
-
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    width: "100%",
-    height: "400px",
-    position: "relative",
-  }));
 
   return (
     <Stack width={"100%"} spacing={"20px"}>

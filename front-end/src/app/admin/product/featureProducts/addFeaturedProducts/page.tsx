@@ -11,12 +11,15 @@ import {
   Alert,
 } from "@mui/material";
 import { CldUploadButton } from "next-cloudinary";
-import { StyledInput } from "./styledInput";
+
 import { FaAngleLeft, FaImage } from "react-icons/fa6";
-import { StyledDropdown } from "./styledDropdown";
+
 import { useEffect, useState } from "react";
-import { addProduct } from "./network";
-export default function Main() {
+import { StyledInput } from "@/components/admin/productPage/addProduct/styledInput";
+import { StyledDropdown } from "@/components/admin/productPage/addProduct/styledDropdown";
+import { addProduct } from "@/components/admin/productPage/addProduct/network";
+
+const addFeaturedProducts = () => {
   const brands = [
     "Nike",
     "Adidas",
@@ -126,11 +129,33 @@ export default function Main() {
       }, 3000);
     }
   }, [success]);
-  const mockData = ["Эрэгтэй", "Эмэгтэй"];
-  const categoryMap = ["Sneacker"];
+  const mockData = [
+    "Shumagh",
+    "Tashkent",
+    "Dushanbe",
+    "Samarkand",
+    "Andijan",
+    "Khiva",
+    "Bukhara",
+    "Ishkashim",
+    "Almaty",
+    "Orenburg",
+    "Ulaanbaatar",
+    "Novosibirsk",
+    "Yekaterinburg",
+    "Krasnoyarsk",
+    "Irkutsk",
+    "Omsk",
+    "Barnaul",
+    "Tomsk",
+    "Moscow",
+    "Kazan",
+    "Ekaterinburg",
+    "Nizhny Novgorod",
+  ];
   return (
     <Box
-      sx={{ py: "3vh", bgcolor: "#f7f7f8", width: "100vw", height: "100vh" }}
+      sx={{ py: "3vh", bgcolor: "#f7f7f8", width: "100vw", height: "150vh" }}
     >
       {/* Below is the go back button and title of page */}
       <Stack
@@ -344,7 +369,7 @@ export default function Main() {
                   <MenuItem value={"Сонгох"} disabled>
                     Сонгох
                   </MenuItem>
-                  {categoryMap.map((item, index) => (
+                  {mockData.map((item, index) => (
                     <MenuItem key={item} value={item + index}>
                       {item}
                     </MenuItem>
@@ -536,6 +561,7 @@ export default function Main() {
                   setError(e);
                 }
                 console.log(success);
+                history.back();
               }
             }}
           >
@@ -573,4 +599,5 @@ export default function Main() {
       </Alert>
     </Box>
   );
-}
+};
+export default addFeaturedProducts;

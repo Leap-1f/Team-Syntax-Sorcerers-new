@@ -104,7 +104,7 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
             </Stack>
             <Stack direction={"row"}>
               <Typography sx={{ ...typoDollar, color: "#669900" }}>
-              ₮
+                ₮
               </Typography>
               <Typography sx={{ ...typoDollar, fontWeight: 900 }}>
                 {selectedValue.price}

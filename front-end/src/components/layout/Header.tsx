@@ -26,7 +26,6 @@ const store = {
     return () => void window.removeEventListener("storage", listener);
   },
 };
-
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",

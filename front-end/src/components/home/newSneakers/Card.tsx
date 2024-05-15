@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "@/components/hover/ProductHover";
 type TCardProps = {
-  image: string;
+  image: any;
   name: string;
   price: string;
   index: number;
@@ -85,6 +85,13 @@ export const Card: FC<TCardProps> = ({
     setOpen(false);
     setSelectedValue(value);
   };
+  const regularImage =
+    selectedValue.image &&
+    selectedValue.image.find((img: any) => img.color === "regular");
+  const regularImageUrl = regularImage
+    ? regularImage.imgs[0]
+    : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
+
   return (
     <>
       <ProductDialog
@@ -121,7 +128,7 @@ export const Card: FC<TCardProps> = ({
           <Stack
             height={"80%"}
             sx={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${regularImageUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",

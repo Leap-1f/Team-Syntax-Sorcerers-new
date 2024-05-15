@@ -8,7 +8,7 @@ export const Single = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const data = { id: id || "" };
-
+  const [regularImageUrl, setRegularImageUrl] = useState("");
   const [productData, setProductData] = useState<any>(Object);
 
   async function ProductFetchComponent() {
@@ -47,6 +47,7 @@ export const Single = () => {
   const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
   const wart: any = JSON.parse(kart);
   const [quantity, setQuantity] = useState(1);
+
   function addToCart() {
     var has = wart.some((item: any) => {
       if (item.pid === productData.pid) {
@@ -75,7 +76,26 @@ export const Single = () => {
       adjusted.quantity -= quantity;
     }
   }
+  const [selectedImageUrl, setSelectedImageUrl] = useState(regularImageUrl);
+  const [selectedImageUrls, setSelectedImageUrls] = useState([regularImageUrl]);
   //======================================================================================
+
+  useEffect(() => {
+    const regularImage =
+      productData.image &&
+      productData.image.find((img: any) => img.color === "regular");
+    const imageUrl = regularImage
+      ? regularImage.imgs[0]
+      : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
+    setRegularImageUrl(imageUrl);
+    setSelectedImageUrl(imageUrl);
+  }, [productData]);
+
+  const handleImageClick = (index: any) => {
+    setSelectedImageUrl(productData.image[index].imgs[0]);
+    setSelectedImageUrls(productData.image[index].imgs);
+  };
+  console.log("selectedImageUrls", selectedImageUrl);
 
   return (
     <>
@@ -84,12 +104,18 @@ export const Single = () => {
         <div className="container w-[80%] flex">
           <div className="w-[50%] flex px-[60px] justify-between">
             <div className="flex gap-2 flex-col">
-              <div className="bg-gray-100">
-                <Image width={60} height={60} alt="" src={productData.image} />
-              </div>
+              {selectedImageUrls.map((url, index) => (
+                <div className="bg-gray-100 ">
+                  <div className="bg-gray-100 flex gap-3">
+                    <Image alt="" src={url} width={80} height={60} />
+                  </div>
+                </div>
+              ))}
             </div>
             <div className="w-[80%]">
-              <Image alt="" src={productData.image} width={500} height={600} />
+              {regularImageUrl && (
+                <Image alt="" src={selectedImageUrl} width={500} height={600} />
+              )}
             </div>
           </div>
           <div className="w-[40%]  px-[20px]">
@@ -101,9 +127,20 @@ export const Single = () => {
               <p>(Also includes all applicable duties)</p>
             </div>
             <div className="flex flex-wrap gap-2 py-[20px]">
-              <div className="bg-gray-100 flex ">
-                <Image alt="" src={productData.image} width={75} height={75} />
-              </div>
+              {productData.image?.map((img: any, index: any) => (
+                <div
+                  key={index}
+                  className="bg-gray-100 flex gap-3"
+                  onClick={() => handleImageClick(index)}
+                >
+                  <Image
+                    width={60}
+                    height={60}
+                    alt={img.color}
+                    src={img.imgs[0]}
+                  />
+                </div>
+              ))}
             </div>
             <div className="flex gap-2">
               <h1>Qty</h1>

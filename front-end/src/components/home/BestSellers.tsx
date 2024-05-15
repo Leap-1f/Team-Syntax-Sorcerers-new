@@ -1,18 +1,15 @@
 "use client";
-import React, { useState, useEffect, FC, use } from "react";
+import React, { useState, useEffect, FC } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDialog from "../hover/ProductHover";
 import { getProductsBestSellers } from "../admin/productPage/network";
 import Link from "next/link";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { Button } from "@mui/material";
 import { Box } from "@mui/material";
-import { Single } from "../single/Single";
-import { useSearchParams } from "next/navigation";
 
 interface ProductProps {
-  image: string;
+  image: any;
   name: string;
   price: string;
   index: number;
@@ -51,6 +48,16 @@ const ProductComponent: FC<ProductProps> = ({
     setOpen(true);
   };
 
+  const [regularImageUrl, setRegularImageUrl] = useState("");
+  useEffect(() => {
+    const regularImage =
+      selectedValue.image &&
+      selectedValue.image.find((img: any) => img.color === "regular");
+    const imageUrl = regularImage
+      ? regularImage.imgs[0]
+      : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
+    setRegularImageUrl(imageUrl);
+  }, [selectedValue]);
   const handleClose = (value: any) => {
     setOpen(false);
     setSelectedValue(value);
@@ -76,7 +83,9 @@ const ProductComponent: FC<ProductProps> = ({
           className="w-[93%] h-[300px] relative"
           style={{
             padding: "30px",
-            backgroundImage: `url(${isHovered ? hoverImageUrl : image})`,
+            backgroundImage: `url(${
+              isHovered ? regularImageUrl : regularImageUrl
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -128,9 +137,10 @@ export const BestSellers = ({
   const [data, setData] = useState<any[]>([]);
   const getProduct = async () => {
     const data = await getProductsBestSellers();
-    console.log(data);
+    console.log("data", data);
     setData(data);
   };
+
   useEffect(() => {
     try {
       getProduct();

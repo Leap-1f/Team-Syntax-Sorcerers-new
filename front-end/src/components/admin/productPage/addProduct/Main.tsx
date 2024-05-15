@@ -413,7 +413,7 @@ export default function Main() {
                   <MenuItem value={"Сонгох"} disabled>
                     Сонгох
                   </MenuItem>
-                  {categoryMap.map((item, index) => (
+                  {mockData.map((item, index) => (
                     <MenuItem key={item} value={item + index}>
                       {item}
                     </MenuItem>

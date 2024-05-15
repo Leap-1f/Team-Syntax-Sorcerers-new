@@ -58,7 +58,7 @@ const TestSearch = ({ query }: { query: string }) => {
                     alt="profile"
                     objectFit="cover"
                     fill
-                    src={data.image}
+                    src={data.image[0].imgs[0]}
                   />
                 </Item>
                 <Stack paddingTop={"20px"}>

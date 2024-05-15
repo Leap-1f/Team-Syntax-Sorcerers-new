@@ -94,7 +94,15 @@ function Header() {
 
     return (
         <>
-            <Stack width={"100%"} position={"sticky"} top={"0"} zIndex={"100"}>
+            <Stack
+                width={"100%"}
+                position={"sticky"}
+                top={"0"}
+                zIndex={"100"}
+                sx={{
+                    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", // Add box shadow here
+                }}
+            >
                 {Bag(showAddCard, openAddCard)}
                 <Stack
                     width={"100%"}

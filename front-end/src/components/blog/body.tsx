@@ -29,48 +29,53 @@ const Body = () => {
             >
                 {data?.map((data, index) => {
                     return (
-                        <>
+                        <Box
+                            key={index}
+                            sx={{
+                                display: "flex",
+                                gap: "2rem",
+                                alignItems: "center",
+                                maxWidth: "100%",
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    position: "relative", // Add position relative
+                                    width: "450px",
+                                    height: "350px",
+
+                                    overflow: "hidden",
+                                }}
+                            >
+                                <Image
+                                    src={data.image}
+                                    alt=""
+                                    layout="fill"
+                                    objectFit="cover"
+                                    objectPosition="center bottom"
+                                />
+                            </Box>
                             <Box
                                 sx={{
                                     display: "flex",
-                                    gap: "3rem",
-                                    alignItems: "center",
-                                    maxWidth: "100%",
+                                    flexDirection: "column",
+                                    width: "30rem",
+                                    justifyContent: "flex-start", // Align text to the top
+                                    gap: "2rem",
+                                    paddingBottom: "9rem",
                                 }}
                             >
-                                <Box
+                                <Typography
                                     sx={{
-                                        width: "300px",
-                                        height: "300px",
-                                        backgroundImage: `url(${data.image})`,
-                                        backgroundSize: "cover",
-                                        backgroundPosition: "center",
-                                        overflow: "hidden",
-                                    }}
-                                />
-                                <Box
-                                    sx={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        width: "30rem",
-                                        gap: "2rem",
-                                        paddingTop: "2rem",
+                                        fontSize: "1.5rem",
+                                        fontWeight: "600",
                                     }}
                                 >
-                                    <Typography
-                                        sx={{
-                                            fontSize: "1.5rem",
-                                            fontWeight: "600",
-                                        }}
-                                    >
-                                        {data.title}
-                                    </Typography>
-                                    <Typography sx={{}}>
-                                        {data.description}
-                                    </Typography>
-                                </Box>
+                                    {data.title}
+                                </Typography>
+                                <Typography>{data.description}</Typography>
                             </Box>
-                        </>
+                        </Box>
                     );
                 })}
             </Box>

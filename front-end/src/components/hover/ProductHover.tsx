@@ -8,8 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { CiHeart } from "react-icons/ci";
-import { CiCircleInfo } from "react-icons/ci";
 
 export type TSimpleDialogProps = {
   open: boolean;
@@ -81,13 +79,19 @@ const ProductDialog: FC<TSimpleDialogProps> = ({
     color: "#666",
   };
   const [value, setValue] = useState<number | null>(2);
+  const regularImage =
+    selectedValue.image &&
+    selectedValue.image.find((img: any) => img.color === "regular");
+  const regularImageUrl = regularImage
+    ? regularImage.imgs[0]
+    : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
 
   return (
     <>
       <Dialog onClose={handleClose} open={open} fullWidth maxWidth={"lg"}>
         <Stack direction={"row"} spacing={2}>
           <Stack sx={{ width: "40%" }}>
-            <Image src={selectedValue.image} width={470} height={470} alt="" />
+            <Image src={regularImageUrl} width={470} height={470} alt="" />
           </Stack>
           <Stack spacing={2} sx={{ width: "60%", py: "70px" }}>
             <Stack spacing={1}>

@@ -19,7 +19,7 @@ import { StyledInput } from "@/components/admin/productPage/addProduct/styledInp
 import { StyledDropdown } from "@/components/admin/productPage/addProduct/styledDropdown";
 import { addProduct } from "@/components/admin/productPage/addProduct/network";
 
-const addFeaturedProducts = () => {
+const App = () => {
   const brands = [
     "Nike",
     "Adidas",
@@ -600,4 +600,4 @@ const addFeaturedProducts = () => {
     </Box>
   );
 };
-export default addFeaturedProducts;
+export default App;

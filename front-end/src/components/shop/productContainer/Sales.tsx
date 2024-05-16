@@ -90,19 +90,19 @@ export const Sales = ({ query }: { query: string }) => {
   return (
     <Stack width={"100%"} spacing={"20px"}>
       <Stack width={"100%"}>
-        <Typography>Basketball/Shoes</Typography>
+        <Typography>Sneackers</Typography>
         <Stack direction={"row"} justifyContent={"space-between"}>
-          <Typography sx={categoryTypo}>Men`s basketball shoes(10)</Typography>
+          <Typography sx={categoryTypo}>Men`s basketball shoes</Typography>
           <Stack direction={"row"} spacing={5}>
             <Search />
-            <button className="flex items-center gap-2	">
+            {/* <button className="flex items-center gap-2	">
               Hide Filters
               <IoFilterOutline size={20} />
             </button>
             <select id="sortOptions">
               <option value="listBy4">List by 4</option>
               <option value="listBy2">List by 2</option>
-            </select>
+            </select> */}
           </Stack>
         </Stack>
       </Stack>

@@ -48,7 +48,6 @@ const socialLinks = [
 ];
 
 function Footer() {
-
   const findItFastLinks = ["Privacy Notice", "Delivery Information"];
   const popularCategoriesLinks = ["Sneaker", "Basketball"];
 
@@ -130,10 +129,9 @@ function Footer() {
             Ангилал
           </h2>
           <div className="flex flex-col ">
-            {popularCategoriesLinks.map((link) => (
-              <Link href={"/shop"}>
+            {popularCategoriesLinks.map((link, index) => (
+              <Link href={"/shop"} key={index}>
                 <Button
-                  key={link}
                   className="mt-3 align-baseline"
                   fullWidth={true}
                   style={{ justifyContent: "flex-start" }}

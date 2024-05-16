@@ -74,7 +74,7 @@ export const Bag = (open: boolean, close: any) => {
               </Typography>
             </Stack>
             {wart?.map((product: any, index: any) => (
-              <div id={product.pid}>
+              <div id={product.pid} key={index}>
                 <Stack
                   width={"100%"}
                   direction={"row"}

@@ -257,7 +257,7 @@ export default function Main() {
                 </Typography>
               </Stack>
               {imageColors.map((item, index) => (
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={2} key={index}>
                   <Typography sx={{ fontSize: 20 }}>{item}</Typography>
                   <CldUploadButton
                     options={{

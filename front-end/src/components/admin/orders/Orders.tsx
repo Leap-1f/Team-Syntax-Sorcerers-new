@@ -8,23 +8,21 @@ import {
   InputAdornment,
   Checkbox,
 } from "@mui/material";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { getProducts } from "./network";
+import { useEffect, useState } from "react";
 import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
-import DropdownGroup from "./selectgroup";
 import Image from "next/image";
-import EditDialog from "./Edit";
+import EditDialog from "../productPage/Edit";
+import DropdownGroup from "../productPage/selectgroup";
+import { getOrders } from "./Network";
 
 // remember to add the backend l8r
-export function Main() {
+const Orders = () => {
   const titles = [
-    "",
-    "Бүтээгдэхүүн",
-    "Color",
-    "Үнэ",
+    "Захиалгын ID дугаар",
+    "Үйлчлүүлэгч",
+    "Төлбөр",
     "Нэмсэн огноо",
-    "Gender",
-    "Size",
+    "Статус",
     "",
   ];
   function navigate(where: string) {
@@ -33,10 +31,11 @@ export function Main() {
 
   const [data, setData] = useState<any[]>([]);
   async function refresh() {
-    const mane = await getProducts();
-    console.log(mane);
+    const mane = await getOrders();
     setData(mane);
   }
+  console.log("data", data);
+
   useEffect(() => {
     refresh();
   }, []);
@@ -45,8 +44,6 @@ export function Main() {
 
   const handleClickOpen = (id: string) => {
     sessionStorage.setItem("selectedItemId", id);
-    console.log("selectedItemId", id);
-
     setOpen(true);
   };
 
@@ -54,7 +51,6 @@ export function Main() {
     setOpen(false);
     setSelectedValue(value);
   };
-
   return (
     <>
       <EditDialog
@@ -91,17 +87,17 @@ export function Main() {
           startIcon=""
           onMouseEnter={(e) => {
             const input = e.target as HTMLElement;
-            input.innerText = "Бүтээгдэхүүн нэмэх?";
+            input.innerText = "Захиалга?";
           }}
           onMouseLeave={(e) => {
             const input = e.target as HTMLElement;
-            input.innerText = "Бүтээгдэхүүн нэмэх";
+            input.innerText = "Захиалга";
           }}
           onClick={() => {
             navigate("/admin/product/addProduct");
           }}
         >
-          Бүтээгдэхүүн нэмэх.
+          Захиалга
         </Button>
         <Box
           sx={{
@@ -115,7 +111,7 @@ export function Main() {
           <TextField
             size="small"
             sx={{ width: "30%" }}
-            placeholder="Бүтээгдэхүүний нэр, SKU, UPC"
+            placeholder="Захиалгачын ID"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -129,7 +125,7 @@ export function Main() {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(8, 1fr)",
+              gridTemplateColumns: "repeat(6, 1fr)",
               gridTemplateRows: "repeat(11, 1fr)",
               gap: "0px",
             }}
@@ -154,22 +150,18 @@ export function Main() {
                     key={index}
                     sx={{
                       display: "flex",
-                      justifyContent: "center",
+                      justifyContent: "flex-start",
                       width: "100%",
                       alignItems: "center",
                     }}
                   >
-                    <Checkbox id={yotta.name} />
+                    <Typography id={yotta.id} key={index}>
+                      {yotta.id}
+                    </Typography>
                   </Box>
                   <Stack key={index} direction="row">
-                    <Image
-                      src={yotta.image[0].imgs[0]}
-                      width={50}
-                      height={50}
-                      alt="zurag2"
-                    />
                     <Typography id={yotta.name} key={index}>
-                      {yotta.name}
+                      {yotta.user}
                     </Typography>
                   </Stack>
                   <Typography
@@ -188,15 +180,6 @@ export function Main() {
                       color: "black",
                     }}
                   >
-                    {yotta.price}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "semibold",
-                      color: "black",
-                    }}
-                  >
                     {yotta.createdAt}
                   </Typography>
                   <Typography
@@ -204,19 +187,15 @@ export function Main() {
                       fontSize: "16px",
                       fontWeight: "semibold",
                       color: "black",
+                      border: "1px solid green",
+                      px: "5px",
+                      py: "3px",
+                      backgroundColor: "green",
                     }}
                   >
-                    {yotta.gender}
+                    {yotta.status}
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "semibold",
-                      color: "black",
-                    }}
-                  >
-                    {yotta.size}
-                  </Typography>
+
                   <Stack
                     sx={{
                       display: "flex",
@@ -243,4 +222,5 @@ export function Main() {
       </Stack>
     </>
   );
-}
+};
+export default Orders;

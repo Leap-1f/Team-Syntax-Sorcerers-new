@@ -92,7 +92,14 @@ export function Main() {
           }}
         />
       </Box>
-      <Stack sx={{ display: "flex", gap:"3rem", justifyContent:"center", alignItems:"center" }}>
+      <Stack
+        sx={{
+          display: "flex",
+          gap: "3rem",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Box sx={{ display: "flex", gap: "30rem" }}>
           {titles.map((title, index) => (
             <Typography
@@ -107,14 +114,23 @@ export function Main() {
             </Typography>
           ))}
         </Box>
-        <Box sx={{ display:"flex", flexDirection:"column", gap:"3rem" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
           {data?.map((data, index) => {
             return (
               <>
-                <Box sx={{display:'flex'}}>
-                  <Checkbox sx={{paddingRight:"8rem"}}></Checkbox>
-                  <Image src={data.image} width={250} height={250} alt="zurag2" />
-                  <Typography id={data.name} key={index} sx={{width:"40rem", paddingLeft:"15rem"}}>
+                <Box sx={{ display: "flex" }}>
+                  <Checkbox sx={{ paddingRight: "8rem" }}></Checkbox>
+                  <Image
+                    src={data.image}
+                    width={250}
+                    height={250}
+                    alt="zurag2"
+                  />
+                  <Typography
+                    id={data.name}
+                    key={index}
+                    sx={{ width: "40rem", paddingLeft: "15rem" }}
+                  >
                     {data.title}
                   </Typography>
                   <Typography
@@ -122,8 +138,8 @@ export function Main() {
                       fontSize: "16px",
                       fontWeight: "semibold",
                       color: "black",
-                      width:"35rem",
-                      paddingLeft:"3rem"
+                      width: "35rem",
+                      paddingLeft: "3rem",
                     }}
                   >
                     {data.description}
@@ -133,12 +149,19 @@ export function Main() {
                       fontSize: "16px",
                       fontWeight: "semibold",
                       color: "black",
-                      paddingLeft:"12rem"
+                      paddingLeft: "12rem",
                     }}
                   >
                     {data.createdAt}
                   </Typography>
-                  <Stack sx={{display:"flex", flexDirection:"row", paddingLeft:"5rem", paddingBottom:"8rem" }}>
+                  <Stack
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      paddingLeft: "5rem",
+                      paddingBottom: "8rem",
+                    }}
+                  >
                     <Button>
                       <FaTrash />
                     </Button>

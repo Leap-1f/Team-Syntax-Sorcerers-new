@@ -1,10 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Box, Button, Drawer } from "@mui/material";
-import GridViewIcon from "@mui/icons-material/GridView";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import DiscountIcon from "@mui/icons-material/Discount";
-import SettingsIcon from "@mui/icons-material/Settings";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { IoMdMenu } from "react-icons/io";
@@ -33,11 +30,11 @@ const AdminNavBar = () => {
     //   startIcon: <GridViewIcon />,
     //   link: "/admin/",
     // },
-    // {
-    //   name: "Захиалах",
-    //   startIcon: <BookmarkBorderIcon />,
-    //   link: "/admin/orders",
-    // },
+    {
+      name: "Захиалга",
+      startIcon: <BookmarkBorderIcon />,
+      link: "/admin/orders",
+    },
     // {
     //   name: "Орлого",
     //   startIcon: <DiscountIcon />,
@@ -52,8 +49,7 @@ const AdminNavBar = () => {
       name: "Post",
       startIcon: <PostAddIcon />,
       link: "/admin/post",
-
-    }
+    },
     // {
     //   name: "Тохиргоо",
     //   startIcon: <SettingsIcon />,

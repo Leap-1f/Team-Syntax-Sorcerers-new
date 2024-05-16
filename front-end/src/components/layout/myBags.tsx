@@ -45,6 +45,8 @@ export const Bag = (open: boolean, close: any) => {
     var adjusted = cart.filter((item: any, i: number) => pid !== item.pid);
     sessionStorage.setItem("cart", JSON.stringify([...adjusted]));
   }
+  console.log("wart", wart);
+
   return (
     <>
       <Drawer open={open} onClose={close} anchor="right" id="sidebar">
@@ -68,7 +70,7 @@ export const Bag = (open: boolean, close: any) => {
               marginBottom={"20px"}
               paddingTop={"20px"}
             >
-              <Typography>SHOPPING CARD</Typography>
+              <Typography sx={{ fontSize: 25 }}>Сагс</Typography>
               <Typography sx={{ cursor: "pointer" }} onClick={close}>
                 X
               </Typography>
@@ -92,7 +94,7 @@ export const Bag = (open: boolean, close: any) => {
                       sx={{ border: "2px solid #DDD" }}
                     >
                       <Image
-                        src={product.image}
+                        src={product.image[0].imgs[0]}
                         width={75}
                         height={75}
                         alt=""
@@ -101,10 +103,10 @@ export const Bag = (open: boolean, close: any) => {
                     <Stack direction={"column"} spacing={"5px"}>
                       <Typography>{product.name}</Typography>
                       <Typography sx={{ color: "#666" }}>
-                        {product.price} x {product.quantity} = $
+                        {product.price} x {product.quantity} = ₮
                         {product.price * product.quantity}
                       </Typography>
-                      <Typography>Quantity: {product.quantity}</Typography>
+                      <Typography>Тоо ширхэг: {product.quantity}</Typography>
                     </Stack>
                   </Stack>
                   <Stack
@@ -130,7 +132,7 @@ export const Bag = (open: boolean, close: any) => {
               direction={"row"}
               justifyContent={"space-between"}
             >
-              <Typography sx={productCategoryText}>SUBTOTAL:</Typography>
+              <Typography sx={productCategoryText}>Нийт дүн:</Typography>
               <Typography
                 sx={{
                   ...productCategoryText,
@@ -147,7 +149,7 @@ export const Bag = (open: boolean, close: any) => {
             </Link> */}
             <Link href="/checkout">
               <Button onClick={close} sx={buttonStyle}>
-                checkout
+                Худалдаж авах
               </Button>
             </Link>
           </Stack>

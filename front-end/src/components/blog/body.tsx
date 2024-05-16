@@ -17,18 +17,65 @@ const Body = () => {
   return (
     <>
       <Box></Box>
-      <Box sx={{display:"flex" , flexDirection:"column" , gap:"5rem" , justifyContent:"center" , alignItems:"center" , paddingBottom:"5rem"}}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "5rem",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: "5rem",
+        }}
+      >
         {data?.map((data, index) => {
           return (
-            <>
-              <Box sx={{display:"flex", gap:"3rem"}}>
-                <Image src={data.image} width={300} height={300} alt="" style={{width:"250px", height:"250px"}}></Image>
-                <Box sx={{display:"flex" , flexDirection:"column",  width:"30rem" , gap:"2rem" , paddingTop:"2rem"}}>
-                  <Typography sx={{fontSize:"1.5rem" , fontWeight:"600"}}>{data.title}</Typography>
-                  <Typography sx={{}}>{data.description}</Typography>
-                </Box>
+            <Box
+              key={index}
+              sx={{
+                display: "flex",
+                gap: "2rem",
+                alignItems: "center",
+                maxWidth: "100%",
+              }}
+            >
+              <Box
+                sx={{
+                  position: "relative", // Add position relative
+                  width: "450px",
+                  height: "350px",
+
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src={data.image}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center bottom"
+                />
               </Box>
-            </>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "30rem",
+                  justifyContent: "flex-start", // Align text to the top
+                  gap: "2rem",
+                  paddingBottom: "9rem",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: "1.5rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  {data.title}
+                </Typography>
+                <Typography>{data.description}</Typography>
+              </Box>
+            </Box>
           );
         })}
       </Box>

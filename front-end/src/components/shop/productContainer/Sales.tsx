@@ -90,7 +90,9 @@ export const Sales = ({ query }: { query: string }) => {
   return (
     <Stack width={"100%"} spacing={"20px"}>
       <Stack width={"100%"}>
-        <Typography>Sneacker</Typography>
+
+        <Typography>Sneackers</Typography>
+
         <Stack direction={"row"} justifyContent={"space-between"}>
           <Typography sx={categoryTypo}>Men`s basketball shoes</Typography>
           <Stack direction={"row"} spacing={5}>

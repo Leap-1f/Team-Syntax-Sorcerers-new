@@ -9,7 +9,31 @@ export const Single = () => {
   const id = searchParams.get("id");
   const data = { id: id || "" };
   const [regularImageUrl, setRegularImageUrl] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [productData, setProductData] = useState<any>(Object);
+  const [selectedImageUrl, setSelectedImageUrl] = useState(regularImageUrl);
+  const [selectedImageUrls, setSelectedImageUrls] = useState([regularImageUrl]);
+
+  const store = {
+    getSnapshot: () => sessionStorage.getItem("cart") || "[]",
+    subscribe: (listener: () => void) => {
+      window.addEventListener("storage", listener);
+      return () => void window.removeEventListener("storage", listener);
+    },
+  };
+  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const wart: any = JSON.parse(kart);
+
+  useEffect(() => {
+    const regularImage =
+      productData.image &&
+      productData.image.find((img: any) => img.color === "regular");
+    const imageUrl = regularImage
+      ? regularImage.imgs[0]
+      : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
+    setRegularImageUrl(imageUrl);
+    setSelectedImageUrl(imageUrl);
+  }, [productData]);
 
   async function ProductFetchComponent() {
     try {
@@ -33,20 +57,12 @@ export const Single = () => {
     ProductFetchComponent();
   }, []);
 
-  if (!productData) {
-    return <div>Loading...</div>;
-  }
-  //======================================================================================
-  const store = {
-    getSnapshot: () => sessionStorage.getItem("cart") || "[]",
-    subscribe: (listener: () => void) => {
-      window.addEventListener("storage", listener);
-      return () => void window.removeEventListener("storage", listener);
-    },
+  const handleImageClick = (index: any) => {
+    setSelectedImageUrl(productData.image[index].imgs[0]);
+    setSelectedImageUrls(productData.image[index].imgs);
   };
-  const kart: any = useSyncExternalStore(store.subscribe, store.getSnapshot);
-  const wart: any = JSON.parse(kart);
-  const [quantity, setQuantity] = useState(1);
+  console.log("selectedImageUrls", selectedImageUrl);
+  //======================================================================================
 
   function addToCart() {
     var has = wart.some((item: any) => {
@@ -76,8 +92,7 @@ export const Single = () => {
       adjusted.quantity -= quantity;
     }
   }
-  const [selectedImageUrl, setSelectedImageUrl] = useState("");
-  const [selectedImageUrls, setSelectedImageUrls] = useState<any>([]);
+
   //======================================================================================
 
   useEffect(() => {
@@ -92,10 +107,8 @@ export const Single = () => {
     setSelectedImageUrls([imageUrl]);
   }, [productData]);
 
-  const handleImageClick = (index: any) => {
-    setSelectedImageUrl(productData.image[index].imgs[0]);
-    setSelectedImageUrls(productData.image[index].imgs);
-  };
+  
+
   console.log("selectedImageUrls", selectedImageUrl);
 
   return (
@@ -105,7 +118,7 @@ export const Single = () => {
         <div className="container w-[80%] flex">
           <div className="w-[50%] flex px-[60px] justify-between">
             <div className="flex gap-2 flex-col">
-              {selectedImageUrls.map((url: any, index: any) => (
+              {selectedImageUrls.map((url, index) => (
                 <div className="bg-gray-100 ">
                   <div className="bg-gray-100 flex gap-3">
                     <Image alt="" src={url} width={80} height={60} />

@@ -17,7 +17,12 @@ const Shop = async ({
         paddingTop={"200px"}
       >
         {/* <Banner /> */}
-        <Stack width={"1700px"} direction={"row"} justifyContent={"center"}>
+        <Stack
+          width={"1700px"}
+          direction={"row"}
+          justifyContent={"center"}
+          pb={10}
+        >
           <Sales query={query} />
         </Stack>
       </Stack>

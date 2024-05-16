@@ -23,6 +23,7 @@ const Home: React.FC = () => {
           <AboutOurTeam />
           <OurService />
         </Stack>
+
         <BestSellers2 />
         <BestSellers
           searchParams={{

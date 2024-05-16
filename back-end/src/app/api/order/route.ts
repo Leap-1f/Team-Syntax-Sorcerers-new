@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OrderModel from "../../../models/order.model";
 import { HttpStatusCode } from "axios";
 
-async function POST(req: NextRequest) {
+async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const body = await req.json();
     const order = await OrderModel.create(body);
@@ -11,7 +11,10 @@ async function POST(req: NextRequest) {
       { status: HttpStatusCode.Created }
     );
   } catch (err) {
-    return { err };
+    return NextResponse.json(
+      { message: err },
+      { status: HttpStatusCode.BadRequest }
+    );
   }
 }
 async function GET(req: NextRequest) {

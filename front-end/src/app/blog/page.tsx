@@ -7,7 +7,7 @@ import { Stack } from "@mui/material";
 const blog: FC = () => {
   return (
     <>
-      <Stack paddingTop={"150px"}>
+      <Stack >
         <PageLayout />
         <Body />
       </Stack>

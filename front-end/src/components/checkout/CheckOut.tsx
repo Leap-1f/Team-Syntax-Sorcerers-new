@@ -72,13 +72,14 @@ export const CheckOut = () => {
   });
   useEffect(() => {}, [warningMessage]);
 
+  // const [myBagToZero, setMyBagToZero] = useState(0);
   const handleButtonEnable = () =>
     !formikCheckout.values.district ||
     !formikCheckout.values.khoroo ||
     !formikCheckout.values.apartment ||
     !isChecked;
   const buttonBackgroundColor = handleButtonEnable() ? "#DDDDDD" : "#2BB9A9";
-
+  // setMyBagToZero(0);
   return (
     <>
       <div className="flex justify-center ">
@@ -150,11 +151,11 @@ export const CheckOut = () => {
                 </div>
               </div>
               <div className="w-[40%] bg-[#F5F5F5] p-[30px] rounded-lg h-fit">
-                <h1 className="text-[20px] font-semibold">YOUR ORDER</h1>
+                <h1 className="text-[20px] font-semibold">Таны захиалга</h1>
                 <div className="border-[1px] border-solid my-[30px]">
                   <div className="flex *:border-[1px] *:border-solid *:text-[#666] *:flex *:justify-center *:p-[25px]">
                     <div className="w-[30%] flex justify-center items-center">
-                      Product
+                      Бараа
                     </div>
                     <div className="w-[70%] flex flex-col justify-center items-center">
                       {wart?.map((product: any, index: any) => (
@@ -167,17 +168,12 @@ export const CheckOut = () => {
                     </div>
                   </div>
                   <div className="flex *:border-[1px] *:border-solid  *:flex *:justify-center *:p-[25px]">
-                    <div className="w-[30%] text-[#666]">Subtotal</div>
+                    <div className="w-[30%] text-[#666]">Үндсэн үнэ</div>
                     <div className="w-[70%] text-teal-500">${subTotal}.00</div>
                   </div>
-                  <div className="flex *:border-[1px] *:border-solid *:text-[#666] *:flex *:justify-center *:items-center ">
-                    <div className="w-[30%] p-[25px]">Shipping</div>
-                    <div className="w-[70%] text-center px-[25px]">
-                      Enter your address to view shipping options.
-                    </div>
-                  </div>
+
                   <div className="flex *:border-[1px] *:border-solid *:flex *:justify-center *:p-[25px]">
-                    <div className="w-[30%] text-[#666]">Total</div>
+                    <div className="w-[30%] text-[#666]">Нийт дүн</div>
                     <div className="w-[70%] text-teal-500">${subTotal}.00</div>
                   </div>
                 </div>
@@ -211,7 +207,7 @@ export const CheckOut = () => {
                   disabled={handleButtonEnable()}
                   style={{ backgroundColor: buttonBackgroundColor }}
                 >
-                  Place Order
+                  Захиалах
                 </button>
               </div>
             </div>

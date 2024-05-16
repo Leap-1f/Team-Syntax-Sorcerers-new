@@ -94,9 +94,23 @@ export const Single = () => {
   }
 
   //======================================================================================
-  if (!productData) {
-    return <div>Loading...</div>;
-  }
+
+  useEffect(() => {
+    const regularImage =
+      productData.image &&
+      productData.image.find((img: any) => img.color === "regular");
+    const imageUrl = regularImage
+      ? regularImage.imgs[0]
+      : "https://res.cloudinary.com/ddbgqgsu1/image/upload/v1715686642/uxrmuosrtkq90sz77mc6.jpg";
+    setRegularImageUrl(imageUrl);
+    setSelectedImageUrl(imageUrl);
+    setSelectedImageUrls([imageUrl]);
+  }, [productData]);
+
+  
+
+  console.log("selectedImageUrls", selectedImageUrl);
+
   return (
     <>
       {/* <div>{JSON.stringify(data, undefined, 2)}</div> */}
@@ -105,7 +119,7 @@ export const Single = () => {
           <div className="w-[50%] flex px-[60px] justify-between">
             <div className="flex gap-2 flex-col">
               {selectedImageUrls.map((url, index) => (
-                <div className="bg-gray-100 " key={index}>
+                <div className="bg-gray-100 ">
                   <div className="bg-gray-100 flex gap-3">
                     <Image alt="" src={url} width={80} height={60} />
                   </div>
@@ -123,8 +137,7 @@ export const Single = () => {
             <p className=" font-medium pb-[15px]">Basketball Shoes</p>
             <h2 className=" font-medium">₮{productData.price}</h2>
             <div className=" text-[#757575]">
-              <p>incl. of taxes</p>
-              <p>(Also includes all applicable duties)</p>
+              <p>Хүргэлт орсон</p>
             </div>
             <div className="flex flex-wrap gap-2 py-[20px]">
               {productData.image?.map((img: any, index: any) => (
@@ -143,7 +156,7 @@ export const Single = () => {
               ))}
             </div>
             <div className="flex gap-2">
-              <h1>Qty</h1>
+              <h1>Тоо ширхэг</h1>
               <input
                 className="border-solid border-[1px] rounded-md px-1"
                 type="number"
@@ -152,8 +165,7 @@ export const Single = () => {
               />
             </div>
             <div className="flex justify-between py-[10px]">
-              <h1 className=" font-medium">Select Size</h1>
-              <h1 className="text-[#707072] font-medium">Size Guide</h1>
+              <h1 className=" font-medium">Хэмжээ</h1>
             </div>
             <div className="flex flex-wrap gap-2">
               <div className="flex">
@@ -162,8 +174,9 @@ export const Single = () => {
                 </div>
               </div>
             </div>
-            <Link href="/checkout">
+            <Link href="#">
               <button
+                disabled
                 onClick={() => addToCart()}
                 className="py-[20px] text-white bg-teal-500 hover:bg-teal-600 w-[100%] rounded-[30px] my-[10px]"
               >
@@ -174,7 +187,7 @@ export const Single = () => {
               onClick={() => addToCart()}
               className="py-[20px] text-white bg-teal-500 hover:bg-teal-600 w-[100%] rounded-[30px] my-[10px]"
             >
-              Add to Bag
+              Сагсанд орох
             </button>
           </div>
         </div>
